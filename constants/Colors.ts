@@ -1,47 +1,46 @@
 
-const tintColorLight = '#030213';
-const tintColorDark = '#f8f8f8';
+const tintColorLight = '#2C5F2D';
+const tintColorDark = '#F5EDD1';
 
-// This is a translation of the variables from your global.css file
 export default {
   light: {
-    text: '#030213',
-    background: '#ffffff',
+    text: '#2C5F2D',
+    background: '#F5EDD1',
     tint: tintColorLight,
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorLight,
-    primary: '#030213',
-    primaryForeground: '#ffffff',
-    secondary: '#ececf0',
-    secondaryForeground: '#030213',
-    muted: '#ececf0',
-    mutedForeground: '#717182',
-    accent: '#e9ebef',
-    accentForeground: '#030213',
+    primary: '#2C5F2D',
+    primaryForeground: '#FFFFFF',
+    secondary: '#FFFFFF',
+    secondaryForeground: '#2C5F2D',
+    muted: '#F5EDD1',
+    mutedForeground: 'rgba(44, 95, 45, 0.6)',
+    accent: '#E5E5E5',
+    accentForeground: '#2C5F2D',
     destructive: '#d4183d',
     border: 'rgba(0, 0, 0, 0.1)',
-    card: '#ffffff',
-    cardForeground: '#030213',
-    rating: '#e4b30e', // Translated from --chart-5
+    card: '#FFFFFF',
+    cardForeground: '#2C5F2D',
+    rating: '#e4b30e',
   },
   dark: {
-    text: '#f8f8f8',
-    background: '#141414',
+    text: '#F5EDD1',
+    background: '#2C5F2D',
     tint: tintColorDark,
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorDark,
-    primary: '#f8f8f8',
-    primaryForeground: '#141414',
-    secondary: '#2d2d2d',
-    secondaryForeground: '#f8f8f8',
-    muted: '#2d2d2d',
-    mutedForeground: '#a1a1a1',
-    accent: '#2d2d2d',
-    accentForeground: '#f8f8f8',
-    destructive: '#d4183d', // Kept the vibrant red for consistency
-    border: '#2d2d2d',
-    card: '#1f1f1f', // Slightly lighter than background for depth
-    cardForeground: '#f8f8f8',
-    rating: '#e4b30e', // Same gold color for ratings in dark mode
+    primary: '#F5EDD1',
+    primaryForeground: '#2C5F2D',
+    secondary: '#2C5F2D',
+    secondaryForeground: '#F5EDD1',
+    muted: '#2C5F2D',
+    mutedForeground: 'rgba(245, 237, 209, 0.6)',
+    accent: '#E5E5E5',
+    accentForeground: '#2C5F2D',
+    destructive: '#d4183d',
+    border: 'rgba(255, 255, 255, 0.1)',
+    card: '#2C5F2D',
+    cardForeground: '#F5EDD1',
+    rating: '#e4b30e',
   },
 };

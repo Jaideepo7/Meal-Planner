@@ -1,7 +1,144 @@
-import { StyleSheet, View, Text, TouchableOpacity, ScrollView, SafeAreaView, Switch } from 'react-native';
+
+import { StyleSheet, View, Text, TouchableOpacity, ScrollView, SafeAreaView, Switch, useColorScheme } from 'react-native';
 import { ChevronRight, Package, Globe2, ShieldAlert, Target } from 'lucide-react-native';
+import Colors from '../../constants/Colors';
+
+function getStyles(colors: any) {
+  return StyleSheet.create({
+    safeArea: {
+      flex: 1,
+      backgroundColor: colors.background,
+    },
+    container: {
+      flex: 1,
+    },
+    header: {
+      backgroundColor: colors.primary,
+      paddingHorizontal: 24,
+      paddingVertical: 40,
+      borderBottomLeftRadius: 30,
+      borderBottomRightRadius: 30,
+      position: 'relative',
+      overflow: 'hidden',
+    },
+    headerBg1: {
+        position: 'absolute',
+        top: -128,
+        right: -128,
+        width: 256,
+        height: 256,
+        backgroundColor: 'rgba(255,255,255,0.1)',
+        borderRadius: 128,
+    },
+    headerBg2: {
+        position: 'absolute',
+        bottom: -96,
+        left: -96,
+        width: 192,
+        height: 192,
+        backgroundColor: 'rgba(255,255,255,0.1)',
+        borderRadius: 96,
+    },
+    headerContent: {
+      alignItems: 'center',
+      zIndex: 10,
+    },
+    title: {
+      color: colors.primaryForeground,
+      fontSize: 28,
+      fontWeight: 'bold',
+      marginBottom: 4,
+    },
+    subtitle: {
+      color: colors.primaryForeground,
+      fontSize: 14,
+      opacity: 0.8,
+    },
+    content: {
+      flex: 1,
+    },
+    contentContainer: {
+      padding: 24,
+      paddingBottom: 100,
+    },
+    sectionTitle: {
+      fontSize: 14,
+      fontWeight: '600',
+      color: colors.text,
+      marginBottom: 12,
+    },
+    settingsSection: {
+      gap: 12,
+      marginBottom: 24,
+    },
+    settingItem: {
+      backgroundColor: colors.card,
+      borderRadius: 16,
+      padding: 20,
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 16,
+    },
+    settingIconContainer: {
+      borderRadius: 30,
+      padding: 12,
+    },
+    settingTextContainer: {
+      flex: 1,
+    },
+    settingTitle: {
+      fontSize: 16,
+      fontWeight: '600',
+      color: colors.cardForeground,
+      marginBottom: 2,
+    },
+    settingDescription: {
+      fontSize: 12,
+      color: colors.mutedForeground,
+    },
+    preferencesCard: {
+      backgroundColor: colors.card,
+      borderRadius: 16,
+      padding: 20,
+    },
+    preferencesTitle: {
+      fontSize: 16,
+      fontWeight: '600',
+      color: colors.cardForeground,
+      marginBottom: 16,
+    },
+    preferenceItem: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      paddingVertical: 12,
+    },
+    preferenceItemBorder: {
+      borderTopWidth: 1,
+      borderTopColor: colors.border,
+      marginTop: 4,
+    },
+    preferenceInfo: {
+      flex: 1,
+    },
+    preferenceTitle: {
+      fontSize: 14,
+      fontWeight: '500',
+      color: colors.cardForeground,
+      marginBottom: 2,
+    },
+    preferenceDescription: {
+      fontSize: 12,
+      color: colors.mutedForeground,
+    },
+  });
+}
 
 export default function SettingsScreen() {
+  const colorScheme = useColorScheme() ?? 'light';
+  const colors = Colors[colorScheme];
+  const styles = getStyles(colors);
+
   const settingsItems = [
     {
       icon: Package,
@@ -36,18 +173,15 @@ export default function SettingsScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-        {/* Header */}
         <View style={styles.header}>
-          <View style={styles.headerBg1} />
-          <View style={styles.headerBg2} />
-          
+            <View style={styles.headerBg1} />
+            <View style={styles.headerBg2} />
           <View style={styles.headerContent}>
             <Text style={styles.title}>Settings</Text>
             <Text style={styles.subtitle}>Manage your preferences</Text>
           </View>
         </View>
 
-        {/* Content */}
         <ScrollView style={styles.content} contentContainerStyle={styles.contentContainer}>
           <Text style={styles.sectionTitle}>Your Profile Settings</Text>
           
@@ -63,16 +197,14 @@ export default function SettingsScreen() {
                     <Text style={styles.settingTitle}>{item.title}</Text>
                     <Text style={styles.settingDescription}>{item.description}</Text>
                   </View>
-                  <ChevronRight size={20} color="rgba(44,95,45,0.4)" />
+                  <ChevronRight size={20} color={colors.mutedForeground} />
                 </TouchableOpacity>
               );
             })}
           </View>
 
-          {/* App Preferences */}
+          <Text style={styles.sectionTitle}>App Preferences</Text>
           <View style={styles.preferencesCard}>
-            <Text style={styles.preferencesTitle}>App Preferences</Text>
-            
             <View style={styles.preferenceItem}>
               <View style={styles.preferenceInfo}>
                 <Text style={styles.preferenceTitle}>Notifications</Text>
@@ -80,7 +212,7 @@ export default function SettingsScreen() {
               </View>
               <Switch
                 value={true}
-                trackColor={{ false: '#d1d5db', true: '#2C5F2D' }}
+                trackColor={{ false: '#d1d5db', true: colors.primary }}
                 thumbColor="white"
               />
             </View>
@@ -93,7 +225,7 @@ export default function SettingsScreen() {
               <Switch
                 value={false}
                 disabled={true}
-                trackColor={{ false: '#e5e7eb', true: '#2C5F2D' }}
+                trackColor={{ false: '#e5e7eb', true: colors.primary }}
                 thumbColor="white"
               />
             </View>
@@ -103,143 +235,3 @@ export default function SettingsScreen() {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-  header: {
-    backgroundColor: '#2C5F2D',
-    paddingHorizontal: 24,
-    paddingVertical: 40,
-    position: 'relative',
-    overflow: 'hidden',
-  },
-  headerBg1: {
-    position: 'absolute',
-    top: -128,
-    right: -128,
-    width: 256,
-    height: 256,
-    backgroundColor: '#3D7A3F',
-    borderRadius: 128,
-    opacity: 0.5,
-  },
-  headerBg2: {
-    position: 'absolute',
-    bottom: -96,
-    left: -96,
-    width: 192,
-    height: 192,
-    backgroundColor: '#3D7A3F',
-    borderRadius: 96,
-    opacity: 0.5,
-  },
-  headerContent: {
-    alignItems: 'center',
-    zIndex: 10,
-  },
-  title: {
-    color: 'white',
-    fontSize: 28,
-    fontWeight: 'bold',
-    marginBottom: 4,
-  },
-  subtitle: {
-    color: '#F5EDD1',
-    fontSize: 14,
-  },
-  content: {
-    flex: 1,
-    backgroundColor: '#F5EDD1',
-  },
-  contentContainer: {
-    padding: 24,
-    paddingBottom: 100,
-  },
-  sectionTitle: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#2C5F2D',
-    marginBottom: 12,
-  },
-  settingsSection: {
-    gap: 12,
-    marginBottom: 24,
-  },
-  settingItem: {
-    backgroundColor: 'white',
-    borderRadius: 16,
-    padding: 20,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 16,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    elevation: 2,
-  },
-  settingIconContainer: {
-    borderRadius: 30,
-    padding: 12,
-  },
-  settingTextContainer: {
-    flex: 1,
-  },
-  settingTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#2C5F2D',
-    marginBottom: 2,
-  },
-  settingDescription: {
-    fontSize: 12,
-    color: 'rgba(44,95,45,0.6)',
-  },
-  preferencesCard: {
-    backgroundColor: 'white',
-    borderRadius: 16,
-    padding: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    elevation: 2,
-  },
-  preferencesTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#2C5F2D',
-    marginBottom: 16,
-  },
-  preferenceItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingVertical: 12,
-  },
-  preferenceItemBorder: {
-    borderTopWidth: 1,
-    borderTopColor: 'rgba(44,95,45,0.1)',
-    marginTop: 4,
-  },
-  preferenceInfo: {
-    flex: 1,
-  },
-  preferenceTitle: {
-    fontSize: 14,
-    fontWeight: '500',
-    color: '#2C5F2D',
-    marginBottom: 2,
-  },
-  preferenceDescription: {
-    fontSize: 12,
-    color: 'rgba(44,95,45,0.6)',
-  },
-});

@@ -1,54 +1,58 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
 
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
+import React from 'react';
+import { Tabs } from 'expo-router';
+import { Heart, Lightbulb, Home, User, Settings } from 'lucide-react-native';
+import { useColorScheme } from 'react-native';
+
+import Colors from '../../constants/Colors';
 
 export default function TabLayout() {
+  const colorScheme = useColorScheme();
+
   return (
     <Tabs
       screenOptions={{
-        headerShown: false,
-        tabBarButton: HapticTab,
+        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         tabBarStyle: {
-          backgroundColor: '#4A6A54',
-          borderTopWidth: 0,
-          elevation: 0,
-          height: 80,
-          paddingTop: 10,
+          backgroundColor: Colors[colorScheme ?? 'light'].primary,
         },
-        tabBarShowLabel: false,
-        tabBarActiveTintColor: 'white',
-        tabBarInactiveTintColor: 'white',
       }}>
       <Tabs.Screen
         name="index"
         options={{
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house" color={color} />,
+          title: 'Home',
+          tabBarIcon: ({ color }) => <Home color={color} />,
+          headerShown: false,
         }}
       />
       <Tabs.Screen
         name="favorites"
         options={{
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="heart" color={color} />,
+          title: 'Favorites',
+          tabBarIcon: ({ color }) => <Heart color={color} />,
         }}
       />
       <Tabs.Screen
-        name="recipes"
+        name="suggestions"
         options={{
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="lightbulb" color={color} />,
+          title: 'Suggestions',
+          tabBarIcon: ({ color }) => <Lightbulb color={color} />,
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="person" color={color} />,
+          title: 'Profile',
+          tabBarIcon: ({ color }) => <User color={color} />,
+          headerShown: false,
         }}
       />
-       <Tabs.Screen
+      <Tabs.Screen
         name="settings"
         options={{
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="slider.horizontal.3" color={color} />,
+          title: 'Settings',
+          tabBarIcon: ({ color }) => <Settings color={color} />,
+          headerShown: false,
         }}
       />
     </Tabs>

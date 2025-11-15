@@ -1,8 +1,9 @@
 
-import { StyleSheet, View, Text, TouchableOpacity, ScrollView, SafeAreaView, useColorScheme } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ScrollView, SafeAreaView, useColorScheme, Image } from 'react-native';
 import { ChefHat, TrendingUp, Clock, Sparkles } from 'lucide-react-native';
 import Colors from '../../constants/Colors';
 import { Strings } from '../../constants/Strings';
+import { useRouter } from 'expo-router';
 
 function getStyles(colors: any) {
   return StyleSheet.create({
@@ -17,6 +18,8 @@ function getStyles(colors: any) {
       backgroundColor: colors.primary,
       paddingHorizontal: 24,
       paddingVertical: 40,
+      borderBottomLeftRadius: 30,
+      borderBottomRightRadius: 30,
     },
     greeting: {
       flexDirection: 'row',
@@ -41,7 +44,6 @@ function getStyles(colors: any) {
     },
     content: {
       flex: 1,
-      backgroundColor: colors.background,
     },
     contentContainer: {
       padding: 24,
@@ -57,8 +59,6 @@ function getStyles(colors: any) {
       backgroundColor: colors.card,
       borderRadius: 16,
       padding: 20,
-      borderWidth: 1,
-      borderColor: colors.border,
     },
     statIconBg: {
       borderRadius: 20,
@@ -92,7 +92,7 @@ function getStyles(colors: any) {
       marginBottom: 12,
     },
     primaryActionIcon: {
-      backgroundColor: colors.primaryForeground,
+      backgroundColor: 'rgba(255,255,255,0.2)',
       borderRadius: 40,
       padding: 12,
     },
@@ -117,11 +117,9 @@ function getStyles(colors: any) {
       flexDirection: 'row',
       alignItems: 'center',
       gap: 16,
-      borderWidth: 1,
-      borderColor: colors.border,
     },
     secondaryActionIcon: {
-      backgroundColor: colors.secondary,
+      backgroundColor: colors.accent,
       borderRadius: 40,
       padding: 12,
     },
@@ -138,10 +136,19 @@ function getStyles(colors: any) {
       color: colors.mutedForeground,
       fontSize: 12,
     },
+    recommendationCard: {
+        borderRadius: 16,
+        overflow: 'hidden',
+    },
+    recommendationImage: {
+        width: '100%',
+        height: 200,
+    }
   });
 }
 
 export default function HomeScreen() {
+  const router = useRouter();
   const colorScheme = useColorScheme() ?? 'light';
   const colors = Colors[colorScheme];
   const styles = getStyles(colors);
@@ -149,7 +156,7 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-        <ScrollView>
+        <ScrollView style={styles.content} contentContainerStyle={styles.contentContainer}>
           <View style={styles.header}>
             <View style={styles.greeting}>
               <View style={styles.iconContainer}>
@@ -162,30 +169,30 @@ export default function HomeScreen() {
             </View>
           </View>
 
-          <View style={styles.contentContainer}>
+          <View style={{marginTop: -30, paddingHorizontal: 24, paddingBottom: 24}}>
             <View style={styles.statsGrid}>
-              <View style={styles.statCard}>
-                <View style={[styles.statIconBg, { backgroundColor: colors.accent }]}>
-                  <TrendingUp size={20} color={colors.accentForeground} />
+                <View style={styles.statCard}>
+                    <View style={[styles.statIconBg, { backgroundColor: colors.accent }]}>
+                    <TrendingUp size={20} color={colors.accentForeground} />
+                    </View>
+                    <Text style={styles.statValue}>7</Text>
+                    <Text style={styles.statLabel}>{Strings.home.dayStreak}</Text>
                 </View>
-                <Text style={styles.statValue}>7</Text>
-                <Text style={styles.statLabel}>{Strings.home.dayStreak}</Text>
-              </View>
 
-              <View style={styles.statCard}>
-                <View style={[styles.statIconBg, { backgroundColor: colors.accent }]}>
-                  <Clock size={20} color={colors.accentForeground} />
+                <View style={styles.statCard}>
+                    <View style={[styles.statIconBg, { backgroundColor: colors.accent}]}>
+                    <Clock size={20} color={colors.accentForeground} />
+                    </View>
+                    <Text style={styles.statValue}>18</Text>
+                    <Text style={styles.statLabel}>{Strings.home.mealsLogged}</Text>
                 </View>
-                <Text style={styles.statValue}>18</Text>
-                <Text style={styles.statLabel}>{Strings.home.mealsLogged}</Text>
-              </View>
             </View>
 
             <Text style={styles.sectionTitle}>{Strings.home.quickActions}</Text>
             
-            <TouchableOpacity style={styles.primaryAction}>
+            <TouchableOpacity style={styles.primaryAction} onPress={() => router.push('/food-preferences')}>
               <View style={styles.primaryActionIcon}>
-                <Sparkles size={24} color={colors.primary} />
+                <Sparkles size={24} color={colors.primaryForeground} />
               </View>
               <View style={styles.primaryActionText}>
                 <Text style={styles.primaryActionTitle}>{Strings.home.askAI}</Text>
@@ -202,6 +209,13 @@ export default function HomeScreen() {
                 <Text style={styles.secondaryActionSubtitle}>{Strings.home.browseRecipesDescription}</Text>
               </View>
             </TouchableOpacity>
+
+            <View style={{marginTop: 24}}>
+                <Text style={styles.sectionTitle}>Recommended for You</Text>
+                <View style={styles.recommendationCard}>
+                    <Image source={{uri: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=2960&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'}} style={styles.recommendationImage}/>
+                </View>
+            </View>
           </View>
         </ScrollView>
       </View>
