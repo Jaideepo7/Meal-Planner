@@ -1,24 +1,47 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
 
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { useEffect } from 'react';
+import { SplashScreen, Stack, useRouter, useSegments } from 'expo-router';
+import { AuthProvider, useAuth } from '../context/AuthContext';
 
-export const unstable_settings = {
-  anchor: '(tabs)',
-};
+// Prevent the splash screen from auto-hiding before asset loading is complete.
+SplashScreen.preventAutoHideAsync();
 
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
+const InitialLayout = () => {
+  const { isAuthenticated } = useAuth();
+  const segments = useSegments();
+  const router = useRouter();
+
+  useEffect(() => {
+      SplashScreen.hideAsync();
+  });
+
+  useEffect(() => {
+    const inTabsGroup = segments[0] === '(tabs)';
+
+    if (isAuthenticated && !inTabsGroup) {
+      // Navigate to the main app screen
+      router.replace('/(tabs)');
+    } else if (!isAuthenticated && inTabsGroup) {
+      // Navigate to the login screen
+      router.replace('/login');
+    }
+  }, [isAuthenticated, segments]);
+
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <Stack>
+      <Stack.Screen name="login" options={{ headerShown: false }} />
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+    </Stack>
   );
-}
+};
+
+const RootLayoutNav = () => {
+  return (
+    <AuthProvider>
+      <InitialLayout />
+    </AuthProvider>
+  );
+};
+
+export default RootLayoutNav;
