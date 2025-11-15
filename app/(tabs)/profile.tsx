@@ -1,8 +1,10 @@
 
-import { StyleSheet, View, Text, TouchableOpacity, ScrollView, SafeAreaView, useColorScheme } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ScrollView, SafeAreaView, useColorScheme, Dimensions } from 'react-native';
 import { User, Mail, ChevronRight, Bell, Shield, HelpCircle, LogOut } from 'lucide-react-native';
 import Colors from '../../constants/Colors';
 import { useAuth } from '../../context/AuthContext';
+
+const { width, height } = Dimensions.get('window');
 
 function getStyles(colors: any) {
   return StyleSheet.create({
@@ -15,21 +17,21 @@ function getStyles(colors: any) {
     },
     header: {
       backgroundColor: colors.primary,
-      paddingHorizontal: 24,
-      paddingVertical: 40,
+      paddingHorizontal: width * 0.06,
+      paddingVertical: height * 0.05,
       borderBottomLeftRadius: 30,
       borderBottomRightRadius: 30,
       alignItems: 'center',
     },
     profileIconContainer: {
       backgroundColor: colors.primaryForeground,
-      borderRadius: 60,
-      padding: 24,
-      marginBottom: 12,
+      borderRadius: width * 0.15,
+      padding: width * 0.06,
+      marginBottom: height * 0.015,
     },
     userName: {
       color: colors.primaryForeground,
-      fontSize: 24,
+      fontSize: width * 0.06,
       fontWeight: 'bold',
       marginBottom: 4,
     },
@@ -40,27 +42,26 @@ function getStyles(colors: any) {
     },
     userEmail: {
       color: colors.primaryForeground,
-      fontSize: 14,
+      fontSize: width * 0.035,
       opacity: 0.8,
     },
     content: {
       flex: 1,
     },
     contentContainer: {
-      padding: 24,
       paddingBottom: 100,
     },
     statsCard: {
       backgroundColor: colors.card,
       borderRadius: 16,
-      padding: 20,
-      marginBottom: 24,
+      padding: width * 0.05,
+      marginBottom: height * 0.03,
     },
     statsTitle: {
-      fontSize: 16,
+      fontSize: width * 0.04,
       fontWeight: '600',
       color: colors.cardForeground,
-      marginBottom: 16,
+      marginBottom: height * 0.02,
     },
     statsGrid: {
       flexDirection: 'row',
@@ -70,57 +71,57 @@ function getStyles(colors: any) {
       alignItems: 'center',
     },
     statValue: {
-      fontSize: 24,
+      fontSize: width * 0.06,
       fontWeight: 'bold',
       color: colors.cardForeground,
       marginBottom: 4,
     },
     statLabel: {
-      fontSize: 12,
+      fontSize: width * 0.03,
       color: colors.mutedForeground,
     },
     menuSection: {
-      gap: 12,
-      marginBottom: 24,
+      gap: width * 0.03,
+      marginBottom: height * 0.03,
     },
     menuItem: {
       backgroundColor: colors.card,
       borderRadius: 16,
-      padding: 20,
+      padding: width * 0.05,
       flexDirection: 'row',
       alignItems: 'center',
-      gap: 16,
+      gap: width * 0.04,
     },
     menuIconContainer: {
       backgroundColor: colors.accent,
       borderRadius: 30,
-      padding: 12,
+      padding: width * 0.03,
     },
     menuTextContainer: {
       flex: 1,
     },
     menuTitle: {
-      fontSize: 16,
+      fontSize: width * 0.04,
       fontWeight: '600',
       color: colors.cardForeground,
       marginBottom: 2,
     },
     menuDescription: {
-      fontSize: 12,
+      fontSize: width * 0.03,
       color: colors.mutedForeground,
     },
     logoutButton: {
       backgroundColor: colors.destructive,
       borderRadius: 16,
-      padding: 16,
+      padding: width * 0.04,
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
-      gap: 8,
+      gap: width * 0.02,
     },
     logoutButtonText: {
       color: 'white',
-      fontSize: 16,
+      fontSize: width * 0.04,
       fontWeight: '600',
     },
   });
@@ -144,11 +145,11 @@ export default function ProfileScreen() {
       <ScrollView style={styles.content} contentContainerStyle={styles.contentContainer}>
         <View style={styles.header}>
           <View style={styles.profileIconContainer}>
-            <User size={48} color={colors.primary} />
+            <User size={width * 0.12} color={colors.primary} />
           </View>
           <Text style={styles.userName}>John Doe</Text>
           <View style={styles.userEmailContainer}>
-            <Mail size={16} color={colors.primaryForeground} />
+            <Mail size={width * 0.04} color={colors.primaryForeground} />
             <Text style={styles.userEmail}>john.doe@example.com</Text>
           </View>
         </View>
@@ -178,20 +179,20 @@ export default function ProfileScreen() {
             return (
               <TouchableOpacity key={index} style={styles.menuItem}>
                 <View style={styles.menuIconContainer}>
-                  <Icon size={20} color={colors.accentForeground} />
+                  <Icon size={width * 0.05} color={colors.accentForeground} />
                 </View>
                 <View style={styles.menuTextContainer}>
                   <Text style={styles.menuTitle}>{item.title}</Text>
                   <Text style={styles.menuDescription}>{item.description}</Text>
                 </View>
-                <ChevronRight size={20} color={colors.mutedForeground} />
+                <ChevronRight size={width * 0.05} color={colors.mutedForeground} />
               </TouchableOpacity>
             );
           })}
         </View>
 
         <TouchableOpacity style={styles.logoutButton} onPress={logout}>
-          <LogOut size={20} color="white" />
+          <LogOut size={width * 0.05} color="white" />
           <Text style={styles.logoutButtonText}>Log Out</Text>
         </TouchableOpacity>
         </View>

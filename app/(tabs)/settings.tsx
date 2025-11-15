@@ -1,7 +1,9 @@
 
-import { StyleSheet, View, Text, TouchableOpacity, ScrollView, SafeAreaView, Switch, useColorScheme } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ScrollView, SafeAreaView, Switch, useColorScheme, Dimensions } from 'react-native';
 import { ChevronRight, Package, Globe2, ShieldAlert, Target } from 'lucide-react-native';
 import Colors from '../../constants/Colors';
+
+const { width, height } = Dimensions.get('window');
 
 function getStyles(colors: any) {
   return StyleSheet.create({
@@ -14,8 +16,8 @@ function getStyles(colors: any) {
     },
     header: {
       backgroundColor: colors.primary,
-      paddingHorizontal: 24,
-      paddingVertical: 40,
+      paddingHorizontal: width * 0.06,
+      paddingVertical: height * 0.05,
       borderBottomLeftRadius: 30,
       borderBottomRightRadius: 30,
       position: 'relative',
@@ -23,21 +25,21 @@ function getStyles(colors: any) {
     },
     headerBg1: {
         position: 'absolute',
-        top: -128,
-        right: -128,
-        width: 256,
-        height: 256,
+        top: -height * 0.15,
+        right: -width * 0.3,
+        width: width * 0.6,
+        height: width * 0.6,
         backgroundColor: 'rgba(255,255,255,0.1)',
-        borderRadius: 128,
+        borderRadius: width * 0.3,
     },
     headerBg2: {
         position: 'absolute',
-        bottom: -96,
-        left: -96,
-        width: 192,
-        height: 192,
+        bottom: -height * 0.1,
+        left: -width * 0.2,
+        width: width * 0.45,
+        height: width * 0.45,
         backgroundColor: 'rgba(255,255,255,0.1)',
-        borderRadius: 96,
+        borderRadius: width * 0.225,
     },
     headerContent: {
       alignItems: 'center',
@@ -45,24 +47,24 @@ function getStyles(colors: any) {
     },
     title: {
       color: colors.primaryForeground,
-      fontSize: 28,
+      fontSize: width * 0.07,
       fontWeight: 'bold',
       marginBottom: 4,
     },
     subtitle: {
       color: colors.primaryForeground,
-      fontSize: 14,
+      fontSize: width * 0.035,
       opacity: 0.8,
     },
     content: {
       flex: 1,
     },
     contentContainer: {
-      padding: 24,
+      padding: width * 0.06,
       paddingBottom: 100,
     },
     sectionTitle: {
-      fontSize: 14,
+      fontSize: width * 0.035,
       fontWeight: '600',
       color: colors.text,
       marginBottom: 12,
@@ -74,35 +76,35 @@ function getStyles(colors: any) {
     settingItem: {
       backgroundColor: colors.card,
       borderRadius: 16,
-      padding: 20,
+      padding: width * 0.05,
       flexDirection: 'row',
       alignItems: 'center',
-      gap: 16,
+      gap: width * 0.04,
     },
     settingIconContainer: {
       borderRadius: 30,
-      padding: 12,
+      padding: width * 0.03,
     },
     settingTextContainer: {
       flex: 1,
     },
     settingTitle: {
-      fontSize: 16,
+      fontSize: width * 0.04,
       fontWeight: '600',
       color: colors.cardForeground,
       marginBottom: 2,
     },
     settingDescription: {
-      fontSize: 12,
+      fontSize: width * 0.03,
       color: colors.mutedForeground,
     },
     preferencesCard: {
       backgroundColor: colors.card,
       borderRadius: 16,
-      padding: 20,
+      padding: width * 0.05,
     },
     preferencesTitle: {
-      fontSize: 16,
+      fontSize: width * 0.04,
       fontWeight: '600',
       color: colors.cardForeground,
       marginBottom: 16,
@@ -122,13 +124,13 @@ function getStyles(colors: any) {
       flex: 1,
     },
     preferenceTitle: {
-      fontSize: 14,
+      fontSize: width * 0.035,
       fontWeight: '500',
       color: colors.cardForeground,
       marginBottom: 2,
     },
     preferenceDescription: {
-      fontSize: 12,
+      fontSize: width * 0.03,
       color: colors.mutedForeground,
     },
   });
@@ -191,13 +193,13 @@ export default function SettingsScreen() {
               return (
                 <TouchableOpacity key={index} style={styles.settingItem}>
                   <View style={[styles.settingIconContainer, { backgroundColor: item.color }]}>
-                    <Icon size={20} color={item.iconColor} />
+                    <Icon size={width * 0.05} color={item.iconColor} />
                   </View>
                   <View style={styles.settingTextContainer}>
                     <Text style={styles.settingTitle}>{item.title}</Text>
                     <Text style={styles.settingDescription}>{item.description}</Text>
                   </View>
-                  <ChevronRight size={20} color={colors.mutedForeground} />
+                  <ChevronRight size={width * 0.05} color={colors.mutedForeground} />
                 </TouchableOpacity>
               );
             })}

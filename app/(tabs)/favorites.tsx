@@ -1,6 +1,8 @@
 
-import { StyleSheet, View, Text, SafeAreaView, useColorScheme } from 'react-native';
+import { StyleSheet, View, Text, SafeAreaView, useColorScheme, Dimensions } from 'react-native';
 import Colors from '../../constants/Colors';
+
+const { width } = Dimensions.get('window');
 
 function getStyles(colors: any) {
   return StyleSheet.create({
@@ -12,16 +14,16 @@ function getStyles(colors: any) {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      padding: 24,
+      padding: width * 0.06,
     },
     title: {
-      fontSize: 24,
+      fontSize: width * 0.06,
       fontWeight: 'bold',
       color: colors.text,
       marginBottom: 8,
     },
     subtitle: {
-      fontSize: 16,
+      fontSize: width * 0.04,
       color: colors.mutedForeground,
       textAlign: 'center',
     },

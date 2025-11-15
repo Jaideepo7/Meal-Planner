@@ -1,9 +1,11 @@
 
-import { StyleSheet, View, Text, TextInput, FlatList, TouchableOpacity, SafeAreaView, useColorScheme } from 'react-native';
+import { StyleSheet, View, Text, TextInput, FlatList, TouchableOpacity, SafeAreaView, useColorScheme, Dimensions } from 'react-native';
 import { useState } from 'react';
 import { Search, Heart, Clock, Flame, Star } from 'lucide-react-native'; // Import Star icon
 import { ImageWithFallback } from '../../components/ImageWithFallback';
 import Colors from '../../constants/Colors';
+
+const { width, height } = Dimensions.get('window');
 
 type Recipe = {
   id: string;
@@ -65,23 +67,23 @@ const getStyles = (colors: any) => StyleSheet.create({
   },
   header: {
     backgroundColor: colors.primary,
-    paddingHorizontal: 24,
-    paddingTop: 20,
-    paddingBottom: 24,
+    paddingHorizontal: width * 0.06,
+    paddingTop: height * 0.025,
+    paddingBottom: height * 0.03,
   },
   headerContent: {
     alignItems: 'center',
-    marginBottom: 16,
+    marginBottom: height * 0.02,
   },
   title: {
     color: colors.primaryForeground,
-    fontSize: 28,
+    fontSize: width * 0.07,
     fontWeight: 'bold',
     marginBottom: 4,
   },
   subtitle: {
     color: colors.primaryForeground,
-    fontSize: 14,
+    fontSize: width * 0.035,
     opacity: 0.8,
   },
   searchContainer: {
@@ -99,7 +101,7 @@ const getStyles = (colors: any) => StyleSheet.create({
     paddingLeft: 48,
     paddingRight: 16,
     paddingVertical: 16,
-    fontSize: 16,
+    fontSize: width * 0.04,
     color: colors.text,
     borderColor: colors.border,
     borderWidth: 1,
@@ -109,7 +111,7 @@ const getStyles = (colors: any) => StyleSheet.create({
     backgroundColor: colors.background,
   },
   listContent: {
-    padding: 16,
+    padding: width * 0.04,
     paddingBottom: 100,
   },
   row: {
@@ -145,7 +147,7 @@ const getStyles = (colors: any) => StyleSheet.create({
     padding: 12,
   },
   recipeTitle: {
-    fontSize: 14,
+    fontSize: width * 0.035,
     fontWeight: '600',
     color: colors.cardForeground,
     marginBottom: 12,
@@ -162,7 +164,7 @@ const getStyles = (colors: any) => StyleSheet.create({
     gap: 4,
   },
   statText: {
-    fontSize: 12,
+    fontSize: width * 0.03,
     color: colors.mutedForeground,
   },
   rating: {
@@ -171,7 +173,7 @@ const getStyles = (colors: any) => StyleSheet.create({
     gap: 4,
   },
   ratingText: {
-    fontSize: 14,
+    fontSize: width * 0.035,
     fontWeight: '500',
     color: colors.cardForeground,
   },
@@ -206,7 +208,7 @@ export default function RecipesScreen() {
           style={styles.favoriteButton}
         >
           <Heart
-            size={16}
+            size={width * 0.04}
             color={item.isFavorite ? colors.destructive : colors.mutedForeground}
             fill={item.isFavorite ? colors.destructive : 'none'}
           />
@@ -218,18 +220,18 @@ export default function RecipesScreen() {
         
         <View style={styles.recipeStats}>
           <View style={styles.stat}>
-            <Clock size={14} color={colors.mutedForeground} />
+            <Clock size={width * 0.035} color={colors.mutedForeground} />
             <Text style={styles.statText}>{item.time} min</Text>
           </View>
           <View style={styles.stat}>
-            <Flame size={14} color={colors.mutedForeground} />
+            <Flame size={width * 0.035} color={colors.mutedForeground} />
             <Text style={styles.statText}>{item.calories} cal</Text>
           </View>
         </View>
 
         <View style={styles.rating}>
           {/* Use the Star icon and theme color */}
-          <Star size={16} color={colors.rating} fill={colors.rating} />
+          <Star size={width * 0.04} color={colors.rating} fill={colors.rating} />
           <Text style={styles.ratingText}>{item.rating}</Text>
         </View>
       </View>
@@ -246,7 +248,7 @@ export default function RecipesScreen() {
           </View>
 
           <View style={styles.searchContainer}>
-            <Search size={20} color={colors.mutedForeground} style={styles.searchIcon} />
+            <Search size={width * 0.05} color={colors.mutedForeground} style={styles.searchIcon} />
             <TextInput
               value={searchQuery}
               onChangeText={setSearchQuery}
