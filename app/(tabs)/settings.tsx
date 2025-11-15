@@ -2,6 +2,7 @@
 import { StyleSheet, View, Text, TouchableOpacity, ScrollView, SafeAreaView, Switch, useColorScheme, Dimensions } from 'react-native';
 import { ChevronRight, Package, Globe2, ShieldAlert, Target } from 'lucide-react-native';
 import Colors from '../../constants/Colors';
+import { useRouter } from 'expo-router';
 
 const { width, height } = Dimensions.get('window');
 
@@ -137,6 +138,7 @@ function getStyles(colors: any) {
 }
 
 export default function SettingsScreen() {
+  const router = useRouter();
   const colorScheme = useColorScheme() ?? 'light';
   const colors = Colors[colorScheme];
   const styles = getStyles(colors);
@@ -148,6 +150,7 @@ export default function SettingsScreen() {
       description: 'Manage your available ingredients',
       color: '#dbeafe',
       iconColor: '#2563eb',
+      route: '/food-inventory',
     },
     {
       icon: Globe2,
@@ -155,6 +158,7 @@ export default function SettingsScreen() {
       description: 'Update your favorite cuisines',
       color: '#e9d5ff',
       iconColor: '#9333ea',
+      route: '/food-preferences',
     },
     {
       icon: ShieldAlert,
@@ -162,6 +166,7 @@ export default function SettingsScreen() {
       description: 'Manage allergies and restrictions',
       color: '#fee2e2',
       iconColor: '#dc2626',
+      route: '/dietary-restrictions',
     },
     {
       icon: Target,
@@ -169,6 +174,7 @@ export default function SettingsScreen() {
       description: 'Update your dietary goals',
       color: '#dcfce7',
       iconColor: '#16a34a',
+      route: '/goals',
     },
   ];
 
@@ -191,7 +197,7 @@ export default function SettingsScreen() {
             {settingsItems.map((item, index) => {
               const Icon = item.icon;
               return (
-                <TouchableOpacity key={index} style={styles.settingItem}>
+                <TouchableOpacity key={index} style={styles.settingItem} onPress={() => router.push(item.route as any)}>
                   <View style={[styles.settingIconContainer, { backgroundColor: item.color }]}>
                     <Icon size={width * 0.05} color={item.iconColor} />
                   </View>

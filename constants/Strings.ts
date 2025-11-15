@@ -16,4 +16,13 @@ export const Strings = {
     explore: "Explore",
     favorites: "Favorites",
   },
+  foodInventory: {
+    title: "Food Inventory",
+    subtitle: "Keep track of your ingredients",
+    foodItem: "Food Item",
+    category: "Category",
+    quantity: "Quantity",
+    addItem: "Add Item",
+    continue: "Continue",
+  },
 };

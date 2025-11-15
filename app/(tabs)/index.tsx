@@ -17,7 +17,8 @@ function getStyles(colors: any) {
     header: {
       backgroundColor: colors.primary,
       paddingHorizontal: 24,
-      paddingVertical: 40,
+      paddingBottom: 60,
+      paddingTop: 40,
       borderBottomLeftRadius: 30,
       borderBottomRightRadius: 30,
     },
@@ -27,7 +28,7 @@ function getStyles(colors: any) {
       gap: 12,
     },
     iconContainer: {
-      backgroundColor: colors.primaryForeground,
+      backgroundColor: 'rgba(255,255,255,0.2)',
       borderRadius: 40,
       padding: 12,
     },
@@ -44,6 +45,7 @@ function getStyles(colors: any) {
     },
     content: {
       flex: 1,
+      marginTop: -40
     },
     contentContainer: {
       padding: 24,
@@ -59,11 +61,13 @@ function getStyles(colors: any) {
       backgroundColor: colors.card,
       borderRadius: 16,
       padding: 20,
+      alignItems: 'center',
+      justifyContent: 'center',
     },
     statIconBg: {
       borderRadius: 20,
       padding: 8,
-      alignSelf: 'flex-start',
+      alignSelf: 'center',
       marginBottom: 8,
     },
     statValue: {
@@ -155,33 +159,33 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        <ScrollView style={styles.content} contentContainerStyle={styles.contentContainer}>
-          <View style={styles.header}>
-            <View style={styles.greeting}>
-              <View style={styles.iconContainer}>
-                <ChefHat size={32} color={colors.primary} />
-              </View>
-              <View>
-                <Text style={styles.title}>{Strings.home.welcome}</Text>
-                <Text style={styles.subtitle}>{Strings.home.whatToCook}</Text>
-              </View>
+      <ScrollView>
+        <View style={styles.header}>
+          <View style={styles.greeting}>
+            <View style={styles.iconContainer}>
+              <ChefHat size={32} color={colors.primaryForeground} />
+            </View>
+            <View>
+              <Text style={styles.title}>{Strings.home.welcome}</Text>
+              <Text style={styles.subtitle}>{Strings.home.whatToCook}</Text>
             </View>
           </View>
+        </View>
 
-          <View style={{marginTop: -30, paddingHorizontal: 24, paddingBottom: 24}}>
+        <View style={styles.content}>
+          <View style={styles.contentContainer}>
             <View style={styles.statsGrid}>
                 <View style={styles.statCard}>
-                    <View style={[styles.statIconBg, { backgroundColor: colors.accent }]}>
-                    <TrendingUp size={20} color={colors.accentForeground} />
+                    <View style={[styles.statIconBg, { backgroundColor: 'rgba(255, 165, 0, 0.1)' }]}>
+                      <TrendingUp size={20} color={'orange'} />
                     </View>
                     <Text style={styles.statValue}>7</Text>
                     <Text style={styles.statLabel}>{Strings.home.dayStreak}</Text>
                 </View>
 
                 <View style={styles.statCard}>
-                    <View style={[styles.statIconBg, { backgroundColor: colors.accent}]}>
-                    <Clock size={20} color={colors.accentForeground} />
+                    <View style={[styles.statIconBg, { backgroundColor: 'rgba(0, 122, 255, 0.1)' }]}>
+                      <Clock size={20} color={'blue'} />
                     </View>
                     <Text style={styles.statValue}>18</Text>
                     <Text style={styles.statLabel}>{Strings.home.mealsLogged}</Text>
@@ -217,8 +221,8 @@ export default function HomeScreen() {
                 </View>
             </View>
           </View>
-        </ScrollView>
-      </View>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }

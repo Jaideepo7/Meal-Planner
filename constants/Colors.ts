@@ -22,6 +22,7 @@ export default {
     card: '#FFFFFF',
     cardForeground: '#2C5F2D',
     rating: '#e4b30e',
+    input: 'rgba(0,0,0,0.05)',
   },
   dark: {
     text: '#F5EDD1',
@@ -42,5 +43,6 @@ export default {
     card: '#2C5F2D',
     cardForeground: '#F5EDD1',
     rating: '#e4b30e',
+    input: 'rgba(255,255,255,0.1)',
   },
 };

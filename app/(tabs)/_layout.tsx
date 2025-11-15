@@ -3,7 +3,6 @@ import React from 'react';
 import { Tabs } from 'expo-router';
 import { Heart, Lightbulb, Home, User, Settings } from 'lucide-react-native';
 import { useColorScheme } from 'react-native';
-
 import Colors from '../../constants/Colors';
 
 function TabBarIcon(props: {
@@ -34,7 +33,9 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         tabBarStyle: {
-          backgroundColor: Colors[colorScheme ?? 'light'].primary,
+          backgroundColor: Colors[colorScheme ?? 'light'].background,
+          borderTopWidth: 0,
+          elevation: 0,
         },
         headerShown: false,
       }}>
