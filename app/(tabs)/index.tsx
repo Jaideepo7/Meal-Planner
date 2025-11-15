@@ -45,7 +45,7 @@ function getStyles(colors: any) {
     },
     content: {
       flex: 1,
-      marginTop: -40
+      marginTop: -20
     },
     contentContainer: {
       padding: 24,
@@ -115,7 +115,7 @@ function getStyles(colors: any) {
       opacity: 0.8,
     },
     secondaryAction: {
-      backgroundColor: colors.card,
+      backgroundColor: colors.primary,
       borderRadius: 16,
       padding: 20,
       flexDirection: 'row',
@@ -123,7 +123,7 @@ function getStyles(colors: any) {
       gap: 16,
     },
     secondaryActionIcon: {
-      backgroundColor: colors.accent,
+      backgroundColor: 'rgba(255,255,255,0.2)',
       borderRadius: 40,
       padding: 12,
     },
@@ -131,13 +131,14 @@ function getStyles(colors: any) {
       flex: 1,
     },
     secondaryActionTitle: {
-      color: colors.cardForeground,
+      color: colors.primaryForeground,
       fontSize: 16,
       fontWeight: '600',
       marginBottom: 2,
     },
     secondaryActionSubtitle: {
-      color: colors.mutedForeground,
+      color: colors.primaryForeground,
+      opacity: 0.8,
       fontSize: 12,
     },
     recommendationCard: {
@@ -206,7 +207,7 @@ export default function HomeScreen() {
 
             <TouchableOpacity style={styles.secondaryAction}>
               <View style={styles.secondaryActionIcon}>
-                <ChefHat size={24} color={colors.secondaryForeground} />
+                <ChefHat size={24} color={colors.primaryForeground} />
               </View>
               <View style={styles.secondaryActionText}>
                 <Text style={styles.secondaryActionTitle}>{Strings.home.browseRecipes}</Text>

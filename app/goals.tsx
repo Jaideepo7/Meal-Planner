@@ -145,7 +145,7 @@ export default function GoalsScreen() {
 
   const handleComplete = () => {
     setGoals(selectedGoals);
-    router.push('/(tabs)');
+    router.push('/ask-ai');
   };
 
   return (

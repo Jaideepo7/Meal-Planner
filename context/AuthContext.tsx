@@ -1,48 +1,64 @@
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { useRouter } from 'expo-router';
 
-// Define the shape of the context's value
+// This would typically be a more complex user object, maybe from your auth provider
+type User = object | null;
+
 interface AuthContextType {
-  isAuthenticated: boolean;
+  user: User;
+  loading: boolean;
   login: () => void;
   logout: () => void;
 }
 
-// Create the context with a default value that matches the type
+// The default value provided to the context
 const AuthContext = createContext<AuthContextType>({
-  isAuthenticated: false,
+  user: null,
+  loading: true,
   login: () => {},
   logout: () => {},
 });
 
-// Custom hook to use the auth context
+// Custom hook for easy access to the auth context
 export const useAuth = () => {
   return useContext(AuthContext);
 };
 
-// Define the props for the AuthProvider
 interface AuthProviderProps {
   children: ReactNode;
 }
 
-// The provider component
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState<User>(null);
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
+
+  // Simulate checking auth status on component mount
+  useEffect(() => {
+    // In a real app, you might be checking a token in AsyncStorage
+    // or waiting for a response from your auth server.
+    setTimeout(() => {
+      // For demonstration, we'll start with the user logged out.
+      setUser(null);
+      setLoading(false);
+    }, 1000); // Simulate a 1-second loading time
+  }, []);
 
   const login = () => {
-    // In a real app, you'd have logic to verify credentials
-    console.log('User logged in');
-    setIsAuthenticated(true);
+    // In a real app, this would involve an API call.
+    // On success, you'd get user data and set it.
+    setUser({}); // Set to a generic object to represent a logged-in user
   };
 
   const logout = () => {
-    console.log('User logged out');
-    setIsAuthenticated(false);
+    setUser(null); // Clear user data
+    router.replace('/sign-in');
   };
 
-  // The value that will be supplied to all consuming components
   const value = {
-    isAuthenticated,
+    user,
+    loading,
     login,
     logout,
   };
