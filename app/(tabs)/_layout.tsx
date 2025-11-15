@@ -6,6 +6,26 @@ import { useColorScheme } from 'react-native';
 
 import Colors from '../../constants/Colors';
 
+function TabBarIcon(props: {
+  name: 'Home' | 'Heart' | 'Lightbulb' | 'User' | 'Settings';
+  color: string;
+}) {
+    switch (props.name) {
+        case 'Home':
+            return <Home color={props.color} />;
+        case 'Heart':
+            return <Heart color={props.color} />;
+        case 'Lightbulb':
+            return <Lightbulb color={props.color} />;
+        case 'User':
+            return <User color={props.color} />;
+        case 'Settings':
+            return <Settings color={props.color} />;
+        default:
+            return null;
+    }
+}
+
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
@@ -16,43 +36,41 @@ export default function TabLayout() {
         tabBarStyle: {
           backgroundColor: Colors[colorScheme ?? 'light'].primary,
         },
+        headerShown: false,
       }}>
       <Tabs.Screen
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <Home color={color} />,
-          headerShown: false,
+          tabBarIcon: ({ color }) => <TabBarIcon name="Home" color={color} />,
         }}
       />
       <Tabs.Screen
         name="favorites"
         options={{
           title: 'Favorites',
-          tabBarIcon: ({ color }) => <Heart color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="Heart" color={color} />,
         }}
       />
       <Tabs.Screen
         name="suggestions"
         options={{
           title: 'Suggestions',
-          tabBarIcon: ({ color }) => <Lightbulb color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="Lightbulb" color={color} />,
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
           title: 'Profile',
-          tabBarIcon: ({ color }) => <User color={color} />,
-          headerShown: false,
+          tabBarIcon: ({ color }) => <TabBarIcon name="User" color={color} />,
         }}
       />
       <Tabs.Screen
         name="settings"
         options={{
           title: 'Settings',
-          tabBarIcon: ({ color }) => <Settings color={color} />,
-          headerShown: false,
+          tabBarIcon: ({ color }) => <TabBarIcon name="Settings" color={color} />,
         }}
       />
     </Tabs>
