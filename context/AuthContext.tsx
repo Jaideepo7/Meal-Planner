@@ -1,23 +1,34 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { useRouter, useSegments, useRootNavigationState } from 'expo-router';
 import * as SecureStore from 'expo-secure-store';
 
-const AuthContext = createContext<any>(null);
-
-export function useAuth() {
-  return useContext(AuthContext);
+// 1. Define the shape of the context value
+interface AuthContextType {
+  user: any | null;
+  loading: boolean;
+  login: (userData: any) => void;
+  logout: () => void;
 }
 
+// 2. Create the context with a default null value
+const AuthContext = createContext<AuthContextType | null>(null);
+
+// 3. Create a hook for easy access to the context
+export function useAuth() {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return context;
+}
+
+// 4. Create the AuthProvider component
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<any | null>(null);
-  const [authInitialized, setAuthInitialized] = useState(false);
-  const router = useRouter();
-  const segments = useSegments();
-  const navigationState = useRootNavigationState();
+  const [loading, setLoading] = useState(true); // Start as true to indicate loading
 
   useEffect(() => {
-    const checkAuth = async () => {
+    const loadUserFromStorage = async () => {
       try {
         const storedUser = await SecureStore.getItemAsync('user');
         if (storedUser) {
@@ -26,46 +37,35 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       } catch (e) {
         console.error("Failed to load user from storage", e);
       } finally {
-        setAuthInitialized(true);
+        // setLoading to false after trying to load user
+        setLoading(false);
       }
     };
-    checkAuth();
+
+    loadUserFromStorage();
   }, []);
-
-  useEffect(() => {
-    if (!authInitialized || !navigationState?.key) return;
-
-    const inAuthGroup = segments[0] === '(auth)';
-
-    if (!user && !inAuthGroup) {
-      router.replace('/(auth)/sign-in');
-    } else if (user && inAuthGroup) {
-      router.replace('/(tabs)');
-    }
-  }, [user, segments, navigationState, authInitialized]);
 
   const login = (userData: any) => {
     setUser(userData);
     SecureStore.setItemAsync('user', JSON.stringify(userData));
-    router.replace('/(tabs)');
   };
 
   const logout = () => {
     setUser(null);
     SecureStore.deleteItemAsync('user');
-    router.replace('/(auth)/sign-in');
+  };
+
+  // 5. Provide the context value to children
+  const value = {
+    user,
+    loading,
+    login,
+    logout,
   };
 
   return (
-    <AuthContext.Provider
-      value={{
-        user,
-        login,
-        logout,
-        setUser,
-      }}
-    >
-      {authInitialized ? children : null}
+    <AuthContext.Provider value={value}>
+      {children}
     </AuthContext.Provider>
   );
 }

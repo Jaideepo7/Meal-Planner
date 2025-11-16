@@ -1,12 +1,21 @@
-
 'use client';
 
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, SafeAreaView, TextInput, useColorScheme, Alert, ActivityIndicator } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  SafeAreaView,
+  TextInput,
+  useColorScheme,
+  Alert,
+  ActivityIndicator,
+} from 'react-native';
 import { useRouter } from 'expo-router';
-import { Mail, Send, ArrowLeft, Lightbulb } from 'lucide-react-native'; // Assuming you have these icons
+import { Mail, Send, ArrowLeft, Lightbulb } from 'lucide-react-native';
 import Colors from '../../constants/Colors';
-import { sendPasswordResetEmail } from '../../services/auth';
+import { sendPasswordReset } from '../../services/auth';
 import { useState } from 'react';
 
 function getStyles(colors: typeof Colors.light) {
@@ -130,13 +139,19 @@ export default function ForgotPasswordScreen() {
 
   const handleSendResetLink = async () => {
     setLoading(true);
-    const { success } = await sendPasswordResetEmail(email);
+    const { success, error } = await sendPasswordReset(email);
     setLoading(false);
     if (success) {
-      Alert.alert('Reset Link Sent', 'Please check your email for reset instructions.');
+      Alert.alert(
+        'Reset Link Sent',
+        'Please check your email for reset instructions.'
+      );
       router.push('/(auth)/sign-in');
     } else {
-      Alert.alert('Error', 'Failed to send reset link. Please try again.');
+      Alert.alert(
+        'Error',
+        error || 'Failed to send reset link. Please try again.'
+      );
     }
   };
 
@@ -144,12 +159,17 @@ export default function ForgotPasswordScreen() {
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
         <View style={styles.header}>
-          <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
+          <TouchableOpacity
+            onPress={() => router.back()}
+            style={styles.backButton}
+          >
             <ArrowLeft size={24} color={colors.primary} />
           </TouchableOpacity>
           <Text style={styles.title}>Forgot Password?</Text>
         </View>
-        <Text style={styles.subtitle}>No worries, we'll send you reset instructions</Text>
+        <Text style={styles.subtitle}>
+          No worries, we'll send you reset instructions
+        </Text>
 
         <View style={styles.form}>
           <View style={styles.inputContainer}>
@@ -165,11 +185,21 @@ export default function ForgotPasswordScreen() {
                 autoCapitalize="none"
               />
             </View>
-            <Text style={styles.emailInfo}>Enter the email address associated with your account</Text>
+            <Text style={styles.emailInfo}>
+              Enter the email address associated with your account
+            </Text>
           </View>
 
-          <TouchableOpacity style={styles.sendResetLinkButton} onPress={handleSendResetLink} disabled={loading}>
-            {loading ? <ActivityIndicator color={colors.primaryForeground} /> : <Send size={20} color={colors.primaryForeground} />}
+          <TouchableOpacity
+            style={styles.sendResetLinkButton}
+            onPress={handleSendResetLink}
+            disabled={loading}
+          >
+            {loading ? (
+              <ActivityIndicator color={colors.primaryForeground} />
+            ) : (
+              <Send size={20} color={colors.primaryForeground} />
+            )}
             <Text style={styles.sendResetLinkButtonText}>Send Reset Link</Text>
           </TouchableOpacity>
         </View>
@@ -179,12 +209,17 @@ export default function ForgotPasswordScreen() {
           <View style={styles.rememberPasswordTextContainer}>
             <Text style={styles.rememberPasswordText}>Remember your password?</Text>
             <TouchableOpacity onPress={() => router.push('/(auth)/sign-in')}>
-              <Text style={styles.rememberPasswordLink}>Try signing in again</Text>
+              <Text style={styles.rememberPasswordLink}>
+                Try signing in again
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
 
-        <TouchableOpacity style={styles.backToSignInButton} onPress={() => router.back()}>
+        <TouchableOpacity
+          style={styles.backToSignInButton}
+          onPress={() => router.back()}
+        >
           <ArrowLeft size={20} color={colors.secondaryForeground} />
           <Text style={styles.backToSignInButtonText}>Back to Sign In</Text>
         </TouchableOpacity>

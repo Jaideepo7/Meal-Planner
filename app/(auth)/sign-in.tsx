@@ -1,12 +1,22 @@
-
 'use client';
 
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, SafeAreaView, TextInput, useColorScheme, Alert, ActivityIndicator } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  SafeAreaView,
+  TextInput,
+  useColorScheme,
+  Alert,
+  ActivityIndicator,
+  Platform,
+} from 'react-native';
 import { useRouter } from 'expo-router';
 import { Mail, Lock, Apple, Chrome } from 'lucide-react-native';
 import Colors from '../../constants/Colors';
-import { signIn, signInWithGoogle } from '../../services/auth';
+import { signIn, signInWithGoogle, signInWithApple } from '../../services/auth';
 import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 
@@ -160,8 +170,12 @@ export default function SignInScreen() {
       Alert.alert('Sign In Failed', error || 'Please check your credentials and try again.');
     }
   };
-  
-    const handleGoogleSignIn = async () => {
+
+  const handleGoogleSignIn = async () => {
+    if (Platform.OS !== 'web') {
+      Alert.alert('Unsupported Platform', 'Google Sign-In is only available on the web.');
+      return;
+    }
     setLoading(true);
     const { success, user, error } = await signInWithGoogle();
     setLoading(false);
@@ -172,6 +186,16 @@ export default function SignInScreen() {
     }
   };
 
+  const handleAppleSignIn = async () => {
+    setLoading(true);
+    const { success, user, error } = await signInWithApple();
+    setLoading(false);
+    if (success && user) {
+      login(user);
+    } else {
+      Alert.alert('Apple Sign In Failed', error || 'An error occurred during Apple Sign-In. Please try again.');
+    }
+  };
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -187,7 +211,7 @@ export default function SignInScreen() {
               <Chrome size={20} color="#000000" />
               <Text style={[styles.socialSignInText, styles.googleText]}>Continue with Google</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.socialSignInButton, styles.appleButton]}>
+            <TouchableOpacity style={[styles.socialSignInButton, styles.appleButton]} onPress={handleAppleSignIn}>
               <Apple size={20} color="#FFFFFF" />
               <Text style={[styles.socialSignInText, styles.appleText]}>Continue with Apple</Text>
             </TouchableOpacity>

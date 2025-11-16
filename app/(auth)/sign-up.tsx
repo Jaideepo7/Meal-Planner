@@ -1,12 +1,23 @@
-
 'use client';
 
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, SafeAreaView, TextInput, useColorScheme, ScrollView, Alert, ActivityIndicator } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  SafeAreaView,
+  TextInput,
+  useColorScheme,
+  ScrollView,
+  Alert,
+  ActivityIndicator,
+  Platform,
+} from 'react-native';
 import { useRouter } from 'expo-router';
-import { Mail, Lock, Apple, User, Chrome } from 'lucide-react-native'; // Assuming you have these icons
+import { Mail, Lock, Apple, User, Chrome } from 'lucide-react-native';
 import Colors from '../../constants/Colors';
-import { signUp } from '../../services/auth';
+import { signUp, signInWithGoogle, signInWithApple } from '../../services/auth';
 import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 
@@ -35,9 +46,7 @@ function getStyles(colors: typeof Colors.light) {
       fontSize: 16,
       color: colors.mutedForeground,
     },
-    form: {
-      // flex: 1,
-    },
+    form: {},
     inputContainer: {
       marginBottom: 16,
     },
@@ -146,19 +155,50 @@ export default function SignUpScreen() {
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
 
-
   const handleSignUp = async () => {
     if (password !== confirmPassword) {
       Alert.alert('Passwords do not match');
       return;
     }
     setLoading(true);
-    const { success, user } = await signUp(fullName, email, password);
+    const { success, user, error } = await signUp(email, password);
     setLoading(false);
     if (success && user) {
       login(user);
     } else {
-      Alert.alert('Sign Up Failed', 'Please try again.');
+      Alert.alert('Sign Up Failed', error || 'Please try again.');
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    if (Platform.OS !== 'web') {
+      Alert.alert(
+        'Unsupported Platform',
+        'Google Sign-In is only available on the web.'
+      );
+      return;
+    }
+    setLoading(true);
+    const { success, user, error } = await signInWithGoogle();
+    setLoading(false);
+    if (success && user) {
+      login(user);
+    } else {
+      Alert.alert('Google Sign In Failed', error || 'Please try again.');
+    }
+  };
+
+  const handleAppleSignIn = async () => {
+    setLoading(true);
+    const { success, user, error } = await signInWithApple();
+    setLoading(false);
+    if (success && user) {
+      login(user);
+    } else {
+      Alert.alert(
+        'Apple Sign In Failed',
+        error || 'An error occurred during Apple Sign-In. Please try again.'
+      );
     }
   };
 
@@ -172,13 +212,23 @@ export default function SignUpScreen() {
 
         <View style={styles.form}>
           <View style={styles.socialSignInContainer}>
-            <TouchableOpacity style={[styles.socialSignInButton, styles.googleButton]}>
+            <TouchableOpacity
+              style={[styles.socialSignInButton, styles.googleButton]}
+              onPress={handleGoogleSignIn}
+            >
               <Chrome size={20} color="#000000" />
-              <Text style={[styles.socialSignInText, styles.googleText]}>Sign up with Google</Text>
+              <Text style={[styles.socialSignInText, styles.googleText]}>
+                Sign up with Google
+              </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.socialSignInButton, styles.appleButton]}>
+            <TouchableOpacity
+              style={[styles.socialSignInButton, styles.appleButton]}
+              onPress={handleAppleSignIn}
+            >
               <Apple size={20} color="#FFFFFF" />
-              <Text style={[styles.socialSignInText, styles.appleText]}>Sign up with Apple</Text>
+              <Text style={[styles.socialSignInText, styles.appleText]}>
+                Sign up with Apple
+              </Text>
             </TouchableOpacity>
           </View>
 
@@ -245,8 +295,16 @@ export default function SignUpScreen() {
             </View>
           </View>
 
-          <TouchableOpacity style={styles.createAccountButton} onPress={handleSignUp} disabled={loading}>
-            {loading ? <ActivityIndicator color={colors.primaryForeground} /> : <Text style={styles.createAccountButtonText}>Create Account</Text>}
+          <TouchableOpacity
+            style={styles.createAccountButton}
+            onPress={handleSignUp}
+            disabled={loading}
+          >
+            {loading ? (
+              <ActivityIndicator color={colors.primaryForeground} />
+            ) : (
+              <Text style={styles.createAccountButtonText}>Create Account</Text>
+            )}
           </TouchableOpacity>
         </View>
 

@@ -5,6 +5,7 @@ import {
   signOut as firebaseSignOut,
   GoogleAuthProvider,
   signInWithPopup,
+  OAuthProvider,
 } from 'firebase/auth';
 import { auth } from '../firebase/config';
 
@@ -44,6 +45,19 @@ export const signInWithGoogle = async () => {
     return { success: false, error: 'An unknown error occurred' };
   }
 };
+
+export const signInWithApple = async () => {
+  const provider = new OAuthProvider('apple.com');
+  try {
+    const result = await signInWithPopup(auth, provider);
+    return { success: true, user: result.user };
+  } catch (error) {
+    if (error instanceof Error) {
+      return { success: false, error: error.message };
+    }
+    return { success: false, error: 'An unknown error occurred' };
+  }
+}
 
 export const sendPasswordReset = async (email: string) => {
   try {
