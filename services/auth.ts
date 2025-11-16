@@ -1,42 +1,74 @@
-
-import { app } from './firebase'; // Assume firebase is configured
-
-// TODO: Implement actual authentication logic using Firebase Authentication
+import {
+  createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  signOut as firebaseSignOut,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from 'firebase/auth';
+import { auth } from '../firebase/config';
 
 export const signIn = async (email: string, password: string) => {
-  // Placeholder for sign-in logic
-  console.log('Signing in with', email, password);
-  // In a real app, you would use firebase.auth().signInWithEmailAndPassword(email, password)
-  if (email && password) { // Mock success
-    return { success: true, user: { uid: 'test-uid', email } };
-  } else { // Mock failure
-    return { success: false, error: 'Invalid credentials' };
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    return { success: true, user: userCredential.user };
+  } catch (error) {
+    if (error instanceof Error) {
+      return { success: false, error: error.message };
+    }
+    return { success: false, error: 'An unknown error occurred' };
   }
 };
 
-export const signUp = async (fullName: string, email: string, password: string) => {
-  // Placeholder for sign-up logic
-  console.log('Signing up with', fullName, email, password);
-  // In a real app, you would use firebase.auth().createUserWithEmailAndPassword(email, password)
-  return { success: true, user: { uid: 'test-uid', email } };
+export const signUp = async (email: string, password: string) => {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    return { success: true, user: userCredential.user };
+  } catch (error) {
+    if (error instanceof Error) {
+      return { success: false, error: error.message };
+    }
+    return { success: false, error: 'An unknown error occurred' };
+  }
 };
 
-export const sendPasswordResetEmail = async (email: string) => {
-  // Placeholder for password reset logic
-  console.log('Sending password reset email to', email);
-  // In a real app, you would use firebase.auth().sendPasswordResetEmail(email)
-  return { success: true };
+export const signInWithGoogle = async () => {
+  const provider = new GoogleAuthProvider();
+  try {
+    const result = await signInWithPopup(auth, provider);
+    return { success: true, user: result.user };
+  } catch (error) {
+    if (error instanceof Error) {
+      return { success: false, error: error.message };
+    }
+    return { success: false, error: 'An unknown error occurred' };
+  }
+};
+
+export const sendPasswordReset = async (email: string) => {
+  try {
+    await sendPasswordResetEmail(auth, email);
+    return { success: true };
+  } catch (error) {
+    if (error instanceof Error) {
+      return { success: false, error: error.message };
+    }
+    return { success: false, error: 'An unknown error occurred' };
+  }
 };
 
 export const signOut = async () => {
-  // Placeholder for sign-out logic
-  console.log('Signing out');
-  // In a real app, you would use firebase.auth().signOut()
-  return { success: true };
+  try {
+    await firebaseSignOut(auth);
+    return { success: true };
+  } catch (error) {
+    if (error instanceof Error) {
+      return { success: false, error: error.message };
+    }
+    return { success: false, error: 'An unknown error occurred' };
+  }
 };
 
 export const getCurrentUser = () => {
-  // Placeholder for getting current user
-  // In a real app, you would use firebase.auth().currentUser
-  return { uid: 'test-uid', email: 'user@example.com' }; // Mocked user
+  return auth.currentUser;
 };

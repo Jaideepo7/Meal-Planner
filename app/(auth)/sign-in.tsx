@@ -6,7 +6,7 @@ import { StyleSheet, View, Text, TouchableOpacity, SafeAreaView, TextInput, useC
 import { useRouter } from 'expo-router';
 import { Mail, Lock, Apple, Chrome } from 'lucide-react-native';
 import Colors from '../../constants/Colors';
-import { signIn } from '../../services/auth';
+import { signIn, signInWithGoogle } from '../../services/auth';
 import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 
@@ -160,6 +160,18 @@ export default function SignInScreen() {
       Alert.alert('Sign In Failed', error || 'Please check your credentials and try again.');
     }
   };
+  
+    const handleGoogleSignIn = async () => {
+    setLoading(true);
+    const { success, user, error } = await signInWithGoogle();
+    setLoading(false);
+    if (success && user) {
+      login(user);
+    } else {
+      Alert.alert('Google Sign In Failed', error || 'Please try again.');
+    }
+  };
+
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -171,7 +183,7 @@ export default function SignInScreen() {
 
         <View style={styles.form}>
           <View style={styles.socialSignInContainer}>
-            <TouchableOpacity style={[styles.socialSignInButton, styles.googleButton]}>
+            <TouchableOpacity style={[styles.socialSignInButton, styles.googleButton]} onPress={handleGoogleSignIn}>
               <Chrome size={20} color="#000000" />
               <Text style={[styles.socialSignInText, styles.googleText]}>Continue with Google</Text>
             </TouchableOpacity>
