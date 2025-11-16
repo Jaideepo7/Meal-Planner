@@ -7,7 +7,11 @@ export const signIn = async (email: string, password: string) => {
   // Placeholder for sign-in logic
   console.log('Signing in with', email, password);
   // In a real app, you would use firebase.auth().signInWithEmailAndPassword(email, password)
-  return { success: true, user: { uid: 'test-uid', email } };
+  if (email && password) { // Mock success
+    return { success: true, user: { uid: 'test-uid', email } };
+  } else { // Mock failure
+    return { success: false, error: 'Invalid credentials' };
+  }
 };
 
 export const signUp = async (fullName: string, email: string, password: string) => {

@@ -2,7 +2,7 @@
 'use client';
 
 import { StyleSheet, View, Text, TouchableOpacity, ScrollView, SafeAreaView, useColorScheme, TextInput } from 'react-native';
-import { ChevronLeft, Plus, X, ClipboardList } from 'lucide-react-native';
+import { ChevronLeft, Plus, X, Archive } from 'lucide-react-native';
 import Colors from '../constants/Colors';
 import { Strings } from '../constants/Strings';
 import { useRouter } from 'expo-router';
@@ -96,12 +96,14 @@ function getStyles(colors: typeof Colors.light) {
         marginBottom: 8,
     },
     input: {
-        backgroundColor: colors.input,
+        backgroundColor: colors.background,
         borderRadius: 8,
         padding: 12,
         color: colors.text,
         fontSize: 14,
         marginBottom: 16,
+        borderWidth: 1,
+        borderColor: colors.border,
     },
     addButton: {
         backgroundColor: colors.primary,
@@ -150,15 +152,15 @@ function getStyles(colors: typeof Colors.light) {
         padding: 8,
     },
     continueButton: {
-        backgroundColor: colors.accent,
-        borderRadius: 8,
+        backgroundColor: colors.primary,
+        borderRadius: 16,
         padding: 16,
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 24,
     },
     continueButtonText: {
-        color: colors.accentForeground,
+        color: colors.primaryForeground,
         fontSize: 16,
         fontWeight: '600',
     }
@@ -186,18 +188,23 @@ export default function FoodInventoryScreen() {
 
   const handleAddItem = async () => {
     if (foodItem && category && quantity) {
-      const newItem = {
-        name: foodItem,
-        category,
-        quantity,
-      };
-      const id = await addFoodItem(newItem);
-      if (id) {
-        setItems([...items, { ...newItem, id }]);
-        setFoodItem('');
-        setCategory('');
-        setQuantity('');
-      }
+        const newItem = {
+            name: foodItem,
+            category,
+            quantity,
+        };
+        const id = await addFoodItem(newItem);
+        if (id) {
+            // Create a new array with the new item, including its new ID
+            const updatedItems = [...items, { ...newItem, id }];
+            // Sort the items alphabetically by name
+            updatedItems.sort((a, b) => a.name.localeCompare(b.name));
+            setItems(updatedItems);
+            // Clear input fields
+            setFoodItem('');
+            setCategory('');
+            setQuantity('');
+        }
     }
   };
 
@@ -224,7 +231,7 @@ export default function FoodInventoryScreen() {
                 </TouchableOpacity>
                 <View style={styles.headerContent}>
                     <View style={styles.iconContainer}>
-                        <ClipboardList size={32} color={colors.primaryForeground} />
+                        <Archive size={32} color={colors.primaryForeground} />
                     </View>
                     <Text style={styles.title}>{Strings.foodInventory.title}</Text>
                     <Text style={styles.subtitle}>{Strings.foodInventory.subtitle}</Text>
@@ -277,14 +284,14 @@ export default function FoodInventoryScreen() {
                                         <Text style={styles.itemDetails}>{item.category} • {item.quantity}</Text>
                                     </View>
                                     <TouchableOpacity onPress={() => handleDeleteItem(item.id)} style={styles.deleteButton}>
-                                        <X size={20} color={colors.mutedForeground} />
+                                        <X size={20} color={'#ef4444'} />
                                     </TouchableOpacity>
                                 </View>
                             ))}
                         </View>
                     )}
 
-                    <TouchableOpacity style={styles.continueButton} onPress={() => router.push('/(tabs)' as any)}>
+                    <TouchableOpacity style={styles.continueButton} onPress={() => router.push('/(tabs)')}>
                         <Text style={styles.continueButtonText}>{Strings.foodInventory.continue}</Text>
                     </TouchableOpacity>
                 </View>

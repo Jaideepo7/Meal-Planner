@@ -1,11 +1,12 @@
 
 'use client';
 
-import { StyleSheet, View, Text, TouchableOpacity, SafeAreaView, TextInput, useColorScheme } from 'react-native';
+import React from 'react';
+import { StyleSheet, View, Text, TouchableOpacity, SafeAreaView, TextInput, useColorScheme, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Mail, Send, ArrowLeft, Lightbulb } from 'lucide-react-native'; // Assuming you have these icons
-import Colors from '../constants/Colors';
-import { sendPasswordResetEmail } from '../services/auth';
+import Colors from '../../constants/Colors';
+import { sendPasswordResetEmail } from '../../services/auth';
 import { useState } from 'react';
 
 function getStyles(colors: typeof Colors.light) {
@@ -127,9 +128,13 @@ export default function ForgotPasswordScreen() {
   const [email, setEmail] = useState('');
 
   const handleSendResetLink = async () => {
-    await sendPasswordResetEmail(email);
-    // You might want to show a confirmation message to the user
-    router.back();
+    const { success } = await sendPasswordResetEmail(email);
+    if (success) {
+      Alert.alert('Reset Link Sent', 'Please check your email for reset instructions.');
+      router.push('/(auth)/sign-in');
+    } else {
+      Alert.alert('Error', 'Failed to send reset link. Please try again.');
+    }
   };
 
   return (
@@ -170,7 +175,7 @@ export default function ForgotPasswordScreen() {
           <Lightbulb size={24} color={colors.primary} />
           <View style={styles.rememberPasswordTextContainer}>
             <Text style={styles.rememberPasswordText}>Remember your password?</Text>
-            <TouchableOpacity onPress={() => router.push('/sign-in')}>
+            <TouchableOpacity onPress={() => router.push('/(auth)/sign-in')}>
               <Text style={styles.rememberPasswordLink}>Try signing in again</Text>
             </TouchableOpacity>
           </View>

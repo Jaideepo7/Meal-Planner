@@ -1,8 +1,9 @@
 
-import { StyleSheet, View, Text, TouchableOpacity, ScrollView, SafeAreaView, useColorScheme, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ScrollView, SafeAreaView, useColorScheme, Dimensions, ActivityIndicator } from 'react-native';
 import { User, Mail, ChevronRight, Bell, Shield, HelpCircle, LogOut } from 'lucide-react-native';
 import Colors from '../../constants/Colors';
 import { useAuth } from '../../context/AuthContext';
+import { useEffect, useState } from 'react';
 
 const { width, height } = Dimensions.get('window');
 
@@ -10,6 +11,12 @@ function getStyles(colors: any) {
   return StyleSheet.create({
     safeArea: {
       flex: 1,
+      backgroundColor: colors.background,
+    },
+    loadingContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
       backgroundColor: colors.background,
     },
     container: {
@@ -128,10 +135,17 @@ function getStyles(colors: any) {
 }
 
 export default function ProfileScreen() {
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
   const colorScheme = useColorScheme() ?? 'light';
   const colors = Colors[colorScheme];
   const styles = getStyles(colors);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (user) {
+      setLoading(false);
+    }
+  }, [user]);
 
   const menuItems = [
     { icon: User, title: 'Edit Profile', description: 'Update your personal information' },
@@ -140,6 +154,14 @@ export default function ProfileScreen() {
     { icon: HelpCircle, title: 'Help & Support', description: 'Get help with the app' },
   ];
 
+  if (loading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color={colors.primary} />
+      </View>
+    );
+  }
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView style={styles.content} contentContainerStyle={styles.contentContainer}>
@@ -147,10 +169,10 @@ export default function ProfileScreen() {
           <View style={styles.profileIconContainer}>
             <User size={width * 0.12} color={colors.primary} />
           </View>
-          <Text style={styles.userName}>John Doe</Text>
+          <Text style={styles.userName}>{user.name || 'Anonymous'}</Text>
           <View style={styles.userEmailContainer}>
             <Mail size={width * 0.04} color={colors.primaryForeground} />
-            <Text style={styles.userEmail}>john.doe@example.com</Text>
+            <Text style={styles.userEmail}>{user.email || 'No email provided'}</Text>
           </View>
         </View>
 

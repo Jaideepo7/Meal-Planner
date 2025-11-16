@@ -8,11 +8,7 @@ export default function RootLayout() {
     <AuthProvider>
       <PreferencesProvider>
         <Stack>
-          <Stack.Screen name="index" options={{ headerShown: false }} />
-          <Stack.Screen name="login" options={{ headerShown: false }} />
-          <Stack.Screen name="sign-in" options={{ headerShown: false }} />
-          <Stack.Screen name="sign-up" options={{ headerShown: false }} />
-          <Stack.Screen name="forgot-password" options={{ headerShown: false }} />
+          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="food-preferences" options={{ presentation: 'modal', headerShown: false }} />
           <Stack.Screen name="dietary-restrictions" options={{ presentation: 'modal', headerShown: false }} />

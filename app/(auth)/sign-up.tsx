@@ -1,12 +1,14 @@
 
 'use client';
 
-import { StyleSheet, View, Text, TouchableOpacity, SafeAreaView, TextInput, useColorScheme } from 'react-native';
+import React from 'react';
+import { StyleSheet, View, Text, TouchableOpacity, SafeAreaView, TextInput, useColorScheme, ScrollView, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Mail, Lock, Apple, MessageCircle } from 'lucide-react-native'; // Assuming you have these icons
-import Colors from '../constants/Colors';
-import { signIn } from '../services/auth';
+import { Mail, Lock, Apple, User } from 'lucide-react-native'; // Assuming you have these icons
+import Colors from '../../constants/Colors';
+import { signUp } from '../../services/auth';
 import { useState } from 'react';
+import { useAuth } from '../../context/AuthContext';
 
 function getStyles(colors: typeof Colors.light) {
   return StyleSheet.create({
@@ -15,8 +17,9 @@ function getStyles(colors: typeof Colors.light) {
       backgroundColor: colors.background,
     },
     container: {
-      flex: 1,
+      flexGrow: 1,
       padding: 24,
+      justifyContent: 'center',
     },
     header: {
       alignItems: 'center',
@@ -33,7 +36,7 @@ function getStyles(colors: typeof Colors.light) {
       color: colors.mutedForeground,
     },
     form: {
-      flex: 1,
+      // flex: 1,
     },
     inputContainer: {
       marginBottom: 16,
@@ -57,21 +60,14 @@ function getStyles(colors: typeof Colors.light) {
       color: colors.text,
       marginLeft: 12,
     },
-    forgotPassword: {
-      alignSelf: 'flex-end',
-      marginBottom: 16,
-    },
-    forgotPasswordText: {
-      color: colors.primary,
-    },
-    signInButton: {
+    createAccountButton: {
       backgroundColor: colors.primary,
       borderRadius: 8,
       padding: 16,
       alignItems: 'center',
       marginBottom: 16,
     },
-    signInButtonText: {
+    createAccountButtonText: {
       color: colors.primaryForeground,
       fontSize: 16,
       fontWeight: '600',
@@ -123,14 +119,14 @@ function getStyles(colors: typeof Colors.light) {
       marginHorizontal: 8,
       color: colors.mutedForeground,
     },
-    signUpContainer: {
+    signInContainer: {
       flexDirection: 'row',
       justifyContent: 'center',
     },
-    signUpText: {
+    signInText: {
       color: colors.mutedForeground,
     },
-    signUpLink: {
+    signInLink: {
       color: colors.primary,
       fontWeight: '600',
       marginLeft: 4,
@@ -138,38 +134,48 @@ function getStyles(colors: typeof Colors.light) {
   });
 }
 
-export default function SignInScreen() {
+export default function SignUpScreen() {
   const router = useRouter();
   const colorScheme = useColorScheme() ?? 'light';
   const colors = Colors[colorScheme];
   const styles = getStyles(colors);
+  const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const { login } = useAuth();
 
-  const handleSignIn = async () => {
-    const { success } = await signIn(email, password);
-    if (success) {
-      router.replace('/(tabs)/' as any);
+
+  const handleSignUp = async () => {
+    if (password !== confirmPassword) {
+      Alert.alert('Passwords do not match');
+      return;
+    }
+    const { success, user } = await signUp(fullName, email, password);
+    if (success && user) {
+      login(user);
+    } else {
+      Alert.alert('Sign Up Failed', 'Please try again.');
     }
   };
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.title}>Welcome Back</Text>
-          <Text style={styles.subtitle}>Sign in to continue to MealMind AI</Text>
+          <Text style={styles.title}>Create Account</Text>
+          <Text style={styles.subtitle}>Join MealMind AI today</Text>
         </View>
 
         <View style={styles.form}>
           <View style={styles.socialSignInContainer}>
             <TouchableOpacity style={[styles.socialSignInButton, styles.googleButton]}>
               {/* Replace with actual Google icon */}
-              <Text style={[styles.socialSignInText, styles.googleText]}>Continue with Google</Text>
+              <Text style={[styles.socialSignInText, styles.googleText]}>Sign up with Google</Text>
             </TouchableOpacity>
             <TouchableOpacity style={[styles.socialSignInButton, styles.appleButton]}>
               <Apple size={20} color="#FFFFFF" />
-              <Text style={[styles.socialSignInText, styles.appleText]}>Continue with Apple</Text>
+              <Text style={[styles.socialSignInText, styles.appleText]}>Sign up with Apple</Text>
             </TouchableOpacity>
           </View>
 
@@ -177,6 +183,20 @@ export default function SignInScreen() {
             <View style={styles.dividerLine} />
             <Text style={styles.dividerText}>or</Text>
             <View style={styles.dividerLine} />
+          </View>
+
+          <View style={styles.inputContainer}>
+            <Text style={styles.inputLabel}>Full Name</Text>
+            <View style={styles.input}>
+              <User size={20} color={colors.mutedForeground} />
+              <TextInput
+                style={styles.inputText}
+                placeholder="John Doe"
+                value={fullName}
+                onChangeText={setFullName}
+                autoCapitalize="words"
+              />
+            </View>
           </View>
 
           <View style={styles.inputContainer}>
@@ -208,22 +228,32 @@ export default function SignInScreen() {
             </View>
           </View>
 
-          <TouchableOpacity style={styles.forgotPassword} onPress={() => router.push('/forgot-password')}>
-            <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
-          </TouchableOpacity>
+          <View style={styles.inputContainer}>
+            <Text style={styles.inputLabel}>Confirm Password</Text>
+            <View style={styles.input}>
+              <Lock size={20} color={colors.mutedForeground} />
+              <TextInput
+                style={styles.inputText}
+                placeholder="••••••••"
+                value={confirmPassword}
+                onChangeText={setConfirmPassword}
+                secureTextEntry
+              />
+            </View>
+          </View>
 
-          <TouchableOpacity style={styles.signInButton} onPress={handleSignIn}>
-            <Text style={styles.signInButtonText}>Sign In</Text>
+          <TouchableOpacity style={styles.createAccountButton} onPress={handleSignUp}>
+            <Text style={styles.createAccountButtonText}>Create Account</Text>
           </TouchableOpacity>
         </View>
 
-        <View style={styles.signUpContainer}>
-          <Text style={styles.signUpText}>Don't have an account?</Text>
-          <TouchableOpacity onPress={() => router.push('/sign-up')}>
-            <Text style={styles.signUpLink}>Sign Up</Text>
+        <View style={styles.signInContainer}>
+          <Text style={styles.signInText}>Already have an account?</Text>
+          <TouchableOpacity onPress={() => router.push('/(auth)/sign-in')}>
+            <Text style={styles.signInLink}>Sign In</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
