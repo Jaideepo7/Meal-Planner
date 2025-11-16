@@ -11,6 +11,7 @@ export const signIn = async (email: string, password: string) => {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     return { success: true, user: userCredential.user };
   } catch (error) {
+    console.error("Sign-in error:", error);
     if (error instanceof Error) {
       return { success: false, error: error.message };
     }
@@ -23,6 +24,7 @@ export const signUp = async (email: string, password: string) => {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     return { success: true, user: userCredential.user };
   } catch (error) {
+    console.error("Sign-up error:", error);
     if (error instanceof Error) {
       return { success: false, error: error.message };
     }
@@ -45,6 +47,7 @@ export const sendPasswordReset = async (email: string) => {
     await sendPasswordResetEmail(auth, email);
     return { success: true };
   } catch (error) {
+    console.error("Password reset error:", error);
     if (error instanceof Error) {
       return { success: false, error: error.message };
     }
@@ -57,6 +60,7 @@ export const signOut = async () => {
     await firebaseSignOut(auth);
     return { success: true };
   } catch (error) {
+    console.error("Sign-out error:", error);
     if (error instanceof Error) {
       return { success: false, error: error.message };
     }

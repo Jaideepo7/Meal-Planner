@@ -276,10 +276,10 @@ export default function AskAiScreen() {
                     placeholderTextColor={colors.mutedForeground}
                     value={message}
                     onChangeText={setMessage}
-                    onSubmitEditing={handleSend}
+                    onSubmitEditing={() => handleSend()}
                     editable={!loading}
                 />
-                <TouchableOpacity style={styles.sendButton} onPress={handleSend} disabled={!message.trim() || loading}>
+                <TouchableOpacity style={styles.sendButton} onPress={() => handleSend()} disabled={!message.trim() || loading}>
                     <Send size={24} color={(!message.trim() || loading) ? colors.mutedForeground : colors.primary} />
                 </TouchableOpacity>
             </View>

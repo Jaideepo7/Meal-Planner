@@ -1491,3 +1491,138 @@
 [debug] [2025-11-16T16:28:05.290Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:728611621393:web:f1b20e978658e4d7027fb0/config [none]
 [debug] [2025-11-16T16:28:05.677Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:728611621393:web:f1b20e978658e4d7027fb0/config 200
 [debug] [2025-11-16T16:28:05.677Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:728611621393:web:f1b20e978658e4d7027fb0/config {"projectId":"meal-planner-99296094-643bf","appId":"1:728611621393:web:f1b20e978658e4d7027fb0","storageBucket":"meal-planner-99296094-643bf.firebasestorage.app","apiKey":"AIzaSyCfl4BhvloujiQIxvyMqFYAd0vN9LZpWkI","authDomain":"meal-planner-99296094-643bf.firebaseapp.com","messagingSenderId":"728611621393","projectNumber":"728611621393","version":"2"}
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-16T16:38:31.837Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-16T16:38:31.837Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-16T16:38:31.838Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-16T16:38:31.838Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[debug] [2025-11-16T16:38:31.840Z] >>> [apiv2][query] POST https://auth.firebase.tools/attest [none]
+[debug] [2025-11-16T16:38:31.840Z] >>> [apiv2][body] POST https://auth.firebase.tools/attest {"session_id":"94e48597-b9c6-4b53-b8c4-1f79e4985502"}
+[debug] [2025-11-16T16:38:32.040Z] <<< [apiv2][status] POST https://auth.firebase.tools/attest 200
+[debug] [2025-11-16T16:38:32.040Z] <<< [apiv2][body] POST https://auth.firebase.tools/attest {"token":"1RBxkwkthgpKLOEYXh-9O9hzvQ_vC36W3dJnSeSgZDU"}
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-16T16:39:13.577Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-16T16:39:13.577Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-16T16:39:13.578Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-16T16:39:13.578Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[debug] [2025-11-16T16:39:13.579Z] >>> [apiv2][query] POST https://accounts.google.com/o/oauth2/token [none]
+[debug] [2025-11-16T16:39:13.579Z] >>> [apiv2][body] POST https://accounts.google.com/o/oauth2/token [omitted]
+[debug] [2025-11-16T16:39:13.650Z] <<< [apiv2][status] POST https://accounts.google.com/o/oauth2/token 200
+[debug] [2025-11-16T16:39:13.650Z] <<< [apiv2][body] POST https://accounts.google.com/o/oauth2/token [omitted]
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-16T16:43:30.906Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-16T16:43:30.906Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-16T16:43:30.908Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-16T16:43:30.908Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[debug] [2025-11-16T16:43:30.908Z] Checked if tokens are valid: true, expires at: 1763314752651
+[debug] [2025-11-16T16:43:30.908Z] Checked if tokens are valid: true, expires at: 1763314752651
+[debug] [2025-11-16T16:43:30.908Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000
+[debug] [2025-11-16T16:43:31.200Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2025-11-16T16:43:31.200Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-16T16:43:49.023Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-16T16:43:49.023Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-16T16:43:49.024Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-16T16:43:49.024Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[debug] [2025-11-16T16:43:49.024Z] Checked if tokens are valid: true, expires at: 1763314752651
+[debug] [2025-11-16T16:43:49.024Z] Checked if tokens are valid: true, expires at: 1763314752651
+[debug] [2025-11-16T16:43:49.024Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/meal-pla-4b01f [none]
+[debug] [2025-11-16T16:43:49.080Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/meal-pla-4b01f 200
+[debug] [2025-11-16T16:43:49.080Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/meal-pla-4b01f {"projectNumber":"232966009287","projectId":"meal-pla-4b01f","lifecycleState":"ACTIVE","name":"Meal Planner","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2025-11-13T04:07:15.766430Z"}
+[info] Updating Studio Workspace active project to match Firebase CLI 'meal-pla-4b01f'
+[error] Failed to update Firebase Project for Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[info] Now using project meal-pla-4b01f
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-16T16:45:26.449Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-16T16:45:26.449Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-16T16:45:26.451Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-16T16:45:26.451Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[info] 
+=== Firestore Setup Actuation
+[info] ✔  Wrote firestore.rules 
+[info] ✔  Wrote firestore.indexes.json 
+[info] 
+=== Hosting Setup Actuation
+[debug] [2025-11-16T16:45:26.454Z] >>> [apiv2][query] GET https://www.gstatic.com/firebasejs/releases.json [none]
+[debug] [2025-11-16T16:45:26.468Z] <<< [apiv2][status] GET https://www.gstatic.com/firebasejs/releases.json 200
+[debug] [2025-11-16T16:45:26.468Z] <<< [apiv2][body] GET https://www.gstatic.com/firebasejs/releases.json {"current":{"version":"12.6.0","browserURL":"https://www.gstatic.com/firebasejs/12.6.0/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/12.6.0/firebase.tgz"},"live":{"version":"12.6","browserURL":"https://www.gstatic.com/firebasejs/live/12.6/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/live/12.6/firebase.tgz"},"components":{"ai":"https://www.gstatic.com/firebasejs/12.6.0/firebase-ai.js","analytics":"https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js","app":"https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js","app-check":"https://www.gstatic.com/firebasejs/12.6.0/firebase-app-check.js","auth":"https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js","auth/cordova":"https://www.gstatic.com/firebasejs/12.6.0/firebase-auth/cordova.js","auth/web-extension":"https://www.gstatic.com/firebasejs/12.6.0/firebase-auth/web-extension.js","functions":"https://www.gstatic.com/firebasejs/12.6.0/firebase-functions.js","firestore":"https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js","firestore/lite":"https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore/lite.js","installations":"https://www.gstatic.com/firebasejs/12.6.0/firebase-installations.js","storage":"https://www.gstatic.com/firebasejs/12.6.0/firebase-storage.js","performance":"https://www.gstatic.com/firebasejs/12.6.0/firebase-performance.js","remote-config":"https://www.gstatic.com/firebasejs/12.6.0/firebase-remote-config.js","messaging":"https://www.gstatic.com/firebasejs/12.6.0/firebase-messaging.js","messaging/sw":"https://www.gstatic.com/firebasejs/12.6.0/firebase-messaging/sw.js","database":"https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js","data-connect":"https://www.gstatic.com/firebasejs/12.6.0/firebase-data-connect.js","firestore.memory":"https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.memory.js"}}
+[info] ✔  Wrote web-build/index.html 
+[info] ✔  Wrote configuration info to firebase.json 
+[info] ✔  Wrote project information to .firebaserc 
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-16T16:46:08.137Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-16T16:46:08.137Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-16T16:46:08.138Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-16T16:46:08.138Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[debug] [2025-11-16T16:46:08.139Z] Checked if tokens are valid: true, expires at: 1763314752651
+[debug] [2025-11-16T16:46:08.139Z] Checked if tokens are valid: true, expires at: 1763314752651
+[debug] [2025-11-16T16:46:08.140Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/meal-pla-4b01f:searchApps pageSize=100
+[debug] [2025-11-16T16:46:08.291Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/meal-pla-4b01f:searchApps 200
+[debug] [2025-11-16T16:46:08.291Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/meal-pla-4b01f:searchApps {"apps":[{"name":"projects/meal-pla-4b01f/androidApps/1:232966009287:android:c5095428925b98d13e69e2","displayName":"Meal Planner","platform":"ANDROID","appId":"1:232966009287:android:c5095428925b98d13e69e2","namespace":"Project.Meal.Planner","apiKeyId":"81240099-4e2c-4d21-8dab-694e642d8daa","state":"ACTIVE","expireTime":"1970-01-01T00:00:00Z"},{"name":"projects/meal-pla-4b01f/webApps/1:232966009287:web:b70b8a09a7211d893e69e2","displayName":"Flutter AI Playground","platform":"WEB","appId":"1:232966009287:web:b70b8a09a7211d893e69e2","namespace":"MzlkNDc1ZjUtOWMyYy00MzI3LWFjYzktOGZkMWI5MDQ4NzZl","apiKeyId":"b9cf3d3b-6844-4040-806f-d1c025d79ad6","state":"ACTIVE","expireTime":"1970-01-01T00:00:00Z"}]}
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-16T16:47:03.388Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-16T16:47:03.388Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-16T16:47:03.389Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-16T16:47:03.389Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[debug] [2025-11-16T16:47:03.389Z] Checked if tokens are valid: true, expires at: 1763314752651
+[debug] [2025-11-16T16:47:03.389Z] Checked if tokens are valid: true, expires at: 1763314752651
+[debug] [2025-11-16T16:47:03.390Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/meal-pla-4b01f:searchApps pageSize=100
+[debug] [2025-11-16T16:47:03.566Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/meal-pla-4b01f:searchApps 200
+[debug] [2025-11-16T16:47:03.566Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/meal-pla-4b01f:searchApps {"apps":[{"name":"projects/meal-pla-4b01f/androidApps/1:232966009287:android:c5095428925b98d13e69e2","displayName":"Meal Planner","platform":"ANDROID","appId":"1:232966009287:android:c5095428925b98d13e69e2","namespace":"Project.Meal.Planner","apiKeyId":"81240099-4e2c-4d21-8dab-694e642d8daa","state":"ACTIVE","expireTime":"1970-01-01T00:00:00Z"},{"name":"projects/meal-pla-4b01f/webApps/1:232966009287:web:b70b8a09a7211d893e69e2","displayName":"Flutter AI Playground","platform":"WEB","appId":"1:232966009287:web:b70b8a09a7211d893e69e2","namespace":"MzlkNDc1ZjUtOWMyYy00MzI3LWFjYzktOGZkMWI5MDQ4NzZl","apiKeyId":"b9cf3d3b-6844-4040-806f-d1c025d79ad6","state":"ACTIVE","expireTime":"1970-01-01T00:00:00Z"}]}
+[debug] [2025-11-16T16:47:03.567Z] Checked if tokens are valid: true, expires at: 1763314752651
+[debug] [2025-11-16T16:47:03.567Z] Checked if tokens are valid: true, expires at: 1763314752651
+[debug] [2025-11-16T16:47:03.567Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/-/androidApps/1:232966009287:android:c5095428925b98d13e69e2/config [none]
+[debug] [2025-11-16T16:47:04.155Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/-/androidApps/1:232966009287:android:c5095428925b98d13e69e2/config 200
+[debug] [2025-11-16T16:47:04.155Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/-/androidApps/1:232966009287:android:c5095428925b98d13e69e2/config {"configFilename":"google-services.json","configFileContents":"ewogICJwcm9qZWN0X2luZm8iOiB7CiAgICAicHJvamVjdF9udW1iZXIiOiAiMjMyOTY2MDA5Mjg3IiwKICAgICJwcm9qZWN0X2lkIjogIm1lYWwtcGxhLTRiMDFmIiwKICAgICJzdG9yYWdlX2J1Y2tldCI6ICJtZWFsLXBsYS00YjAxZi5maXJlYmFzZXN0b3JhZ2UuYXBwIgogIH0sCiAgImNsaWVudCI6IFsKICAgIHsKICAgICAgImNsaWVudF9pbmZvIjogewogICAgICAgICJtb2JpbGVzZGtfYXBwX2lkIjogIjE6MjMyOTY2MDA5Mjg3OmFuZHJvaWQ6YzUwOTU0Mjg5MjViOThkMTNlNjllMiIsCiAgICAgICAgImFuZHJvaWRfY2xpZW50X2luZm8iOiB7CiAgICAgICAgICAicGFja2FnZV9uYW1lIjogIlByb2plY3QuTWVhbC5QbGFubmVyIgogICAgICAgIH0KICAgICAgfSwKICAgICAgIm9hdXRoX2NsaWVudCI6IFsKICAgICAgICB7CiAgICAgICAgICAiY2xpZW50X2lkIjogIjIzMjk2NjAwOTI4Ny1vYWhxOHZ0MzFvbDFnNXRjZTRhcjFraGo1b3A2aWoybi5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsCiAgICAgICAgICAiY2xpZW50X3R5cGUiOiAzCiAgICAgICAgfQogICAgICBdLAogICAgICAiYXBpX2tleSI6IFsKICAgICAgICB7CiAgICAgICAgICAiY3VycmVudF9rZXkiOiAiQUl6YVN5Q1M5bVBBdU1fQlBrcVY2Mm9XZkRYaU5oTGNTWVpqelp3IgogICAgICAgIH0KICAgICAgXSwKICAgICAgInNlcnZpY2VzIjogewogICAgICAgICJhcHBpbnZpdGVfc2VydmljZSI6IHsKICAgICAgICAgICJvdGhlcl9wbGF0Zm9ybV9vYXV0aF9jbGllbnQiOiBbCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAiY2xpZW50X2lkIjogIjIzMjk2NjAwOTI4Ny1vYWhxOHZ0MzFvbDFnNXRjZTRhcjFraGo1b3A2aWoybi5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsCiAgICAgICAgICAgICAgImNsaWVudF90eXBlIjogMwogICAgICAgICAgICB9CiAgICAgICAgICBdCiAgICAgICAgfQogICAgICB9CiAgICB9CiAgXSwKICAiY29uZmlndXJhdGlvbl92ZXJzaW9uIjogIjEiCn0="}
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-16T16:53:04.654Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-16T16:53:04.654Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-16T16:53:04.655Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-16T16:53:04.655Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[debug] [2025-11-16T16:53:04.655Z] Checked if tokens are valid: true, expires at: 1763314752651
+[debug] [2025-11-16T16:53:04.655Z] Checked if tokens are valid: true, expires at: 1763314752651
+[debug] [2025-11-16T16:53:04.655Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/meal-pla-4b01f:searchApps pageSize=100
+[debug] [2025-11-16T16:53:04.873Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/meal-pla-4b01f:searchApps 200
+[debug] [2025-11-16T16:53:04.873Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/meal-pla-4b01f:searchApps {"apps":[{"name":"projects/meal-pla-4b01f/androidApps/1:232966009287:android:c5095428925b98d13e69e2","displayName":"Meal Planner","platform":"ANDROID","appId":"1:232966009287:android:c5095428925b98d13e69e2","namespace":"Project.Meal.Planner","apiKeyId":"81240099-4e2c-4d21-8dab-694e642d8daa","state":"ACTIVE","expireTime":"1970-01-01T00:00:00Z"},{"name":"projects/meal-pla-4b01f/webApps/1:232966009287:web:b70b8a09a7211d893e69e2","displayName":"Flutter AI Playground","platform":"WEB","appId":"1:232966009287:web:b70b8a09a7211d893e69e2","namespace":"MzlkNDc1ZjUtOWMyYy00MzI3LWFjYzktOGZkMWI5MDQ4NzZl","apiKeyId":"b9cf3d3b-6844-4040-806f-d1c025d79ad6","state":"ACTIVE","expireTime":"1970-01-01T00:00:00Z"}]}
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-16T16:53:13.774Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-16T16:53:13.774Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-16T16:53:13.777Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-16T16:53:13.777Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[debug] [2025-11-16T16:53:13.778Z] Checked if tokens are valid: true, expires at: 1763314752651
+[debug] [2025-11-16T16:53:13.778Z] Checked if tokens are valid: true, expires at: 1763314752651
+[debug] [2025-11-16T16:53:13.778Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/meal-pla-4b01f:searchApps pageSize=100
+[debug] [2025-11-16T16:53:13.920Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/meal-pla-4b01f:searchApps 200
+[debug] [2025-11-16T16:53:13.920Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/meal-pla-4b01f:searchApps {"apps":[{"name":"projects/meal-pla-4b01f/androidApps/1:232966009287:android:c5095428925b98d13e69e2","displayName":"Meal Planner","platform":"ANDROID","appId":"1:232966009287:android:c5095428925b98d13e69e2","namespace":"Project.Meal.Planner","apiKeyId":"81240099-4e2c-4d21-8dab-694e642d8daa","state":"ACTIVE","expireTime":"1970-01-01T00:00:00Z"},{"name":"projects/meal-pla-4b01f/webApps/1:232966009287:web:b70b8a09a7211d893e69e2","displayName":"Flutter AI Playground","platform":"WEB","appId":"1:232966009287:web:b70b8a09a7211d893e69e2","namespace":"MzlkNDc1ZjUtOWMyYy00MzI3LWFjYzktOGZkMWI5MDQ4NzZl","apiKeyId":"b9cf3d3b-6844-4040-806f-d1c025d79ad6","state":"ACTIVE","expireTime":"1970-01-01T00:00:00Z"}]}
+[debug] [2025-11-16T16:53:13.920Z] Checked if tokens are valid: true, expires at: 1763314752651
+[debug] [2025-11-16T16:53:13.920Z] Checked if tokens are valid: true, expires at: 1763314752651
+[debug] [2025-11-16T16:53:13.920Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:232966009287:web:b70b8a09a7211d893e69e2/config [none]
+[debug] [2025-11-16T16:53:14.270Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:232966009287:web:b70b8a09a7211d893e69e2/config 200
+[debug] [2025-11-16T16:53:14.270Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:232966009287:web:b70b8a09a7211d893e69e2/config {"projectId":"meal-pla-4b01f","appId":"1:232966009287:web:b70b8a09a7211d893e69e2","storageBucket":"meal-pla-4b01f.firebasestorage.app","apiKey":"AIzaSyAkaJ8vF7c7ubYaBGT8IEz4Hdi1foglUQU","authDomain":"meal-pla-4b01f.firebaseapp.com","messagingSenderId":"232966009287","projectNumber":"232966009287","version":"2"}

@@ -17,7 +17,7 @@ import {
 import { useRouter } from 'expo-router';
 import { Mail, Lock, Apple, User, Chrome, ChevronLeft } from 'lucide-react-native';
 import Colors from '../../constants/Colors';
-import { signUp } from '../../services/auth';
+import { useAuth } from '../../context/AuthContext';
 
 function getStyles(colors: typeof Colors.light) {
   return StyleSheet.create({
@@ -164,6 +164,7 @@ export default function SignUpScreen() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const { signUp } = useAuth();
 
   const handleSignUp = async () => {
     if (password !== confirmPassword) {

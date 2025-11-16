@@ -1,27 +1,36 @@
 {
   "project_info": {
-    "project_number": "000000000000",
-    "firebase_url": "https://your-project-id.firebaseio.com",
-    "project_id": "your-project-id",
-    "storage_bucket": "your-project-id.appspot.com"
+    "project_number": "232966009287",
+    "project_id": "meal-pla-4b01f",
+    "storage_bucket": "meal-pla-4b01f.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:000000000000:android:0000000000000000",
+        "mobilesdk_app_id": "1:232966009287:android:c5095428925b98d13e69e2",
         "android_client_info": {
-          "package_name": "com.anonymous.mealplanner"
+          "package_name": "Project.Meal.Planner"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "232966009287-oahq8vt31ol1g5tce4ar1khj5op6ij2n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "your-api-key"
+          "current_key": "AIzaSyCS9mPAuM_BPkqV62oWfDXiNhLcSYZjzZw"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "232966009287-oahq8vt31ol1g5tce4ar1khj5op6ij2n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
