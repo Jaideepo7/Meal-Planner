@@ -195,7 +195,7 @@ export default function HomeScreen() {
 
             <Text style={styles.sectionTitle}>{Strings.home.quickActions}</Text>
             
-            <TouchableOpacity style={styles.primaryAction} onPress={() => router.push('/food-preferences')}>
+            <TouchableOpacity style={styles.primaryAction} onPress={() => router.push('/ask-ai')}>
               <View style={styles.primaryActionIcon}>
                 <Sparkles size={24} color={colors.primaryForeground} />
               </View>

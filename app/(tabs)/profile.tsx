@@ -1,9 +1,10 @@
 
-import { StyleSheet, View, Text, TouchableOpacity, ScrollView, SafeAreaView, useColorScheme, Dimensions, ActivityIndicator } from 'react-native';
-import { User, Mail, ChevronRight, Bell, Shield, HelpCircle, LogOut } from 'lucide-react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ScrollView, SafeAreaView, useColorScheme, Dimensions, ActivityIndicator, Alert, Switch } from 'react-native';
+import { User, Mail, ChevronRight, Bell, Shield, HelpCircle, LogOut, Package, Globe2, ShieldAlert, Target } from 'lucide-react-native';
 import Colors from '../../constants/Colors';
 import { useAuth } from '../../context/AuthContext';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'expo-router';
 
 const { width, height } = Dimensions.get('window');
 
@@ -56,78 +57,83 @@ function getStyles(colors: any) {
       flex: 1,
     },
     contentContainer: {
-      paddingBottom: 100,
-    },
-    statsCard: {
-      backgroundColor: colors.card,
-      borderRadius: 16,
-      padding: width * 0.05,
-      marginBottom: height * 0.03,
-    },
-    statsTitle: {
-      fontSize: width * 0.04,
-      fontWeight: '600',
-      color: colors.cardForeground,
-      marginBottom: height * 0.02,
-    },
-    statsGrid: {
-      flexDirection: 'row',
-      justifyContent: 'space-around',
-    },
-    statItem: {
-      alignItems: 'center',
-    },
-    statValue: {
-      fontSize: width * 0.06,
-      fontWeight: 'bold',
-      color: colors.cardForeground,
-      marginBottom: 4,
-    },
-    statLabel: {
-      fontSize: width * 0.03,
-      color: colors.mutedForeground,
-    },
-    menuSection: {
-      gap: width * 0.03,
-      marginBottom: height * 0.03,
-    },
-    menuItem: {
-      backgroundColor: colors.card,
-      borderRadius: 16,
-      padding: width * 0.05,
-      flexDirection: 'row',
-      alignItems: 'center',
-      gap: width * 0.04,
-    },
-    menuIconContainer: {
-      backgroundColor: colors.accent,
-      borderRadius: 30,
-      padding: width * 0.03,
-    },
-    menuTextContainer: {
-      flex: 1,
-    },
-    menuTitle: {
-      fontSize: width * 0.04,
-      fontWeight: '600',
-      color: colors.cardForeground,
-      marginBottom: 2,
-    },
-    menuDescription: {
-      fontSize: width * 0.03,
-      color: colors.mutedForeground,
-    },
+        paddingBottom: 100,
+      },
+    sectionTitle: {
+        fontSize: width * 0.035,
+        fontWeight: '600',
+        color: colors.text,
+        marginBottom: 12,
+        paddingHorizontal: 24,
+      },
+      settingsSection: {
+        gap: 12,
+        marginBottom: 24,
+        paddingHorizontal: 24,
+      },
+      settingItem: {
+        backgroundColor: colors.card,
+        borderRadius: 16,
+        padding: width * 0.05,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: width * 0.04,
+      },
+      settingIconContainer: {
+        borderRadius: 30,
+        padding: width * 0.03,
+      },
+      settingTextContainer: {
+        flex: 1,
+      },
+      settingTitle: {
+        fontSize: width * 0.04,
+        fontWeight: '600',
+        color: colors.cardForeground,
+        marginBottom: 2,
+      },
+      settingDescription: {
+        fontSize: width * 0.03,
+        color: colors.mutedForeground,
+      },
+      preferencesCard: {
+        backgroundColor: colors.card,
+        borderRadius: 16,
+        padding: width * 0.05,
+        marginHorizontal: 24,
+      },
+      preferenceItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingVertical: 12,
+      },
+      preferenceItemBorder: {
+        borderTopWidth: 1,
+        borderTopColor: colors.border,
+        marginTop: 4,
+      },
+      preferenceInfo: {
+        flex: 1,
+      },
+      preferenceTitle: {
+        fontSize: width * 0.035,
+        fontWeight: '500',
+        color: colors.cardForeground,
+        marginBottom: 2,
+      },
     logoutButton: {
-      backgroundColor: colors.destructive,
+      backgroundColor: colors.card,
       borderRadius: 16,
       padding: width * 0.04,
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
       gap: width * 0.02,
+      margin: 24,
     },
     logoutButtonText: {
-      color: 'white',
+      color: colors.destructive,
       fontSize: width * 0.04,
       fontWeight: '600',
     },
@@ -136,6 +142,7 @@ function getStyles(colors: any) {
 
 export default function ProfileScreen() {
   const { logout, user } = useAuth();
+  const router = useRouter();
   const colorScheme = useColorScheme() ?? 'light';
   const colors = Colors[colorScheme];
   const styles = getStyles(colors);
@@ -147,11 +154,54 @@ export default function ProfileScreen() {
     }
   }, [user]);
 
-  const menuItems = [
-    { icon: User, title: 'Edit Profile', description: 'Update your personal information' },
-    { icon: Bell, title: 'Notifications', description: 'Manage your notification preferences' },
-    { icon: Shield, title: 'Privacy & Security', description: 'Password and security settings' },
-    { icon: HelpCircle, title: 'Help & Support', description: 'Get help with the app' },
+  const handleSignOut = () => {
+    Alert.alert(
+        'Sign Out',
+        'Are you sure you want to sign out?',
+        [
+            { text: 'Cancel', style: 'cancel' },
+            {
+                text: 'Sign Out',
+                style: 'destructive',
+                onPress: () => logout(),
+            },
+        ],
+    );
+  };
+
+  const settingsItems = [
+    {
+      icon: Package,
+      title: 'Food Inventory',
+      description: 'Manage your available ingredients',
+      color: '#dbeafe',
+      iconColor: '#2563eb',
+      route: '/food-inventory',
+    },
+    {
+      icon: Globe2,
+      title: 'Cuisine Preferences',
+      description: 'Update your favorite cuisines',
+      color: '#e9d5ff',
+      iconColor: '#9333ea',
+      route: '/food-preferences',
+    },
+    {
+      icon: ShieldAlert,
+      title: 'Dietary Restrictions',
+      description: 'Manage allergies and restrictions',
+      color: '#fee2e2',
+      iconColor: '#dc2626',
+      route: '/dietary-restrictions',
+    },
+    {
+      icon: Target,
+      title: 'Health Goals',
+      description: 'Update your dietary goals',
+      color: '#dcfce7',
+      iconColor: '#16a34a',
+      route: '/goals',
+    },
   ];
 
   if (loading) {
@@ -176,47 +226,58 @@ export default function ProfileScreen() {
           </View>
         </View>
 
-        <View style={{marginTop: -30, paddingHorizontal: 24, paddingBottom: 24}}>
-        <View style={styles.statsCard}>
-          <Text style={styles.statsTitle}>Your Stats</Text>
-          <View style={styles.statsGrid}>
-            <View style={styles.statItem}>
-              <Text style={styles.statValue}>24</Text>
-              <Text style={styles.statLabel}>Recipes Saved</Text>
+        <View style={{paddingVertical: 24}}>
+        <Text style={styles.sectionTitle}>Your Profile Settings</Text>
+          <View style={styles.settingsSection}>
+            {settingsItems.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <TouchableOpacity key={index} style={styles.settingItem} onPress={() => router.push(item.route as any)}>
+                  <View style={[styles.settingIconContainer, { backgroundColor: item.color }]}>
+                    <Icon size={width * 0.05} color={item.iconColor} />
+                  </View>
+                  <View style={styles.settingTextContainer}>
+                    <Text style={styles.settingTitle}>{item.title}</Text>
+                    <Text style={styles.settingDescription}>{item.description}</Text>
+                  </View>
+                  <ChevronRight size={width * 0.05} color={colors.mutedForeground} />
+                </TouchableOpacity>
+              );
+            })}
+          </View>
+
+          <Text style={styles.sectionTitle}>App Preferences</Text>
+          <View style={styles.preferencesCard}>
+            <View style={styles.preferenceItem}>
+              <View style={styles.preferenceInfo}>
+                <Text style={styles.preferenceTitle}>Notifications</Text>
+              </View>
+              <Switch
+                value={false}
+                onValueChange={() => Alert.alert('Coming Soon!', 'This feature is not yet available.')}
+                trackColor={{ false: '#d1d5db', true: colors.primary }}
+                thumbColor="white"
+              />
             </View>
-            <View style={styles.statItem}>
-              <Text style={styles.statValue}>18</Text>
-              <Text style={styles.statLabel}>Meals Logged</Text>
-            </View>
-            <View style={styles.statItem}>
-              <Text style={styles.statValue}>7</Text>
-              <Text style={styles.statLabel}>Day Streak</Text>
+
+            <View style={[styles.preferenceItem, styles.preferenceItemBorder]}>
+              <View style={styles.preferenceInfo}>
+                <Text style={styles.preferenceTitle}>Dark Mode</Text>
+              </View>
+              <Switch
+                value={false}
+                onValueChange={() => Alert.alert('Coming Soon!', 'This feature is not yet available.')}
+                disabled={true}
+                trackColor={{ false: '#e5e7eb', true: colors.primary }}
+                thumbColor="white"
+              />
             </View>
           </View>
-        </View>
 
-        <View style={styles.menuSection}>
-          {menuItems.map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <TouchableOpacity key={index} style={styles.menuItem}>
-                <View style={styles.menuIconContainer}>
-                  <Icon size={width * 0.05} color={colors.accentForeground} />
-                </View>
-                <View style={styles.menuTextContainer}>
-                  <Text style={styles.menuTitle}>{item.title}</Text>
-                  <Text style={styles.menuDescription}>{item.description}</Text>
-                </View>
-                <ChevronRight size={width * 0.05} color={colors.mutedForeground} />
-              </TouchableOpacity>
-            );
-          })}
-        </View>
-
-        <TouchableOpacity style={styles.logoutButton} onPress={logout}>
-          <LogOut size={width * 0.05} color="white" />
-          <Text style={styles.logoutButtonText}>Log Out</Text>
-        </TouchableOpacity>
+          <TouchableOpacity style={styles.logoutButton} onPress={handleSignOut}>
+            <LogOut size={width * 0.05} color={colors.destructive} />
+            <Text style={styles.logoutButtonText}>Sign Out</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </SafeAreaView>

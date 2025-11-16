@@ -2,7 +2,7 @@
 'use client';
 
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, SafeAreaView, TextInput, useColorScheme, Alert } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, SafeAreaView, TextInput, useColorScheme, Alert, ActivityIndicator } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Mail, Send, ArrowLeft, Lightbulb } from 'lucide-react-native'; // Assuming you have these icons
 import Colors from '../../constants/Colors';
@@ -126,9 +126,12 @@ export default function ForgotPasswordScreen() {
   const colors = Colors[colorScheme];
   const styles = getStyles(colors);
   const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSendResetLink = async () => {
+    setLoading(true);
     const { success } = await sendPasswordResetEmail(email);
+    setLoading(false);
     if (success) {
       Alert.alert('Reset Link Sent', 'Please check your email for reset instructions.');
       router.push('/(auth)/sign-in');
@@ -165,8 +168,8 @@ export default function ForgotPasswordScreen() {
             <Text style={styles.emailInfo}>Enter the email address associated with your account</Text>
           </View>
 
-          <TouchableOpacity style={styles.sendResetLinkButton} onPress={handleSendResetLink}>
-            <Send size={20} color={colors.primaryForeground} />
+          <TouchableOpacity style={styles.sendResetLinkButton} onPress={handleSendResetLink} disabled={loading}>
+            {loading ? <ActivityIndicator color={colors.primaryForeground} /> : <Send size={20} color={colors.primaryForeground} />}
             <Text style={styles.sendResetLinkButtonText}>Send Reset Link</Text>
           </TouchableOpacity>
         </View>

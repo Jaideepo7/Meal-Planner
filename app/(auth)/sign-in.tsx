@@ -2,9 +2,9 @@
 'use client';
 
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, SafeAreaView, TextInput, useColorScheme, Alert } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, SafeAreaView, TextInput, useColorScheme, Alert, ActivityIndicator } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Mail, Lock, Apple } from 'lucide-react-native';
+import { Mail, Lock, Apple, Chrome } from 'lucide-react-native';
 import Colors from '../../constants/Colors';
 import { signIn } from '../../services/auth';
 import { useState } from 'react';
@@ -147,10 +147,13 @@ export default function SignInScreen() {
   const styles = getStyles(colors);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const { login } = useAuth();
 
   const handleSignIn = async () => {
+    setLoading(true);
     const { success, user, error } = await signIn(email, password);
+    setLoading(false);
     if (success && user) {
       login(user);
     } else {
@@ -169,7 +172,7 @@ export default function SignInScreen() {
         <View style={styles.form}>
           <View style={styles.socialSignInContainer}>
             <TouchableOpacity style={[styles.socialSignInButton, styles.googleButton]}>
-              {/* Replace with actual Google icon */}
+              <Chrome size={20} color="#000000" />
               <Text style={[styles.socialSignInText, styles.googleText]}>Continue with Google</Text>
             </TouchableOpacity>
             <TouchableOpacity style={[styles.socialSignInButton, styles.appleButton]}>
@@ -217,8 +220,8 @@ export default function SignInScreen() {
             <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.signInButton} onPress={handleSignIn}>
-            <Text style={styles.signInButtonText}>Sign In</Text>
+          <TouchableOpacity style={styles.signInButton} onPress={handleSignIn} disabled={loading}>
+            {loading ? <ActivityIndicator color={colors.primaryForeground} /> : <Text style={styles.signInButtonText}>Sign In</Text>}
           </TouchableOpacity>
         </View>
 

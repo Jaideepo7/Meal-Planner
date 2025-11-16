@@ -1,5 +1,5 @@
 
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, ScrollView, SafeAreaView, useColorScheme, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, Text, TextInput, TouchableOpacity, ScrollView, SafeAreaView, useColorScheme, ActivityIndicator, KeyboardAvoidingView, Platform } from 'react-native';
 import { ChevronLeft, Send } from 'lucide-react-native';
 import Colors from '../constants/Colors';
 import { useRouter } from 'expo-router';
@@ -116,7 +116,7 @@ export default function AskAiScreen() {
   const scrollViewRef = useRef<ScrollView>(null);
 
   const handleSend = async () => {
-    if (!message.trim()) return;
+    if (!message.trim() || loading) return;
 
     const newMessage: Message = { role: 'user', content: message };
     setChatHistory(prev => [...prev, newMessage]);
@@ -127,10 +127,11 @@ export default function AskAiScreen() {
       // This is where you would make the API call to your backend
       // For now, we'll just simulate a response
       await new Promise(resolve => setTimeout(resolve, 2000));
-      const aiResponse: Message = { role: 'assistant', content: `This is a simulated response based on your message: "${message}". The Gemini API would be called here to provide a real answer based on your preferences:
-Cuisines: ${cuisines.join(', ')}
-Restrictions: ${restrictions.join(', ')}
-Goals: ${goals.join(', ')}` };
+      const preferencesText = `Here are your current preferences:\n- Cuisines: ${cuisines.length > 0 ? cuisines.join(', ') : 'Not set'}\n- Dietary Restrictions: ${restrictions.length > 0 ? restrictions.join(', ') : 'Not set'}\n- Health Goals: ${goals.length > 0 ? goals.join(', ') : 'Not set'}`;
+      const aiResponse: Message = {
+        role: 'assistant',
+        content: `This is a simulated response based on your message: "${message}".\n\nA real response from the Gemini API would use your preferences to generate a personalized meal suggestion.\n\n${preferencesText}`
+      };
       setChatHistory(prev => [...prev, aiResponse]);
     } catch (error) {
       console.error('Error fetching AI response:', error);
@@ -143,51 +144,56 @@ Goals: ${goals.join(', ')}` };
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        <View style={styles.header}>
-            <TouchableOpacity onPress={() => router.back()}>
-                <ChevronLeft size={24} color={colors.primaryForeground} />
-            </TouchableOpacity>
-          <View style={styles.headerTitleContainer}>
-            <Text style={styles.title}>Ask AI</Text>
-            <Text style={styles.subtitle}>Your personalized meal assistant</Text>
-          </View>
-        </View>
-
-        <ScrollView 
-            style={styles.content} 
-            contentContainerStyle={styles.contentContainer} 
-            ref={scrollViewRef} 
-            onContentSizeChange={() => scrollViewRef.current?.scrollToEnd({animated: true})}
+        <KeyboardAvoidingView 
+            style={styles.container} 
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 20}
         >
-          {chatHistory.map((msg, index) => (
-            <View key={index} style={styles.messageContainer}>
-              <View style={msg.role === 'user' ? styles.userMessageContainer : styles.assistantMessageContainer}>
-                <Text style={msg.role === 'user' ? styles.userMessage : styles.assistantMessage}>{msg.content}</Text>
+            <View style={styles.header}>
+                <TouchableOpacity onPress={() => router.back()}>
+                    <ChevronLeft size={24} color={colors.primaryForeground} />
+                </TouchableOpacity>
+              <View style={styles.headerTitleContainer}>
+                <Text style={styles.title}>Ask AI</Text>
+                <Text style={styles.subtitle}>Your personalized meal assistant</Text>
               </View>
             </View>
-          ))}
-          {loading && (
-            <View style={styles.loadingContainer}>
-                <ActivityIndicator size="small" color={colors.primary} />
-            </View>
-          )}
-        </ScrollView>
 
-        <View style={styles.inputContainer}>
-            <TextInput
-                style={styles.input}
-                placeholder="Ask me anything..."
-                placeholderTextColor={colors.mutedForeground}
-                value={message}
-                onChangeText={setMessage}
-                onSubmitEditing={handleSend}
-            />
-            <TouchableOpacity style={styles.sendButton} onPress={handleSend}>
-                <Send size={24} color={colors.primary} />
-            </TouchableOpacity>
-        </View>
-      </View>
+            <ScrollView 
+                style={styles.content} 
+                contentContainerStyle={styles.contentContainer} 
+                ref={scrollViewRef} 
+                onContentSizeChange={() => scrollViewRef.current?.scrollToEnd({animated: true})}
+            >
+              {chatHistory.map((msg, index) => (
+                <View key={index} style={styles.messageContainer}>
+                  <View style={msg.role === 'user' ? styles.userMessageContainer : styles.assistantMessageContainer}>
+                    <Text style={msg.role === 'user' ? styles.userMessage : styles.assistantMessage}>{msg.content}</Text>
+                  </View>
+                </View>
+              ))}
+              {loading && (
+                <View style={styles.loadingContainer}>
+                    <ActivityIndicator size="small" color={colors.primary} />
+                </View>
+              )}
+            </ScrollView>
+
+            <View style={styles.inputContainer}>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Ask me anything..."
+                    placeholderTextColor={colors.mutedForeground}
+                    value={message}
+                    onChangeText={setMessage}
+                    onSubmitEditing={handleSend}
+                    editable={!loading}
+                />
+                <TouchableOpacity style={styles.sendButton} onPress={handleSend} disabled={!message.trim() || loading}>
+                    <Send size={24} color={(!message.trim() || loading) ? colors.mutedForeground : colors.primary} />
+                </TouchableOpacity>
+            </View>
+        </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }

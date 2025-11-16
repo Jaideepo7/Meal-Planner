@@ -2,9 +2,9 @@
 'use client';
 
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, SafeAreaView, TextInput, useColorScheme, ScrollView, Alert } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, SafeAreaView, TextInput, useColorScheme, ScrollView, Alert, ActivityIndicator } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Mail, Lock, Apple, User } from 'lucide-react-native'; // Assuming you have these icons
+import { Mail, Lock, Apple, User, Chrome } from 'lucide-react-native'; // Assuming you have these icons
 import Colors from '../../constants/Colors';
 import { signUp } from '../../services/auth';
 import { useState } from 'react';
@@ -143,6 +143,7 @@ export default function SignUpScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const { login } = useAuth();
 
 
@@ -151,7 +152,9 @@ export default function SignUpScreen() {
       Alert.alert('Passwords do not match');
       return;
     }
+    setLoading(true);
     const { success, user } = await signUp(fullName, email, password);
+    setLoading(false);
     if (success && user) {
       login(user);
     } else {
@@ -170,7 +173,7 @@ export default function SignUpScreen() {
         <View style={styles.form}>
           <View style={styles.socialSignInContainer}>
             <TouchableOpacity style={[styles.socialSignInButton, styles.googleButton]}>
-              {/* Replace with actual Google icon */}
+              <Chrome size={20} color="#000000" />
               <Text style={[styles.socialSignInText, styles.googleText]}>Sign up with Google</Text>
             </TouchableOpacity>
             <TouchableOpacity style={[styles.socialSignInButton, styles.appleButton]}>
@@ -242,8 +245,8 @@ export default function SignUpScreen() {
             </View>
           </View>
 
-          <TouchableOpacity style={styles.createAccountButton} onPress={handleSignUp}>
-            <Text style={styles.createAccountButtonText}>Create Account</Text>
+          <TouchableOpacity style={styles.createAccountButton} onPress={handleSignUp} disabled={loading}>
+            {loading ? <ActivityIndicator color={colors.primaryForeground} /> : <Text style={styles.createAccountButtonText}>Create Account</Text>}
           </TouchableOpacity>
         </View>
 

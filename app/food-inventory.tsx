@@ -1,7 +1,7 @@
 
 'use client';
 
-import { StyleSheet, View, Text, TouchableOpacity, ScrollView, SafeAreaView, useColorScheme, TextInput } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ScrollView, SafeAreaView, useColorScheme, TextInput, Alert, ActivityIndicator } from 'react-native';
 import { ChevronLeft, Plus, X, Archive } from 'lucide-react-native';
 import Colors from '../constants/Colors';
 import { Strings } from '../constants/Strings';
@@ -10,7 +10,6 @@ import { useEffect, useState } from 'react';
 import RNPickerSelect from 'react-native-picker-select';
 import { addFoodItem, getFoodItems, deleteFoodItem } from '../services/database';
 
-// Define a type for our food items
 interface FoodItem {
   id: string;
   name: string;
@@ -30,6 +29,11 @@ const categories = [
     { label: 'Snacks', value: 'snacks' },
     { label: 'Frozen Foods', value: 'frozen-foods' },
 ];
+
+const categoryLabelMap = categories.reduce((acc, cat) => {
+    acc[cat.value] = cat.label;
+    return acc;
+}, {} as Record<string, string>);
 
 function getStyles(colors: typeof Colors.light) {
   return StyleSheet.create({
@@ -151,19 +155,6 @@ function getStyles(colors: typeof Colors.light) {
     deleteButton: {
         padding: 8,
     },
-    continueButton: {
-        backgroundColor: colors.primary,
-        borderRadius: 16,
-        padding: 16,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop: 24,
-    },
-    continueButtonText: {
-        color: colors.primaryForeground,
-        fontSize: 16,
-        fontWeight: '600',
-    }
   });
 }
 
@@ -175,12 +166,14 @@ export default function FoodInventoryScreen() {
 
   const [items, setItems] = useState<FoodItem[]>([]);
   const [foodItem, setFoodItem] = useState('');
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState<string | null>(null);
   const [quantity, setQuantity] = useState('');
+  const [isAdding, setIsAdding] = useState(false);
 
   useEffect(() => {
     const fetchItems = async () => {
       const foodItems = await getFoodItems();
+      foodItems.sort((a, b) => a.name.localeCompare(b.name));
       setItems(foodItems as FoodItem[]);
     };
     fetchItems();
@@ -188,29 +181,50 @@ export default function FoodInventoryScreen() {
 
   const handleAddItem = async () => {
     if (foodItem && category && quantity) {
-        const newItem = {
-            name: foodItem,
-            category,
-            quantity,
-        };
-        const id = await addFoodItem(newItem);
-        if (id) {
-            // Create a new array with the new item, including its new ID
-            const updatedItems = [...items, { ...newItem, id }];
-            // Sort the items alphabetically by name
-            updatedItems.sort((a, b) => a.name.localeCompare(b.name));
-            setItems(updatedItems);
-            // Clear input fields
-            setFoodItem('');
-            setCategory('');
-            setQuantity('');
+        setIsAdding(true);
+        try {
+            const newItem = {
+                name: foodItem,
+                category,
+                quantity,
+            };
+            const id = await addFoodItem(newItem);
+            if (id) {
+                const updatedItems = [...items, { ...newItem, id }];
+                updatedItems.sort((a, b) => a.name.localeCompare(b.name));
+                setItems(updatedItems);
+                setFoodItem('');
+                setCategory(null);
+                setQuantity('');
+            }
+        } catch (error) {
+            Alert.alert('Error', 'Failed to add item. Please try again.');
+        } finally {
+            setIsAdding(false);
         }
     }
   };
 
   const handleDeleteItem = async (id: string) => {
-    await deleteFoodItem(id);
-    setItems(items.filter(item => item.id !== id));
+    Alert.alert(
+        'Delete Item',
+        'Are you sure you want to delete this item?',
+        [
+            { text: 'Cancel', style: 'cancel' },
+            {
+                text: 'Delete',
+                style: 'destructive',
+                onPress: async () => {
+                    try {
+                        await deleteFoodItem(id);
+                        setItems(items.filter(item => item.id !== id));
+                    } catch (error) {
+                        Alert.alert('Error', 'Failed to delete item. Please try again.');
+                    }
+                },
+            },
+        ],
+    );
   };
 
   const pickerSelectStyles = StyleSheet.create({
@@ -266,8 +280,12 @@ export default function FoodInventoryScreen() {
                             onChangeText={setQuantity}
                         />
 
-                        <TouchableOpacity style={styles.addButton} onPress={handleAddItem}>
-                            <Plus size={20} color={colors.primaryForeground} />
+                        <TouchableOpacity style={styles.addButton} onPress={handleAddItem} disabled={isAdding}>
+                            {isAdding ? (
+                                <ActivityIndicator color={colors.primaryForeground} />
+                            ) : (
+                                <Plus size={20} color={colors.primaryForeground} />
+                            )}
                             <Text style={styles.addButtonText}>{Strings.foodInventory.addItem}</Text>
                         </TouchableOpacity>
                     </View>
@@ -281,7 +299,7 @@ export default function FoodInventoryScreen() {
                                 <View key={item.id} style={styles.itemCard}>
                                     <View style={styles.itemText}>
                                         <Text style={styles.itemName}>{item.name}</Text>
-                                        <Text style={styles.itemDetails}>{item.category} • {item.quantity}</Text>
+                                        <Text style={styles.itemDetails}>{categoryLabelMap[item.category] || item.category} • {item.quantity}</Text>
                                     </View>
                                     <TouchableOpacity onPress={() => handleDeleteItem(item.id)} style={styles.deleteButton}>
                                         <X size={20} color={'#ef4444'} />
@@ -290,10 +308,6 @@ export default function FoodInventoryScreen() {
                             ))}
                         </View>
                     )}
-
-                    <TouchableOpacity style={styles.continueButton} onPress={() => router.push('/(tabs)')}>
-                        <Text style={styles.continueButtonText}>{Strings.foodInventory.continue}</Text>
-                    </TouchableOpacity>
                 </View>
             </View>
         </ScrollView>
