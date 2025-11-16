@@ -17,7 +17,7 @@ interface GeminiResponse {
 }
 
 const GEMINI_API_KEY = process.env.EXPO_PUBLIC_GEMINI_API_KEY || '';
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
+const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash-latest:generateContent';
 
 /**
  * Generates a system prompt based on user preferences and pantry
@@ -33,13 +33,21 @@ function generateSystemPrompt(
   const goalsText = goals.length > 0 ? goals.join(', ') : 'no specific health goals';
   const pantryText = pantry.length > 0 ? pantry.join(', ') : 'no items in pantry';
 
-  return `You are a helpful AI meal planning assistant. The user has the following preferences:
-- Cuisines: ${cuisineText}
-- Dietary Restrictions: ${restrictionsText}
-- Health Goals: ${goalsText}
-- Pantry Items: ${pantryText}
+  return `You are MealMind AI, a friendly and expert meal planning assistant. Your goal is to provide personalized meal plans and recipes that are both delicious and easy to follow.
 
-Provide personalized meal suggestions, recipe recommendations, and cooking advice based on these preferences. Be concise, helpful, and friendly.`;
+Based on the user's profile below, generate helpful and concise meal suggestions.
+
+**User Profile:**
+- **Cuisines:** ${cuisineText}
+- **Dietary Restrictions:** ${restrictionsText}
+- **Health Goals:** ${goalsText}
+- **Pantry Items:** ${pantryText}
+
+**Your Task:**
+1.  Provide personalized meal suggestions, recipe recommendations, and cooking advice.
+2.  Prioritize using the items available in the user's pantry.
+3.  Ensure your responses are friendly, encouraging, and easy to understand.
+4.  Structure your suggestions clearly. For example, use headings for breakfast, lunch, and dinner.`;
 }
 
 /**
@@ -58,10 +66,8 @@ export async function sendMessageToGemini(
   }
 
   try {
-    // Convert chat history to Gemini format
     const systemPrompt = generateSystemPrompt(cuisines, restrictions, goals, pantry);
     
-    // Build the conversation history
     const contents: GeminiMessage[] = [
       {
         role: 'user',
@@ -69,11 +75,10 @@ export async function sendMessageToGemini(
       },
       {
         role: 'model',
-        parts: [{ text: 'I understand. I\'m ready to help you with meal planning based on your preferences.' }]
+        parts: [{ text: "I understand. I'm ready to help you with meal planning based on your preferences." }]
       }
     ];
 
-    // Add recent chat history (last 10 messages to avoid token limits)
     const recentHistory = chatHistory.slice(-10);
     for (const msg of recentHistory) {
       contents.push({
@@ -82,7 +87,6 @@ export async function sendMessageToGemini(
       });
     }
 
-    // Add the current user message
     contents.push({
       role: 'user',
       parts: [{ text: userMessage }]
@@ -128,4 +132,3 @@ export async function sendMessageToGemini(
     throw new Error('Failed to get response from Gemini API');
   }
 }
-
