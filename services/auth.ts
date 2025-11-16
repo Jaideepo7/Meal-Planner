@@ -3,9 +3,6 @@ import {
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut as firebaseSignOut,
-  GoogleAuthProvider,
-  signInWithPopup,
-  OAuthProvider,
 } from 'firebase/auth';
 import { auth } from '../firebase/config';
 
@@ -33,31 +30,15 @@ export const signUp = async (email: string, password: string) => {
   }
 };
 
+// Note: Google and Apple sign-in require native implementations for React Native
+// Use expo-auth-session or react-native-google-signin for OAuth in React Native
 export const signInWithGoogle = async () => {
-  const provider = new GoogleAuthProvider();
-  try {
-    const result = await signInWithPopup(auth, provider);
-    return { success: true, user: result.user };
-  } catch (error) {
-    if (error instanceof Error) {
-      return { success: false, error: error.message };
-    }
-    return { success: false, error: 'An unknown error occurred' };
-  }
+  return { success: false, error: 'Google sign-in not implemented. Use native OAuth libraries.' };
 };
 
 export const signInWithApple = async () => {
-  const provider = new OAuthProvider('apple.com');
-  try {
-    const result = await signInWithPopup(auth, provider);
-    return { success: true, user: result.user };
-  } catch (error) {
-    if (error instanceof Error) {
-      return { success: false, error: error.message };
-    }
-    return { success: false, error: 'An unknown error occurred' };
-  }
-}
+  return { success: false, error: 'Apple sign-in not implemented. Use native OAuth libraries.' };
+};
 
 export const sendPasswordReset = async (email: string) => {
   try {

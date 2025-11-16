@@ -1,6 +1,6 @@
 
 import { StyleSheet, View, Text, TouchableOpacity, ScrollView, SafeAreaView, useColorScheme } from 'react-native';
-import { ChevronLeft } from 'lucide-react-native';
+import { ChevronLeft, UtensilsCrossed } from 'lucide-react-native';
 import Colors from '../constants/Colors';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
@@ -18,17 +18,29 @@ function getStyles(colors: any) {
     header: {
       backgroundColor: colors.primary,
       paddingHorizontal: 24,
-      paddingVertical: 40,
+      paddingTop: 60,
+      paddingBottom: 40,
       borderBottomLeftRadius: 30,
       borderBottomRightRadius: 30,
       alignItems: 'center',
-      flexDirection: 'row',
-      gap: 12,
+      position: 'relative',
+    },
+    backButton: {
+      position: 'absolute',
+      left: 24,
+      top: 60,
+    },
+    headerIcon: {
+      width: 60,
+      height: 60,
+      borderRadius: 30,
+      backgroundColor: colors.primaryForeground,
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginBottom: 16,
     },
     headerTitleContainer: {
         alignItems: 'center',
-        flex: 1,
-        paddingRight: 36,
     },
     title: {
       color: colors.primaryForeground,
@@ -117,9 +129,12 @@ export default function FoodPreferencesScreen() {
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
         <View style={styles.header}>
-            <TouchableOpacity onPress={() => router.back()}>
-                <ChevronLeft size={24} color={colors.primaryForeground} />
-            </TouchableOpacity>
+          <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
+            <ChevronLeft size={24} color={colors.primaryForeground} />
+          </TouchableOpacity>
+          <View style={styles.headerIcon}>
+            <UtensilsCrossed size={28} color={colors.primary} />
+          </View>
           <View style={styles.headerTitleContainer}>
             <Text style={styles.title}>Food Preferences</Text>
             <Text style={styles.subtitle}>Select cuisines you enjoy</Text>
@@ -127,6 +142,9 @@ export default function FoodPreferencesScreen() {
         </View>
 
         <ScrollView style={styles.content} contentContainerStyle={styles.contentContainer}>
+          <Text style={{ fontSize: 14, color: colors.mutedForeground, marginBottom: 16 }}>
+            Selected: {selectedCuisines.length} {selectedCuisines.length === 1 ? 'cuisine' : 'cuisines'}
+          </Text>
           <View style={styles.cuisineGrid}>
             {cuisines.map((cuisine, index) => (
               <TouchableOpacity 

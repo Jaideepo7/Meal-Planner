@@ -13,7 +13,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Mail, Send, ArrowLeft, Lightbulb } from 'lucide-react-native';
+import { Mail, Send, ChevronLeft, Lightbulb } from 'lucide-react-native';
 import Colors from '../../constants/Colors';
 import { sendPasswordReset } from '../../services/auth';
 import { useState } from 'react';
@@ -26,26 +26,46 @@ function getStyles(colors: typeof Colors.light) {
     },
     container: {
       flex: 1,
-      padding: 24,
     },
     header: {
-      flexDirection: 'row',
+      backgroundColor: colors.primary,
+      paddingHorizontal: 24,
+      paddingTop: 60,
+      paddingBottom: 40,
+      borderBottomLeftRadius: 30,
+      borderBottomRightRadius: 30,
       alignItems: 'center',
-      marginBottom: 32,
+      position: 'relative',
     },
     backButton: {
-      marginRight: 16,
+      position: 'absolute',
+      left: 24,
+      top: 60,
+    },
+    iconContainer: {
+      width: 80,
+      height: 80,
+      borderRadius: 40,
+      backgroundColor: colors.primaryForeground,
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginBottom: 16,
     },
     title: {
-      fontSize: 24,
+      fontSize: 28,
       fontWeight: 'bold',
-      color: colors.primary,
+      color: colors.primaryForeground,
+      marginBottom: 8,
     },
     subtitle: {
       fontSize: 16,
-      color: colors.mutedForeground,
+      color: colors.primaryForeground,
+      opacity: 0.8,
       textAlign: 'center',
-      marginBottom: 32,
+    },
+    content: {
+      flex: 1,
+      padding: 24,
     },
     form: {
       flex: 1,
@@ -163,15 +183,18 @@ export default function ForgotPasswordScreen() {
             onPress={() => router.back()}
             style={styles.backButton}
           >
-            <ArrowLeft size={24} color={colors.primary} />
+            <ChevronLeft size={24} color={colors.primaryForeground} />
           </TouchableOpacity>
+          <View style={styles.iconContainer}>
+            <Send size={32} color={colors.primary} />
+          </View>
           <Text style={styles.title}>Forgot Password?</Text>
+          <Text style={styles.subtitle}>
+            No worries, we'll send you reset instructions
+          </Text>
         </View>
-        <Text style={styles.subtitle}>
-          No worries, we'll send you reset instructions
-        </Text>
 
-        <View style={styles.form}>
+        <View style={styles.content}>
           <View style={styles.inputContainer}>
             <Text style={styles.inputLabel}>Email Address</Text>
             <View style={styles.input}>
@@ -216,13 +239,14 @@ export default function ForgotPasswordScreen() {
           </View>
         </View>
 
-        <TouchableOpacity
-          style={styles.backToSignInButton}
-          onPress={() => router.back()}
-        >
-          <ArrowLeft size={20} color={colors.secondaryForeground} />
-          <Text style={styles.backToSignInButtonText}>Back to Sign In</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.backToSignInButton}
+            onPress={() => router.back()}
+          >
+            <ChevronLeft size={20} color={colors.secondaryForeground} />
+            <Text style={styles.backToSignInButtonText}>Back to Sign In</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </SafeAreaView>
   );

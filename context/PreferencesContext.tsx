@@ -1,9 +1,8 @@
 
-import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect, useMemo, useCallback } from 'react';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
 import { useAuth } from './AuthContext';
-import perf from '@react-native-firebase/perf';
 
 interface PreferencesContextType {
   cuisines: string[];
@@ -40,7 +39,6 @@ export const PreferencesProvider = ({ children }: PreferencesProviderProps) => {
   useEffect(() => {
     const fetchPreferences = async () => {
       if (user) {
-        const trace = await perf().startTrace('fetch_preferences');
         try {
           const docRef = doc(db, 'userPreferences', user.uid);
           const docSnap = await getDoc(docRef);
@@ -52,33 +50,52 @@ export const PreferencesProvider = ({ children }: PreferencesProviderProps) => {
           }
         } catch (error) {
           console.error("Error fetching preferences:", error);
-        } finally {
-          await trace.stop();
         }
       }
     };
     fetchPreferences();
   }, [user]);
 
-  const savePreferences = async () => {
-    if (user) {
-      const docRef = doc(db, 'userPreferences', user.uid);
-      await setDoc(docRef, { cuisines, restrictions, goals }, { merge: true });
-    }
-  };
-
   useEffect(() => {
-    savePreferences();
-  }, [cuisines, restrictions, goals]);
+    const savePreferences = async () => {
+      if (user) {
+        try {
+          const docRef = doc(db, 'userPreferences', user.uid);
+          await setDoc(docRef, { cuisines, restrictions, goals }, { merge: true });
+        } catch (error) {
+          console.error("Error saving preferences:", error);
+        }
+      }
+    };
+    
+    // Debounce saves to avoid excessive writes
+    const timeoutId = setTimeout(() => {
+      savePreferences();
+    }, 500);
+    
+    return () => clearTimeout(timeoutId);
+  }, [cuisines, restrictions, goals, user]);
 
-  const value = {
+  const setCuisinesMemo = useCallback((newCuisines: string[]) => {
+    setCuisines(newCuisines);
+  }, []);
+
+  const setRestrictionsMemo = useCallback((newRestrictions: string[]) => {
+    setRestrictions(newRestrictions);
+  }, []);
+
+  const setGoalsMemo = useCallback((newGoals: string[]) => {
+    setGoals(newGoals);
+  }, []);
+
+  const value = useMemo(() => ({
     cuisines,
-    setCuisines,
+    setCuisines: setCuisinesMemo,
     restrictions,
-    setRestrictions,
+    setRestrictions: setRestrictionsMemo,
     goals,
-    setGoals,
-  };
+    setGoals: setGoalsMemo,
+  }), [cuisines, restrictions, goals, setCuisinesMemo, setRestrictionsMemo, setGoalsMemo]);
 
   return (
     <PreferencesContext.Provider value={value}>

@@ -1,53 +1,75 @@
 
 import { Tabs } from 'expo-router';
-import { FontAwesome } from '@expo/vector-icons';
+import { Heart, Lightbulb, Home, User, Settings } from 'lucide-react-native';
+import Colors from '../../../constants/Colors';
+import { useColorScheme } from 'react-native';
 
 export default function TabLayout() {
+  const colorScheme = useColorScheme() ?? 'light';
+  const colors = Colors[colorScheme];
+
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: '#00A676',
+        tabBarActiveTintColor: colors.primaryForeground,
+        tabBarInactiveTintColor: colors.primaryForeground,
+        tabBarStyle: {
+          backgroundColor: colors.primary,
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20,
+          height: 70,
+          paddingBottom: 10,
+          paddingTop: 10,
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          fontWeight: '500',
+        },
       }}>
       <Tabs.Screen
-        name="index"
+        name="favorites"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
+          title: 'Favorites',
+          tabBarIcon: ({ color, focused }) => (
+            <Heart size={24} color={color} fill={focused ? color : 'none'} />
+          ),
         }}
       />
       <Tabs.Screen
         name="suggestions"
         options={{
           title: 'Suggestions',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="lightbulb-o" color={color} />,
+          tabBarIcon: ({ color, focused }) => (
+            <Lightbulb size={24} color={color} fill={focused ? color : 'none'} />
+          ),
         }}
       />
       <Tabs.Screen
-        name="pantry"
+        name="index"
         options={{
-          title: 'Pantry',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="shopping-basket" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="favorites"
-        options={{
-          title: 'Favorites',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="heart" color={color} />,
+          title: 'Home',
+          tabBarIcon: ({ color, focused }) => (
+            <Home size={24} color={color} fill={focused ? color : 'none'} />
+          ),
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
           title: 'Profile',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="user" color={color} />,
+          tabBarIcon: ({ color, focused }) => (
+            <User size={24} color={color} fill={focused ? color : 'none'} />
+          ),
         }}
       />
       <Tabs.Screen
         name="settings"
         options={{
-          href: null, // This will hide the tab from the tab bar
+          title: 'Settings',
+          tabBarIcon: ({ color, focused }) => (
+            <Settings size={24} color={color} fill={focused ? color : 'none'} />
+          ),
         }}
       />
     </Tabs>

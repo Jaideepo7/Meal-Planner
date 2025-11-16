@@ -1,9 +1,7 @@
 
 import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, setDoc, getDoc, DocumentData } from 'firebase/firestore';
-import { app } from './firebase';
-import { getCurrentUser } from './auth'; // Assuming you have this function
-
-const db = getFirestore(app);
+import { db } from '../firebase/config';
+import { getCurrentUser } from './auth';
 
 // USER PROFILE MANAGEMENT
 

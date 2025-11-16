@@ -1,5 +1,5 @@
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode, useMemo, useCallback } from 'react';
 import * as SecureStore from 'expo-secure-store';
 
 // 1. Define the shape of the context value
@@ -45,23 +45,31 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     loadUserFromStorage();
   }, []);
 
-  const login = (userData: any) => {
+  const login = useCallback(async (userData: any) => {
     setUser(userData);
-    SecureStore.setItemAsync('user', JSON.stringify(userData));
-  };
+    try {
+      await SecureStore.setItemAsync('user', JSON.stringify(userData));
+    } catch (e) {
+      console.error("Failed to save user to storage", e);
+    }
+  }, []);
 
-  const logout = () => {
+  const logout = useCallback(async () => {
     setUser(null);
-    SecureStore.deleteItemAsync('user');
-  };
+    try {
+      await SecureStore.deleteItemAsync('user');
+    } catch (e) {
+      console.error("Failed to delete user from storage", e);
+    }
+  }, []);
 
-  // 5. Provide the context value to children
-  const value = {
+  // 5. Provide the context value to children - memoized to prevent unnecessary re-renders
+  const value = useMemo(() => ({
     user,
     loading,
     login,
     logout,
-  };
+  }), [user, loading, login, logout]);
 
   return (
     <AuthContext.Provider value={value}>
