@@ -2,7 +2,7 @@
 'use client';
 
 import { StyleSheet, View, Text, TouchableOpacity, ScrollView, SafeAreaView, useColorScheme, TextInput, Alert, ActivityIndicator } from 'react-native';
-import { ChevronLeft, Plus, X, Archive } from 'lucide-react-native';
+import { ChevronLeft, Plus, X, Archive, ChevronDown } from 'lucide-react-native';
 import Colors from '../constants/Colors';
 import { Strings } from '../constants/Strings';
 import { useRouter } from 'expo-router';
@@ -234,6 +234,10 @@ export default function FoodInventoryScreen() {
     inputAndroid: {
       ...styles.input,
     },
+    iconContainer: {
+      top: 12,
+      right: 12,
+    },
   });
 
   return (
@@ -270,6 +274,7 @@ export default function FoodInventoryScreen() {
                             style={pickerSelectStyles}
                             placeholder={{ label: 'Select category', value: null }}
                             value={category}
+                            Icon={() => <ChevronDown size={20} color={colors.mutedForeground} />}
                         />
 
                         <Text style={styles.inputLabel}>{Strings.foodInventory.quantity}</Text>

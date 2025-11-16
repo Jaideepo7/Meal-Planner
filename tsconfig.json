@@ -25,3 +25,4 @@
     "expo-env.d.ts"
   ]
 }
+// Restarting the TypeScript server to resolve module issues.

@@ -85,3 +85,15 @@ export const deleteFoodItem = async (id: string) => {
     console.error('Error deleting document: ', e);
   }
 };
+
+export const updateFoodItem = async (id: string, data: any) => {
+    const foodInventoryCollection = getFoodInventoryCollection();
+    if (!foodInventoryCollection) return;
+    
+    try {
+        const docRef = doc(foodInventoryCollection, id);
+        await setDoc(docRef, data, { merge: true });
+    } catch (e) {
+        console.error('Error updating document: ', e);
+    }
+};

@@ -1,6 +1,6 @@
 
 import { Tabs } from 'expo-router';
-import { Heart, Lightbulb, Home, User, Settings } from 'lucide-react-native';
+import { Heart, Home, User, Settings, Package } from 'lucide-react-native';
 import Colors from '../../../constants/Colors';
 import { useColorScheme } from 'react-native';
 
@@ -37,11 +37,11 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="suggestions"
+        name="pantry"
         options={{
-          title: 'Suggestions',
+          title: 'Pantry',
           tabBarIcon: ({ color, focused }) => (
-            <Lightbulb size={24} color={color} fill={focused ? color : 'none'} />
+            <Package size={24} color={color} fill={focused ? color : 'none'} />
           ),
         }}
       />
