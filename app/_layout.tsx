@@ -1,48 +1,49 @@
 
-import { Stack, useRouter, useSegments } from 'expo-router';
 import { AuthProvider, useAuth } from '../context/AuthContext';
-import { PreferencesProvider } from '../context/PreferencesContext';
-import { PantryProvider } from '../context/PantryContext';
+import { Stack, useRouter, useSegments } from 'expo-router';
 import { useEffect } from 'react';
+import { ActivityIndicator, View } from 'react-native';
 
-const InitialLayout = () => {
+function RootLayoutNav() {
   const { user, loading } = useAuth();
-  const segments = useSegments();
   const router = useRouter();
+  const segments = useSegments();
 
   useEffect(() => {
-    if (loading) return;
+    if (loading) {
+      return;
+    }
 
     const inAuthGroup = segments[0] === '(auth)';
 
-    if (user && !inAuthGroup) {
-      router.replace('/(tabs)');
-    } else if (!user) {
+    if (!user && !inAuthGroup) {
       router.replace('/(auth)/sign-in');
+    } else if (user && inAuthGroup) {
+      router.replace('/');
     }
   }, [user, loading, segments, router]);
 
+  if (loading) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
+
   return (
     <Stack>
+      <Stack.Screen name="(app)" options={{ headerShown: false }} />
       <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="food-preferences" options={{ presentation: 'modal', headerShown: false }} />
-      <Stack.Screen name="dietary-restrictions" options={{ presentation: 'modal', headerShown: false }} />
-      <Stack.Screen name="goals" options={{ presentation: 'modal', headerShown: false }} />
-      <Stack.Screen name="ask-ai" options={{ presentation: 'modal', headerShown: false }} />
-      <Stack.Screen name="modal" options={{ presentation: 'modal', headerShown: false }} />
+      <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
     </Stack>
-  )
+  );
 }
 
 export default function RootLayout() {
   return (
     <AuthProvider>
-      <PreferencesProvider>
-        <PantryProvider>
-          <InitialLayout />
-        </PantryProvider>
-      </PreferencesProvider>
+      <RootLayoutNav />
     </AuthProvider>
   );
 }
