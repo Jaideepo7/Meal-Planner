@@ -7,9 +7,9 @@ const firebaseConfig = {
   apiKey: "AIzaSyAkaJ8vF7c7ubYaBGT8IEz4Hdi1foglUQU",
   authDomain: "meal-pla-4b01f.firebaseapp.com",
   projectId: "meal-pla-4b01f",
-  storageBucket: "meal-pla-4b01f.appspot.com",
+  storageBucket: "meal-pla-4b01f.firebasestorage.app",
   messagingSenderId: "232966009287",
-  appId: "1:232966009287:android:c5095428925b98d13e69e2"
+  appId: "1:232966009287:web:b70b8a09a7211d893e69e2"
 };
 
 const app = initializeApp(firebaseConfig);
