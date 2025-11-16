@@ -1,5 +1,7 @@
 
 import { AuthProvider, useAuth } from '../context/AuthContext';
+import { PantryProvider } from '../context/PantryContext';
+import { PreferencesProvider } from '../context/PreferencesContext';
 import { Stack, useRouter, useSegments } from 'expo-router';
 import { useEffect } from 'react';
 import { ActivityIndicator, View } from 'react-native';
@@ -43,7 +45,11 @@ function RootLayoutNav() {
 export default function RootLayout() {
   return (
     <AuthProvider>
-      <RootLayoutNav />
+      <PantryProvider>
+        <PreferencesProvider>
+          <RootLayoutNav />
+        </PreferencesProvider>
+      </PantryProvider>
     </AuthProvider>
   );
 }

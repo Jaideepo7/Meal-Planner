@@ -4,12 +4,12 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAkaJ8vF7c7ubYaBGT8IEz4Hdi1foglUQU",
-  authDomain: "meal-pla-4b01f.firebaseapp.com",
-  projectId: "meal-pla-4b01f",
-  storageBucket: "meal-pla-4b01f.firebasestorage.app",
-  messagingSenderId: "232966009287",
-  appId: "1:232966009287:web:b70b8a09a7211d893e69e2"
+  apiKey: "AIzaSyCfl4BhvloujiQIxvyMqFYAd0vN9LZpWkI",
+  authDomain: "meal-planner-99296094-643bf.firebaseapp.com",
+  projectId: "meal-planner-99296094-643bf",
+  storageBucket: "meal-planner-99296094-643bf.firebasestorage.app",
+  messagingSenderId: "728611621393",
+  appId: "1:728611621393:web:f1b20e978658e4d7027fb0"
 };
 
 const app = initializeApp(firebaseConfig);

@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -16,8 +16,6 @@ import {
 import { useRouter } from 'expo-router';
 import { Mail, Lock, Apple, Chrome } from 'lucide-react-native';
 import Colors from '../../constants/Colors';
-import { signIn, signInWithGoogle, signInWithApple } from '../../services/auth';
-import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 
 function getStyles(colors: typeof Colors.light) {
@@ -28,21 +26,32 @@ function getStyles(colors: typeof Colors.light) {
     },
     container: {
       flex: 1,
-      padding: 24,
     },
     header: {
+      backgroundColor: colors.primary,
+      paddingHorizontal: 24,
+      paddingTop: 60,
+      paddingBottom: 40,
+      borderBottomLeftRadius: 30,
+      borderBottomRightRadius: 30,
+    },
+    headerContent: {
       alignItems: 'center',
-      marginBottom: 32,
     },
     title: {
       fontSize: 32,
       fontWeight: 'bold',
-      color: colors.primary,
+      color: colors.primaryForeground,
       marginBottom: 8,
     },
     subtitle: {
       fontSize: 16,
-      color: colors.mutedForeground,
+      color: colors.primaryForeground,
+      opacity: 0.8,
+    },
+    content: {
+      flex: 1,
+      padding: 24,
     },
     form: {
       flex: 1,
@@ -89,19 +98,16 @@ function getStyles(colors: typeof Colors.light) {
       fontWeight: '600',
     },
     socialSignInContainer: {
-      flexDirection: 'row',
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginVertical: 16,
+      marginVertical: 24,
     },
     socialSignInButton: {
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
-      borderRadius: 8,
+      borderRadius: 12,
       padding: 16,
-      marginHorizontal: 8,
-      flex: 1,
+      marginBottom: 12,
+      borderWidth: 1,
     },
     googleButton: {
       backgroundColor: '#FFFFFF',
@@ -162,13 +168,12 @@ export default function SignInScreen() {
 
   const handleSignIn = async () => {
     setLoading(true);
-    const { success, user, error } = await signIn(email, password);
+    const { success, error } = await login(email, password);
     setLoading(false);
-    if (success && user) {
-      login(user);
-    } else {
+    if (!success) {
       Alert.alert('Sign In Failed', error || 'Please check your credentials and try again.');
     }
+    // The AuthProvider will handle the redirect on successful login
   };
 
   const handleGoogleSignIn = async () => {
@@ -176,39 +181,27 @@ export default function SignInScreen() {
       Alert.alert('Unsupported Platform', 'Google Sign-In is only available on the web.');
       return;
     }
-    setLoading(true);
-    const { success, user, error } = await signInWithGoogle();
-    setLoading(false);
-    if (success && user) {
-      login(user);
-    } else {
-      Alert.alert('Google Sign In Failed', error || 'Please try again.');
-    }
+    Alert.alert('Google Sign In', 'Google sign-in is not implemented in this sample app.');
   };
 
   const handleAppleSignIn = async () => {
-    setLoading(true);
-    const { success, user, error } = await signInWithApple();
-    setLoading(false);
-    if (success && user) {
-      login(user);
-    } else {
-      Alert.alert('Apple Sign In Failed', error || 'An error occurred during Apple Sign-In. Please try again.');
-    }
+    Alert.alert('Apple Sign In', 'Apple sign-in is not implemented in this sample app.');
   };
 
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.title}>Welcome Back</Text>
-          <Text style={styles.subtitle}>Sign in to continue to MealMind AI</Text>
+          <View style={styles.headerContent}>
+            <Text style={styles.title}>Welcome Back</Text>
+            <Text style={styles.subtitle}>Sign in to continue to MealMind AI</Text>
+          </View>
         </View>
 
-        <View style={styles.form}>
+        <View style={styles.content}>
           <View style={styles.socialSignInContainer}>
             <TouchableOpacity style={[styles.socialSignInButton, styles.googleButton]} onPress={handleGoogleSignIn}>
-              <Chrome size={20} color="#000000" />
+              <Chrome size={20} color="#4285F4" />
               <Text style={[styles.socialSignInText, styles.googleText]}>Continue with Google</Text>
             </TouchableOpacity>
             <TouchableOpacity style={[styles.socialSignInButton, styles.appleButton]} onPress={handleAppleSignIn}>
@@ -259,13 +252,13 @@ export default function SignInScreen() {
           <TouchableOpacity style={styles.signInButton} onPress={handleSignIn} disabled={loading}>
             {loading ? <ActivityIndicator color={colors.primaryForeground} /> : <Text style={styles.signInButtonText}>Sign In</Text>}
           </TouchableOpacity>
-        </View>
 
-        <View style={styles.signUpContainer}>
-          <Text style={styles.signUpText}>Don't have an account?</Text>
-          <TouchableOpacity onPress={() => router.push('/(auth)/sign-up')}>
-            <Text style={styles.signUpLink}>Sign Up</Text>
-          </TouchableOpacity>
+          <View style={styles.signUpContainer}>
+            <Text style={styles.signUpText}>Don&apos;t have an account? </Text>
+            <TouchableOpacity onPress={() => router.push('/(auth)/sign-up')}>
+              <Text style={styles.signUpLink}>Sign Up</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </SafeAreaView>

@@ -1,67 +1,64 @@
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import * as SecureStore from 'expo-secure-store';
+import React, { createContext, useContext, useState, useEffect, ReactNode, useMemo } from 'react';
+import { onAuthStateChanged, User } from 'firebase/auth';
+import { auth } from '../firebase/config';
+import { signIn as signInService, signOut as signOutService } from '../services/auth';
 
 // 1. Define the shape of the context value
 interface AuthContextType {
-  user: any | null;
+  user: User | null;
   loading: boolean;
-  login: (userData: any) => void;
-  logout: () => void;
+  login: (email: string, pass: string) => Promise<any>;
+  logout: () => Promise<void>;
 }
 
-// 2. Create the context with a default null value
-const AuthContext = createContext<AuthContextType | null>(null);
+// 2. Create the context with a default undefined value
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // 3. Create a hook for easy access to the context
 export function useAuth() {
   const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
+  if (context === undefined) {
+    throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;
 }
 
 // 4. Create the AuthProvider component
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<any | null>(null);
-  const [loading, setLoading] = useState(true); // Start as true to indicate loading
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const loadUserFromStorage = async () => {
-      try {
-        const storedUser = await SecureStore.getItemAsync('user');
-        if (storedUser) {
-          setUser(JSON.parse(storedUser));
-        }
-      } catch (e) {
-        console.error("Failed to load user from storage", e);
-      } finally {
-        // setLoading to false after trying to load user
-        setLoading(false);
-      }
-    };
+    const unsubscribe = onAuthStateChanged(auth, (authenticatedUser) => {
+      setUser(authenticatedUser);
+      setLoading(false);
+    });
 
-    loadUserFromStorage();
+    // Cleanup subscription on unmount
+    return () => unsubscribe();
   }, []);
 
-  const login = (userData: any) => {
-    setUser(userData);
-    SecureStore.setItemAsync('user', JSON.stringify(userData));
+  const login = async (email: string, pass: string) => {
+      const { success, error } = await signInService(email, pass);
+      if (!success) {
+          return { success, error }
+      }
+      return { success: true }
   };
 
-  const logout = () => {
-    setUser(null);
-    SecureStore.deleteItemAsync('user');
+  const logout = async () => {
+    await signOutService();
+    // onAuthStateChanged will handle setting the user to null
   };
 
-  // 5. Provide the context value to children
-  const value = {
+  // 5. Provide the context value to children - memoized to prevent unnecessary re-renders
+  const value = useMemo(() => ({
     user,
     loading,
     login,
     logout,
-  };
+  }), [user, loading]);
 
   return (
     <AuthContext.Provider value={value}>

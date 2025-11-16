@@ -1,11 +1,12 @@
 
 import { StyleSheet, View, Text, TextInput, TouchableOpacity, ScrollView, SafeAreaView, useColorScheme, ActivityIndicator, KeyboardAvoidingView, Platform } from 'react-native';
-import { ChevronLeft, Send } from 'lucide-react-native';
+import { ChevronLeft, Send, ChefHat, Sparkles } from 'lucide-react-native';
 import Colors from '../constants/Colors';
 import { useRouter } from 'expo-router';
 import { useState, useRef } from 'react';
 import { usePreferences } from '../context/PreferencesContext';
 import { usePantry } from '../context/PantryContext';
+import { sendMessageToGemini } from '../services/gemini';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -24,17 +25,30 @@ function getStyles(colors: any) {
     header: {
       backgroundColor: colors.primary,
       paddingHorizontal: 24,
-      paddingVertical: 40,
+      paddingTop: 60,
+      paddingBottom: 40,
       borderBottomLeftRadius: 30,
       borderBottomRightRadius: 30,
       alignItems: 'center',
+      position: 'relative',
+    },
+    backButton: {
+      position: 'absolute',
+      left: 24,
+      top: 60,
+    },
+    headerIcon: {
+      width: 60,
+      height: 60,
+      borderRadius: 30,
+      backgroundColor: colors.primaryForeground,
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginBottom: 16,
       flexDirection: 'row',
-      gap: 12,
     },
     headerTitleContainer: {
         alignItems: 'center',
-        flex: 1,
-        paddingRight: 36,
     },
     title: {
       color: colors.primaryForeground,
@@ -53,6 +67,31 @@ function getStyles(colors: any) {
     contentContainer: {
       padding: 24,
       paddingBottom: 100,
+    },
+    suggestedQuestionsTitle: {
+      fontSize: 16,
+      fontWeight: '600',
+      color: colors.primary,
+      marginTop: 24,
+      marginBottom: 12,
+    },
+    suggestedQuestionsContainer: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      gap: 8,
+      marginBottom: 24,
+    },
+    suggestedQuestionButton: {
+      backgroundColor: colors.primary + '20',
+      borderRadius: 12,
+      paddingHorizontal: 16,
+      paddingVertical: 12,
+      marginBottom: 8,
+    },
+    suggestedQuestionText: {
+      fontSize: 14,
+      color: colors.primary,
+      fontWeight: '500',
     },
     messageContainer: {
       marginBottom: 12,
@@ -117,28 +156,56 @@ export default function AskAiScreen() {
   const [loading, setLoading] = useState(false);
   const scrollViewRef = useRef<ScrollView>(null);
 
-  const handleSend = async () => {
-    if (!message.trim() || loading) return;
+  const suggestedQuestions = [
+    "What can I make with my current ingredients?",
+    "Suggest a recipe for weight loss",
+    "What's a good high-protein meal?",
+    "Plan my meals for tomorrow",
+  ];
 
-    const newMessage: Message = { role: 'user', content: message };
+  const handleSuggestedQuestion = (question: string) => {
+    setMessage(question);
+    // Auto-send the suggested question
+    setTimeout(() => {
+      handleSend(question);
+    }, 100);
+  };
+
+  const handleSend = async (customMessage?: string) => {
+    const messageToSend = customMessage || message;
+    if (!messageToSend.trim() || loading) return;
+
+    const newMessage: Message = { role: 'user', content: messageToSend };
     setChatHistory(prev => [...prev, newMessage]);
     setMessage('');
     setLoading(true);
 
     try {
-      // This is where you would make the API call to your backend
-      // For now, we'll just simulate a response
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      const preferencesText = `Here are your current preferences:\n- Cuisines: ${cuisines.length > 0 ? cuisines.join(', ') : 'Not set'}\n- Dietary Restrictions: ${restrictions.length > 0 ? restrictions.join(', ') : 'Not set'}\n- Health Goals: ${goals.length > 0 ? goals.join(', ') : 'Not set'}`;
-      const pantryText = `Here are the items in your pantry: ${pantry.length > 0 ? pantry.join(', ') : 'Not set'}`;
+      const aiResponseText = await sendMessageToGemini(
+        messageToSend,
+        chatHistory,
+        cuisines,
+        restrictions,
+        goals,
+        pantry
+      );
+      
       const aiResponse: Message = {
         role: 'assistant',
-        content: `This is a simulated response based on your message: "${message}".\n\nA real response from the Gemini API would use your preferences to generate a personalized meal suggestion.\n\n${preferencesText}\n\n${pantryText}`
+        content: aiResponseText
       };
       setChatHistory(prev => [...prev, aiResponse]);
     } catch (error) {
       console.error('Error fetching AI response:', error);
-      const errorResponse: Message = { role: 'assistant', content: 'Sorry, I encountered an error. Please try again.' };
+      const errorMessage = error instanceof Error 
+        ? error.message 
+        : 'Sorry, I encountered an error. Please try again.';
+      const errorResponse: Message = { 
+        role: 'assistant', 
+        content: errorMessage.includes('API key') 
+          ? 'Gemini API key is not configured. Please set EXPO_PUBLIC_GEMINI_API_KEY in your .env file.'
+          : 'Sorry, I encountered an error. Please try again.' 
+      };
       setChatHistory(prev => [...prev, errorResponse]);
     } finally {
       setLoading(false);
@@ -153,9 +220,13 @@ export default function AskAiScreen() {
             keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 20}
         >
             <View style={styles.header}>
-                <TouchableOpacity onPress={() => router.back()}>
-                    <ChevronLeft size={24} color={colors.primaryForeground} />
-                </TouchableOpacity>
+              <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
+                <ChevronLeft size={24} color={colors.primaryForeground} />
+              </TouchableOpacity>
+              <View style={styles.headerIcon}>
+                <ChefHat size={24} color={colors.primary} />
+                <Sparkles size={16} color={colors.primary} style={{ marginLeft: -8, marginTop: -8 }} />
+              </View>
               <View style={styles.headerTitleContainer}>
                 <Text style={styles.title}>Ask AI</Text>
                 <Text style={styles.subtitle}>Your personalized meal assistant</Text>
@@ -175,6 +246,22 @@ export default function AskAiScreen() {
                   </View>
                 </View>
               ))}
+              {chatHistory.length === 1 && (
+                <>
+                  <Text style={styles.suggestedQuestionsTitle}>Suggested questions:</Text>
+                  <View style={styles.suggestedQuestionsContainer}>
+                    {suggestedQuestions.map((question, index) => (
+                      <TouchableOpacity
+                        key={index}
+                        style={styles.suggestedQuestionButton}
+                        onPress={() => handleSuggestedQuestion(question)}
+                      >
+                        <Text style={styles.suggestedQuestionText}>{question}</Text>
+                      </TouchableOpacity>
+                    ))}
+                  </View>
+                </>
+              )}
               {loading && (
                 <View style={styles.loadingContainer}>
                     <ActivityIndicator size="small" color={colors.primary} />

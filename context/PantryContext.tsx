@@ -1,9 +1,8 @@
 
-import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect, useMemo, useCallback } from 'react';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
 import { useAuth } from './AuthContext';
-import perf from '@react-native-firebase/perf';
 
 interface PantryContextType {
   pantry: string[];
@@ -30,7 +29,6 @@ export const PantryProvider = ({ children }: PantryProviderProps) => {
   useEffect(() => {
     const fetchPantry = async () => {
       if (user) {
-        const trace = await perf().startTrace('fetch_pantry');
         try {
           const docRef = doc(db, 'userPantries', user.uid);
           const docSnap = await getDoc(docRef);
@@ -40,29 +38,42 @@ export const PantryProvider = ({ children }: PantryProviderProps) => {
           }
         } catch (error) {
           console.error("Error fetching pantry:", error);
-        } finally {
-          await trace.stop();
         }
       }
     };
     fetchPantry();
   }, [user]);
 
-  const savePantry = async () => {
-    if (user) {
-      const docRef = doc(db, 'userPantries', user.uid);
-      await setDoc(docRef, { pantry }, { merge: true });
-    }
-  };
-
   useEffect(() => {
-    savePantry();
-  }, [pantry]);
+    const savePantry = async () => {
+      if (user && pantry.length >= 0) {
+        try {
+          const docRef = doc(db, 'userPantries', user.uid);
+          await setDoc(docRef, { pantry }, { merge: true });
+        } catch (error) {
+          console.error("Error saving pantry:", error);
+        }
+      }
+    };
+    
+    // Only save if user exists and pantry has been initialized (not on first mount)
+    if (user) {
+      const timeoutId = setTimeout(() => {
+        savePantry();
+      }, 500); // Debounce saves to avoid excessive writes
+      
+      return () => clearTimeout(timeoutId);
+    }
+  }, [pantry, user]);
 
-  const value = {
+  const setPantryMemo = useCallback((newPantry: string[]) => {
+    setPantry(newPantry);
+  }, []);
+
+  const value = useMemo(() => ({
     pantry,
-    setPantry,
-  };
+    setPantry: setPantryMemo,
+  }), [pantry, setPantryMemo]);
 
   return (
     <PantryContext.Provider value={value}>

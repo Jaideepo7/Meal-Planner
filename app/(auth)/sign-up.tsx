@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -15,11 +15,9 @@ import {
   Platform,
 } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Mail, Lock, Apple, User, Chrome } from 'lucide-react-native';
+import { Mail, Lock, Apple, User, Chrome, ChevronLeft } from 'lucide-react-native';
 import Colors from '../../constants/Colors';
-import { signUp, signInWithGoogle, signInWithApple } from '../../services/auth';
-import { useState } from 'react';
-import { useAuth } from '../../context/AuthContext';
+import { signUp } from '../../services/auth';
 
 function getStyles(colors: typeof Colors.light) {
   return StyleSheet.create({
@@ -28,23 +26,39 @@ function getStyles(colors: typeof Colors.light) {
       backgroundColor: colors.background,
     },
     container: {
-      flexGrow: 1,
-      padding: 24,
-      justifyContent: 'center',
+      flex: 1,
     },
     header: {
+      backgroundColor: colors.primary,
+      paddingHorizontal: 24,
+      paddingTop: 60,
+      paddingBottom: 40,
+      borderBottomLeftRadius: 30,
+      borderBottomRightRadius: 30,
+      flexDirection: 'row',
       alignItems: 'center',
-      marginBottom: 32,
+    },
+    backButton: {
+      marginRight: 16,
+    },
+    headerContent: {
+      flex: 1,
+      alignItems: 'center',
     },
     title: {
       fontSize: 32,
       fontWeight: 'bold',
-      color: colors.primary,
+      color: colors.primaryForeground,
       marginBottom: 8,
     },
     subtitle: {
       fontSize: 16,
-      color: colors.mutedForeground,
+      color: colors.primaryForeground,
+      opacity: 0.8,
+    },
+    content: {
+      flex: 1,
+      padding: 24,
     },
     form: {},
     inputContainer: {
@@ -82,19 +96,16 @@ function getStyles(colors: typeof Colors.light) {
       fontWeight: '600',
     },
     socialSignInContainer: {
-      flexDirection: 'row',
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginVertical: 16,
+      marginVertical: 24,
     },
     socialSignInButton: {
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
-      borderRadius: 8,
+      borderRadius: 12,
       padding: 16,
-      marginHorizontal: 8,
-      flex: 1,
+      marginBottom: 12,
+      borderWidth: 1,
     },
     googleButton: {
       backgroundColor: '#FFFFFF',
@@ -153,7 +164,6 @@ export default function SignUpScreen() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
 
   const handleSignUp = async () => {
     if (password !== confirmPassword) {
@@ -161,13 +171,12 @@ export default function SignUpScreen() {
       return;
     }
     setLoading(true);
-    const { success, user, error } = await signUp(email, password);
+    const { success, error } = await signUp(email, password);
     setLoading(false);
-    if (success && user) {
-      login(user);
-    } else {
+    if (!success) {
       Alert.alert('Sign Up Failed', error || 'Please try again.');
     }
+    // The AuthProvider will handle the redirect on successful sign-up
   };
 
   const handleGoogleSignIn = async () => {
@@ -178,37 +187,26 @@ export default function SignUpScreen() {
       );
       return;
     }
-    setLoading(true);
-    const { success, user, error } = await signInWithGoogle();
-    setLoading(false);
-    if (success && user) {
-      login(user);
-    } else {
-      Alert.alert('Google Sign In Failed', error || 'Please try again.');
-    }
+    Alert.alert('Google Sign In', 'Google sign-in is not implemented in this sample app.');
   };
 
   const handleAppleSignIn = async () => {
-    setLoading(true);
-    const { success, user, error } = await signInWithApple();
-    setLoading(false);
-    if (success && user) {
-      login(user);
-    } else {
-      Alert.alert(
-        'Apple Sign In Failed',
-        error || 'An error occurred during Apple Sign-In. Please try again.'
-      );
-    }
+    Alert.alert('Apple Sign In', 'Apple sign-in is not implemented in this sample app.');
   };
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.title}>Create Account</Text>
-          <Text style={styles.subtitle}>Join MealMind AI today</Text>
+          <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
+            <ChevronLeft size={24} color={colors.primaryForeground} />
+          </TouchableOpacity>
+          <View style={styles.headerContent}>
+            <Text style={styles.title}>Create Account</Text>
+            <Text style={styles.subtitle}>Join MealMind AI today</Text>
+          </View>
         </View>
+        <ScrollView contentContainerStyle={styles.content}>
 
         <View style={styles.form}>
           <View style={styles.socialSignInContainer}>
@@ -216,7 +214,7 @@ export default function SignUpScreen() {
               style={[styles.socialSignInButton, styles.googleButton]}
               onPress={handleGoogleSignIn}
             >
-              <Chrome size={20} color="#000000" />
+              <Chrome size={20} color="#4285F4" />
               <Text style={[styles.socialSignInText, styles.googleText]}>
                 Sign up with Google
               </Text>
@@ -308,13 +306,14 @@ export default function SignUpScreen() {
           </TouchableOpacity>
         </View>
 
-        <View style={styles.signInContainer}>
-          <Text style={styles.signInText}>Already have an account?</Text>
-          <TouchableOpacity onPress={() => router.push('/(auth)/sign-in')}>
-            <Text style={styles.signInLink}>Sign In</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
+          <View style={styles.signInContainer}>
+            <Text style={styles.signInText}>Already have an account? </Text>
+            <TouchableOpacity onPress={() => router.push('/(auth)/sign-in')}>
+              <Text style={styles.signInLink}>Sign In</Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </View>
     </SafeAreaView>
   );
 }
