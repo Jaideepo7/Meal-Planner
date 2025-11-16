@@ -5,6 +5,7 @@ import Colors from '../constants/Colors';
 import { useRouter } from 'expo-router';
 import { useState, useRef } from 'react';
 import { usePreferences } from '../context/PreferencesContext';
+import { usePantry } from '../context/PantryContext';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -108,6 +109,7 @@ export default function AskAiScreen() {
   const colors = Colors[colorScheme];
   const styles = getStyles(colors);
   const { cuisines, restrictions, goals } = usePreferences();
+  const { pantry } = usePantry();
   const [message, setMessage] = useState('');
   const [chatHistory, setChatHistory] = useState<Message[]>([
     { role: 'assistant', content: "Hi! I'm your AI meal assistant. Based on your preferences, I can help you find recipes, plan meals, and answer questions about your dietary goals. What would you like to know?" },
@@ -128,9 +130,10 @@ export default function AskAiScreen() {
       // For now, we'll just simulate a response
       await new Promise(resolve => setTimeout(resolve, 2000));
       const preferencesText = `Here are your current preferences:\n- Cuisines: ${cuisines.length > 0 ? cuisines.join(', ') : 'Not set'}\n- Dietary Restrictions: ${restrictions.length > 0 ? restrictions.join(', ') : 'Not set'}\n- Health Goals: ${goals.length > 0 ? goals.join(', ') : 'Not set'}`;
+      const pantryText = `Here are the items in your pantry: ${pantry.length > 0 ? pantry.join(', ') : 'Not set'}`;
       const aiResponse: Message = {
         role: 'assistant',
-        content: `This is a simulated response based on your message: "${message}".\n\nA real response from the Gemini API would use your preferences to generate a personalized meal suggestion.\n\n${preferencesText}`
+        content: `This is a simulated response based on your message: "${message}".\n\nA real response from the Gemini API would use your preferences to generate a personalized meal suggestion.\n\n${preferencesText}\n\n${pantryText}`
       };
       setChatHistory(prev => [...prev, aiResponse]);
     } catch (error) {

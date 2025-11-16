@@ -2,6 +2,7 @@
 import { Stack, useRouter, useSegments } from 'expo-router';
 import { AuthProvider, useAuth } from '../context/AuthContext';
 import { PreferencesProvider } from '../context/PreferencesContext';
+import { PantryProvider } from '../context/PantryContext';
 import { useEffect } from 'react';
 
 const InitialLayout = () => {
@@ -38,7 +39,9 @@ export default function RootLayout() {
   return (
     <AuthProvider>
       <PreferencesProvider>
-        <InitialLayout />
+        <PantryProvider>
+          <InitialLayout />
+        </PantryProvider>
       </PreferencesProvider>
     </AuthProvider>
   );
