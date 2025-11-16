@@ -3,6 +3,7 @@ import React, { createContext, useContext, useState, ReactNode, useEffect } from
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
 import { useAuth } from './AuthContext';
+import perf from '@react-native-firebase/perf';
 
 interface PantryContextType {
   pantry: string[];
@@ -29,11 +30,18 @@ export const PantryProvider = ({ children }: PantryProviderProps) => {
   useEffect(() => {
     const fetchPantry = async () => {
       if (user) {
-        const docRef = doc(db, 'userPantries', user.uid);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-          const data = docSnap.data();
-          setPantry(data.pantry || []);
+        const trace = await perf().startTrace('fetch_pantry');
+        try {
+          const docRef = doc(db, 'userPantries', user.uid);
+          const docSnap = await getDoc(docRef);
+          if (docSnap.exists()) {
+            const data = docSnap.data();
+            setPantry(data.pantry || []);
+          }
+        } catch (error) {
+          console.error("Error fetching pantry:", error);
+        } finally {
+          await trace.stop();
         }
       }
     };

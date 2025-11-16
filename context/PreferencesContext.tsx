@@ -3,6 +3,7 @@ import React, { createContext, useContext, useState, ReactNode, useEffect } from
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
 import { useAuth } from './AuthContext';
+import perf from '@react-native-firebase/perf';
 
 interface PreferencesContextType {
   cuisines: string[];
@@ -39,13 +40,20 @@ export const PreferencesProvider = ({ children }: PreferencesProviderProps) => {
   useEffect(() => {
     const fetchPreferences = async () => {
       if (user) {
-        const docRef = doc(db, 'userPreferences', user.uid);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-          const data = docSnap.data();
-          setCuisines(data.cuisines || []);
-          setRestrictions(data.restrictions || []);
-          setGoals(data.goals || []);
+        const trace = await perf().startTrace('fetch_preferences');
+        try {
+          const docRef = doc(db, 'userPreferences', user.uid);
+          const docSnap = await getDoc(docRef);
+          if (docSnap.exists()) {
+            const data = docSnap.data();
+            setCuisines(data.cuisines || []);
+            setRestrictions(data.restrictions || []);
+            setGoals(data.goals || []);
+          }
+        } catch (error) {
+          console.error("Error fetching preferences:", error);
+        } finally {
+          await trace.stop();
         }
       }
     };

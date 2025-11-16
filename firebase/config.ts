@@ -4,12 +4,12 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyCpczsFzTcwv_lOqfOPtQVnJ_15P3VLo0A",
+  authDomain: "meal-pla-4b01f.firebaseapp.com",
+  projectId: "meal-pla-4b01f",
+  storageBucket: "meal-pla-4b01f.appspot.com",
+  messagingSenderId: "232966009287",
+  appId: "1:232966009287:android:c5095428925b98d13e69e2"
 };
 
 const app = initializeApp(firebaseConfig);
