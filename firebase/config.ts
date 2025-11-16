@@ -4,7 +4,7 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCpczsFzTcwv_lOqfOPtQVnJ_15P3VLo0A",
+  apiKey: "AIzaSyAkaJ8vF7c7ubYaBGT8IEz4Hdi1foglUQU",
   authDomain: "meal-pla-4b01f.firebaseapp.com",
   projectId: "meal-pla-4b01f",
   storageBucket: "meal-pla-4b01f.appspot.com",
