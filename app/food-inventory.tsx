@@ -109,6 +109,13 @@ function getStyles(colors: typeof Colors.light) {
         borderWidth: 1,
         borderColor: colors.border,
     },
+    pickerContainer: {
+        backgroundColor: colors.background,
+        borderRadius: 8,
+        marginBottom: 16,
+        borderWidth: 1,
+        borderColor: colors.border,
+    },
     addButton: {
         backgroundColor: colors.primary,
         borderRadius: 8,
@@ -118,10 +125,18 @@ function getStyles(colors: typeof Colors.light) {
         justifyContent: 'center',
         gap: 8,
     },
+    cancelButton: {
+        backgroundColor: 'transparent',
+        borderWidth: 1,
+        borderColor: colors.border,
+    },
     addButtonText: {
         color: colors.primaryForeground,
         fontSize: 16,
         fontWeight: '600',
+    },
+    cancelButtonText: {
+        color: colors.text,
     },
     emptyState: {
         textAlign: 'center',
@@ -169,12 +184,19 @@ export default function FoodInventoryScreen() {
   const [category, setCategory] = useState<string | null>(null);
   const [quantity, setQuantity] = useState('');
   const [isAdding, setIsAdding] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchItems = async () => {
-      const foodItems = await getFoodItems();
-      foodItems.sort((a, b) => a.name.localeCompare(b.name));
-      setItems(foodItems as FoodItem[]);
+      try {
+        const foodItems = await getFoodItems();
+        foodItems.sort((a, b) => a.name.localeCompare(b.name));
+        setItems(foodItems as FoodItem[]);
+      } catch (error) {
+        Alert.alert('Error', 'Failed to fetch items.');
+      } finally {
+        setLoading(false);
+      }
     };
     fetchItems();
   }, []);
@@ -217,7 +239,7 @@ export default function FoodInventoryScreen() {
                 onPress: async () => {
                     try {
                         await deleteFoodItem(id);
-                        setItems(items.filter(item => item.id !== id));
+                        setItems(prevItems => prevItems.filter(item => item.id !== id));
                     } catch (error) {
                         Alert.alert('Error', 'Failed to delete item. Please try again.');
                     }
@@ -227,12 +249,26 @@ export default function FoodInventoryScreen() {
     );
   };
 
+  const handleCancel = () => {
+    setFoodItem('');
+    setCategory(null);
+    setQuantity('');
+  };
+
   const pickerSelectStyles = StyleSheet.create({
     inputIOS: {
-      ...styles.input,
+      fontSize: 14,
+      paddingVertical: 12,
+      paddingHorizontal: 12,
+      color: colors.text,
+      paddingRight: 30, // to ensure the text is never behind the icon
     },
     inputAndroid: {
-      ...styles.input,
+        fontSize: 14,
+        paddingHorizontal: 12,
+        paddingVertical: 12,
+        color: colors.text,
+        paddingRight: 30, // to ensure the text is never behind the icon
     },
     iconContainer: {
       top: 12,
@@ -268,14 +304,16 @@ export default function FoodInventoryScreen() {
                         />
 
                         <Text style={styles.inputLabel}>{Strings.foodInventory.category}</Text>
-                        <RNPickerSelect
-                            onValueChange={(value: string) => setCategory(value)}
-                            items={categories}
-                            style={pickerSelectStyles}
-                            placeholder={{ label: 'Select category', value: null }}
-                            value={category}
-                            Icon={() => <ChevronDown size={20} color={colors.mutedForeground} />}
-                        />
+                        <View style={styles.pickerContainer}>
+                            <RNPickerSelect
+                                onValueChange={(value: string) => setCategory(value)}
+                                items={categories}
+                                style={pickerSelectStyles}
+                                placeholder={{ label: 'Select category', value: null }}
+                                value={category}
+                                Icon={() => <ChevronDown size={20} color={colors.mutedForeground} />}
+                            />
+                        </View>
 
                         <Text style={styles.inputLabel}>{Strings.foodInventory.quantity}</Text>
                         <TextInput
@@ -285,17 +323,24 @@ export default function FoodInventoryScreen() {
                             onChangeText={setQuantity}
                         />
 
-                        <TouchableOpacity style={styles.addButton} onPress={handleAddItem} disabled={isAdding}>
-                            {isAdding ? (
-                                <ActivityIndicator color={colors.primaryForeground} />
-                            ) : (
-                                <Plus size={20} color={colors.primaryForeground} />
-                            )}
-                            <Text style={styles.addButtonText}>{Strings.foodInventory.addItem}</Text>
-                        </TouchableOpacity>
+                        <View style={{ flexDirection: 'row', gap: 12 }}>
+                            <TouchableOpacity style={[styles.addButton, styles.cancelButton, { flex: 1 }]} onPress={handleCancel}>
+                                <Text style={[styles.addButtonText, styles.cancelButtonText]}>Cancel</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={[styles.addButton, { flex: 1 }]} onPress={handleAddItem} disabled={isAdding}>
+                                {isAdding ? (
+                                    <ActivityIndicator color={colors.primaryForeground} />
+                                ) : (
+                                    <Plus size={20} color={colors.primaryForeground} />
+                                )}
+                                <Text style={styles.addButtonText}>{Strings.foodInventory.addItem}</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
 
-                    {items.length === 0 ? (
+                    {loading ? (
+                        <ActivityIndicator style={{ marginTop: 24 }} />
+                    ) : items.length === 0 ? (
                         <Text style={styles.emptyState}>No items added yet. Start adding your food inventory above.</Text>
                     ) : (
                         <View style={styles.itemList}>
