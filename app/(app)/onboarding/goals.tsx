@@ -99,7 +99,7 @@ export default function GoalsScreen() {
       await updateUserProfile(user.uid, { healthGoals: selectedGoals });
     }
     setHealthGoals(selectedGoals);
-    router.replace('/(app)/(tabs)/ask-ai');
+    router.replace('/ask-ai');
   };
 
   return (

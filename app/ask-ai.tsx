@@ -2,19 +2,12 @@ import { StyleSheet, View, Text, TextInput, TouchableOpacity, ScrollView, SafeAr
 import { ChevronLeft, Send, ChefHat, Sparkles } from 'lucide-react-native';
 import Colors from '../constants/Colors';
 import { useRouter } from 'expo-router';
-<<<<<<< HEAD:app/(app)/(tabs)/ask-ai.tsx
 import { useState, useRef, useEffect } from 'react';
-import { usePreferences } from '../../../context/PreferencesContext';
-import { usePantry } from '../../../context/PantryContext';
-import { useFavorites } from '../../../context/FavoritesContext';
-import { sendMessageToGemini } from '../../../services/gemini';
-import Markdown from 'react-native-markdown-display';
-=======
-import { useState, useRef } from 'react';
 import { usePreferences } from '../context/PreferencesContext';
 import { usePantry } from '../context/PantryContext';
 import { sendMessageToGemini } from '../services/gemini';
->>>>>>> parent of 9b4bb42 (hi):app/ask-ai.tsx
+import React from 'react';
+import { useFavorites } from '@/context/FavoritesContext';
 
 interface Message {
   id: string;
@@ -164,15 +157,12 @@ export default function AskAiScreen() {
   const { pantry } = usePantry();
   const { addFavorite } = useFavorites();
   const [message, setMessage] = useState('');
-<<<<<<< HEAD:app/(app)/(tabs)/ask-ai.tsx
-  const [chatHistory, setChatHistory] = useState<Message[]>(
-    []
-  );
-=======
   const [chatHistory, setChatHistory] = useState<Message[]>([
-    { role: 'assistant', content: "Hi! I'm your AI meal assistant. Based on your preferences, I can help you find recipes, plan meals, and answer questions about your dietary goals. What would you like to know?" },
+    {
+      role: 'assistant', content: "Hi! I'm your AI meal assistant. Based on your preferences, I can help you find recipes, plan meals, and answer questions about your dietary goals. What would you like to know?",
+      id: ''
+    },
   ]);
->>>>>>> parent of 9b4bb42 (hi):app/ask-ai.tsx
   const [loading, setLoading] = useState(false);
   const scrollViewRef = useRef<ScrollView>(null);
 
@@ -201,23 +191,6 @@ export default function AskAiScreen() {
     }, 100);
   };
 
-<<<<<<< HEAD:app/(app)/(tabs)/ask-ai.tsx
-  const handleFeedback = (index: number, feedback: 'like' | 'dislike') => {
-    setChatHistory(prev => {
-      const newHistory = [...prev];
-      const message = newHistory[index];
-      if (message.role === 'assistant') {
-        message.feedback = message.feedback === feedback ? null : feedback;
-        if (feedback === 'like') {
-          addFavorite({ id: message.id, content: message.content });
-        }
-      }
-      return newHistory;
-    });
-  };
-
-=======
->>>>>>> parent of 9b4bb42 (hi):app/ask-ai.tsx
   const handleSend = async (customMessage?: string) => {
     const messageToSend = customMessage || message;
     if (!messageToSend.trim() || loading) return;
@@ -291,27 +264,7 @@ export default function AskAiScreen() {
               {chatHistory.map((msg, index) => (
                 <View key={index} style={styles.messageContainer}>
                   <View style={msg.role === 'user' ? styles.userMessageContainer : styles.assistantMessageContainer}>
-<<<<<<< HEAD:app/(app)/(tabs)/ask-ai.tsx
-                    {msg.role === 'user' ? (
-                      <Text style={styles.userMessage}>{msg.content}</Text>
-                    ) : (
-                      <>
-                        <Markdown style={{text: styles.assistantMessage}}>{msg.content}</Markdown>
-                        {msg.content.includes('Sorry') ? null : (
-                        <View style={styles.feedbackContainer}>
-                          <TouchableOpacity onPress={() => handleFeedback(index, 'like')}>
-                            <ThumbsUp size={18} color={msg.feedback === 'like' ? colors.primary : colors.mutedForeground} />
-                          </TouchableOpacity>
-                          <TouchableOpacity onPress={() => handleFeedback(index, 'dislike')}>
-                            <ThumbsDown size={18} color={msg.feedback === 'dislike' ? colors.destructive : colors.mutedForeground} />
-                          </TouchableOpacity>
-                        </View>
-                        )}
-                      </>
-                    )}
-=======
                     <Text style={msg.role === 'user' ? styles.userMessage : styles.assistantMessage}>{msg.content}</Text>
->>>>>>> parent of 9b4bb42 (hi):app/ask-ai.tsx
                   </View>
                 </View>
               ))}

@@ -5,6 +5,7 @@ import Colors from '../constants/Colors';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { usePreferences } from '../context/PreferencesContext';
+import React from 'react';
 
 function getStyles(colors: any) {
   return StyleSheet.create({
@@ -98,7 +99,7 @@ export default function FoodPreferencesScreen() {
   const colorScheme = useColorScheme() ?? 'light';
   const colors = Colors[colorScheme];
   const styles = getStyles(colors);
-  const { setCuisines } = usePreferences();
+  const preferences = usePreferences();
   const [selectedCuisines, setSelectedCuisines] = useState<string[]>([]);
 
   const cuisines = [
@@ -121,7 +122,9 @@ export default function FoodPreferencesScreen() {
   };
 
   const handleContinue = () => {
-    setCuisines(selectedCuisines);
+    if (preferences && typeof (preferences as any).setCuisines === 'function') {
+      (preferences as any).setCuisines(selectedCuisines);
+    }
     router.push('/dietary-restrictions');
   };
 

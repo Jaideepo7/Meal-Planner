@@ -9,6 +9,7 @@ import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import RNPickerSelect from 'react-native-picker-select';
 import { addFoodItem, getFoodItems, deleteFoodItem } from '../services/database';
+import React from 'react';
 
 interface FoodItem {
   id: string;

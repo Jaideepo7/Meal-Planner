@@ -1,18 +1,10 @@
-module.exports = function (api) {
+module.exports = function(api) {
   api.cache(true);
   return {
     presets: ['babel-preset-expo'],
     plugins: [
-      ['inline-dotenv'],
-      [
-        'module-resolver',
-        {
-          root: ['./'],
-          alias: {
-            '@': '.'
-          },
-        },
-      ],
-    ],
+      'expo-router/babel' // <-- Add this line
+      // Other plugins may also be here
+    ]
   };
 };

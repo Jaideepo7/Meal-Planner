@@ -5,6 +5,7 @@ import Colors from '../constants/Colors';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { usePreferences } from '../context/PreferencesContext';
+import React from 'react';
 
 function getStyles(colors: any) {
   return StyleSheet.create({

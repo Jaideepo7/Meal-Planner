@@ -5,6 +5,7 @@ import Colors from '../constants/Colors';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { usePreferences } from '../context/PreferencesContext';
+import React from 'react';
 
 function getStyles(colors: any) {
   return StyleSheet.create({
@@ -157,7 +158,7 @@ export default function GoalsScreen() {
 
   const handleComplete = () => {
     setHealthGoals(selectedGoals);
-    router.push('/(app)/(tabs)/ask-ai');
+    router.push('/ask-ai');
   };
 
   return (

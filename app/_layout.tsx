@@ -6,6 +6,7 @@ import { FavoritesProvider } from '../context/FavoritesContext';
 import { Stack, useRouter, useSegments } from 'expo-router';
 import { useEffect } from 'react';
 import { ActivityIndicator, View } from 'react-native';
+import React from 'react';
 
 function RootLayoutNav() {
   const { user, loading } = useAuth();
