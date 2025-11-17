@@ -1,10 +1,10 @@
-
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { useTheme } from '../../context/ThemeContext';
+import { View, Text, StyleSheet, useColorScheme } from 'react-native';
+import Colors from '../../constants/Colors';
 
 export default function AskAiScreen() {
-  const { colors } = useTheme();
+  const colorScheme = useColorScheme() ?? 'light';
+  const colors = Colors[colorScheme];
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>

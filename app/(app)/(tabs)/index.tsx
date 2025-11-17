@@ -6,13 +6,13 @@ import {
   ScrollView,
   TouchableOpacity,
   SafeAreaView,
+  useColorScheme,
   Image,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { ChefHat, Sparkles, BookOpen, TrendingUp, Clock, Heart } from 'lucide-react-native';
-import { useTheme } from '../../../context/ThemeContext';
-import { useAuth } from '../../../context/AuthContext';
 import Colors from '../../../constants/Colors';
+import { useAuth } from '../../../context/AuthContext';
 
 function getStyles(colors: typeof Colors.light) {
   return StyleSheet.create({
@@ -177,7 +177,8 @@ function getStyles(colors: typeof Colors.light) {
 
 export default function HomeScreen() {
   const router = useRouter();
-  const { colors } = useTheme();
+  const colorScheme = useColorScheme() ?? 'light';
+  const colors = Colors[colorScheme];
   const styles = getStyles(colors);
   const { user } = useAuth();
 
@@ -238,7 +239,7 @@ export default function HomeScreen() {
             </TouchableOpacity>
             <TouchableOpacity
               style={[styles.quickActionButton, styles.quickActionSecondary]}
-              onPress={() => router.push('/(app)/(tabs)/pantry')}
+              onPress={() => router.push('/(app)/ask-ai')}
             >
               <View style={styles.quickActionIcon}>
                 <BookOpen size={24} color={colors.primary} />

@@ -5,12 +5,12 @@ import {
   Text,
   ScrollView,
   SafeAreaView,
+  useColorScheme,
 } from 'react-native';
 import { Heart } from 'lucide-react-native';
 import Colors from '../../../constants/Colors';
 import { useFavorites } from '../../../context/FavoritesContext';
 import Markdown from 'react-native-markdown-display';
-import { useTheme } from '../../../context/ThemeContext';
 
 function getStyles(colors: typeof Colors.light) {
   return StyleSheet.create({
@@ -67,7 +67,8 @@ function getStyles(colors: typeof Colors.light) {
 }
 
 export default function FavoritesScreen() {
-  const { colors } = useTheme();
+  const colorScheme = useColorScheme() ?? 'light';
+  const colors = Colors[colorScheme];
   const styles = getStyles(colors);
   const { favorites } = useFavorites();
 

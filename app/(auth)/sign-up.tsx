@@ -8,16 +8,17 @@ import {
   TouchableOpacity,
   SafeAreaView,
   TextInput,
+  useColorScheme,
   ScrollView,
   Alert,
   ActivityIndicator,
   Platform,
+  Image,
 } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Mail, Lock, Apple, User, Chrome, ChevronLeft } from 'lucide-react-native';
-import { useTheme } from '../../context/ThemeContext';
-import { useAuth } from '../../context/AuthContext';
+import { Mail, Lock, User, ChevronLeft, Chrome, Apple } from 'lucide-react-native';
 import Colors from '../../constants/Colors';
+import { useAuth } from '../../context/AuthContext';
 
 function getStyles(colors: typeof Colors.light) {
   return StyleSheet.create({
@@ -152,12 +153,17 @@ function getStyles(colors: typeof Colors.light) {
       fontWeight: '600',
       marginLeft: 4,
     },
+    socialIcon: {
+      width: 20,
+      height: 20,
+    },
   });
 }
 
 export default function SignUpScreen() {
   const router = useRouter();
-  const { colors } = useTheme();
+  const colorScheme = useColorScheme() ?? 'light';
+  const colors = Colors[colorScheme];
   const styles = getStyles(colors);
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');

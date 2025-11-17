@@ -6,6 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
   SafeAreaView,
+  useColorScheme,
   Switch,
 } from 'react-native';
 import { useRouter } from 'expo-router';
@@ -18,7 +19,6 @@ import {
   Moon,
   ChevronRight,
 } from 'lucide-react-native';
-import { useTheme } from '../../../context/ThemeContext';
 import Colors from '../../../constants/Colors';
 
 function getStyles(colors: typeof Colors.light) {
@@ -70,7 +70,7 @@ function getStyles(colors: typeof Colors.light) {
       padding: 16,
       marginBottom: 12,
       borderWidth: 1,
-      borderColor: colors.border,
+      borderColor: colors.mutedForeground,
     },
     settingsItem: {
       flexDirection: 'row',
@@ -102,14 +102,21 @@ function getStyles(colors: typeof Colors.light) {
       fontSize: 14,
       color: colors.mutedForeground,
     },
+    toggleContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+    },
   });
 }
 
 export default function SettingsScreen() {
   const router = useRouter();
-  const { theme, toggleTheme, colors } = useTheme();
+  const colorScheme = useColorScheme() ?? 'light';
+  const colors = Colors[colorScheme];
   const styles = getStyles(colors);
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
+  const [darkModeEnabled, setDarkModeEnabled] = useState(false);
 
   const profileSettings = [
     {
@@ -176,7 +183,7 @@ export default function SettingsScreen() {
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>App Preferences</Text>
             <View style={styles.settingsCard}>
-              <View style={styles.settingsItem}>
+              <View style={[styles.settingsItem, styles.settingsItemLast]}>
                 <View style={[styles.settingsIcon, { backgroundColor: '#4CAF50' + '20' }]}>
                   <Bell size={20} color="#4CAF50" />
                 </View>
@@ -191,19 +198,20 @@ export default function SettingsScreen() {
                   thumbColor={colors.primaryForeground}
                 />
               </View>
-              <View style={[styles.settingsItem, styles.settingsItemLast]}>
+              <View style={styles.settingsItem}>
                 <View style={[styles.settingsIcon, { backgroundColor: colors.muted }]}>
                   <Moon size={20} color={colors.mutedForeground} />
                 </View>
                 <View style={styles.settingsText}>
                   <Text style={styles.settingsTitle}>Dark Mode</Text>
-                  <Text style={styles.settingsDescription}>Enable dark theme</Text>
+                  <Text style={styles.settingsDescription}>Coming soon</Text>
                 </View>
                 <Switch
-                  value={theme === 'dark'}
-                  onValueChange={toggleTheme}
+                  value={darkModeEnabled}
+                  onValueChange={setDarkModeEnabled}
                   trackColor={{ false: colors.muted, true: colors.primary }}
                   thumbColor={colors.primaryForeground}
+                  disabled={true}
                 />
               </View>
             </View>
