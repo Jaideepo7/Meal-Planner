@@ -13,9 +13,10 @@ import {
   Alert,
   ActivityIndicator,
   Platform,
+  Image,
 } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Mail, Lock, Apple, User, Chrome, ChevronLeft } from 'lucide-react-native';
+import { Mail, Lock, User, ChevronLeft } from 'lucide-react-native';
 import Colors from '../../constants/Colors';
 import { useAuth } from '../../context/AuthContext';
 
@@ -151,6 +152,10 @@ function getStyles(colors: typeof Colors.light) {
       fontWeight: '600',
       marginLeft: 4,
     },
+    socialIcon: {
+      width: 20,
+      height: 20,
+    },
   });
 }
 
@@ -204,7 +209,7 @@ export default function SignUpScreen() {
           </TouchableOpacity>
           <View style={styles.headerContent}>
             <Text style={styles.title}>Create Account</Text>
-            <Text style={styles.subtitle}>Join MealMind AI today</Text>
+            <Text style={styles.subtitle}>Sign in to continue to Meal Planner</Text>
           </View>
         </View>
         <ScrollView contentContainerStyle={styles.content}>
@@ -215,18 +220,18 @@ export default function SignUpScreen() {
               style={[styles.socialSignInButton, styles.googleButton]}
               onPress={handleGoogleSignIn}
             >
-              <Chrome size={20} color="#4285F4" />
+              <Image source={require('../../assets/images/google_logo.png')} style={styles.socialIcon} />
               <Text style={[styles.socialSignInText, styles.googleText]}>
-                Sign up with Google
+                Continue with Google
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={[styles.socialSignInButton, styles.appleButton]}
               onPress={handleAppleSignIn}
             >
-              <Apple size={20} color="#FFFFFF" />
+              <Image source={require('../../assets/images/apple_logo.png')} style={styles.socialIcon} />
               <Text style={[styles.socialSignInText, styles.appleText]}>
-                Sign up with Apple
+                Continue with Apple
               </Text>
             </TouchableOpacity>
           </View>

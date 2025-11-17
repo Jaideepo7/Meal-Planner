@@ -48,7 +48,7 @@ function getStyles(colors: typeof Colors.light) {
       paddingVertical: 20,
       flexDirection: 'row',
       alignItems: 'center',
-      justifyContent: 'space-between',
+      justifyContent: 'center',
       borderBottomWidth: 1,
       borderBottomColor: colors.border,
     },
@@ -168,6 +168,7 @@ export default function PantryScreen() {
   const [quantity, setQuantity] = useState('');
   const [isAdding, setIsAdding] = useState(false);
   const [editingItemId, setEditingItemId] = useState<string | null>(null);
+  const [isFormVisible, setIsFormVisible] = useState(false);
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -195,6 +196,7 @@ export default function PantryScreen() {
                 setFoodItem('');
                 setCategory(null);
                 setQuantity('');
+                setIsFormVisible(false);
             }
         } catch (error) {
             Alert.alert('Error', 'Failed to add item. Please try again.');
@@ -332,7 +334,6 @@ export default function PantryScreen() {
                     style={pickerSelectStyles}
                     placeholder={{ label: 'Select category', value: null }}
                     value={category}
-                    Icon={() => <ChevronDown size={20} color={colors.mutedForeground} />}
                 />
             </View>
             <View style={[styles.inputContainer, {flex: 0.6}]}>
@@ -362,20 +363,27 @@ export default function PantryScreen() {
     <SafeAreaView style={styles.safeArea}>
         <View style={styles.header}>
             <Text style={styles.title}>{Strings.foodInventory.title}</Text>
-            <Package size={28} color={colors.primary} />
         </View>
         <ScrollView style={styles.content} contentContainerStyle={styles.contentContainer}>
-            {!editingItemId &&
+            {isFormVisible ? (
                 <View style={styles.form}>
                     {renderForm()}
+                    <TouchableOpacity onPress={() => setIsFormVisible(false)}>
+                        <Text style={{textAlign: 'center', marginTop: 12, color: colors.mutedForeground}}>Cancel</Text>
+                    </TouchableOpacity>
                 </View>
-            }
+            ) : (
+                <TouchableOpacity style={styles.addButton} onPress={() => setIsFormVisible(true)}>
+                    <Plus size={20} color={colors.primaryForeground} />
+                    <Text style={styles.addButtonText}>Add New Item</Text>
+                </TouchableOpacity>
+            )}
 
             {items.length === 0 ? (
-                <Text style={styles.emptyState}>Your pantry is empty. Add items above to get started.</Text>
+                <Text style={styles.emptyState}>Your pantry is empty. Add items to get started!</Text>
             ) : (
                 <View style={styles.itemList}>
-                    <Text style={{fontSize: 18, fontWeight: '600', color: colors.text, marginBottom: 12,}}>Your Items ({items.length})</Text>
+                    <Text style={{fontSize: 18, fontWeight: '600', color: colors.text, marginBottom: 12}}>Your Items ({items.length})</Text>
                     {items.map(renderItemCard)}
                 </View>
             )}

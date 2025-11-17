@@ -43,11 +43,13 @@ function getStyles(colors: typeof Colors.light) {
       fontWeight: 'bold',
       color: colors.primaryForeground,
       marginBottom: 8,
+      textAlign: 'center',
     },
     subtitle: {
       fontSize: 16,
       color: colors.primaryForeground,
       opacity: 0.8,
+      textAlign: 'center',
     },
     content: {
       flex: 1,
