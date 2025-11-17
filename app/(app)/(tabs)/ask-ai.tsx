@@ -1,16 +1,18 @@
 
 import { StyleSheet, View, Text, TextInput, TouchableOpacity, ScrollView, SafeAreaView, useColorScheme, ActivityIndicator, KeyboardAvoidingView, Platform } from 'react-native';
-import { ChevronLeft, Send, ChefHat, Sparkles } from 'lucide-react-native';
-import Colors from '../constants/Colors';
+import { ChevronLeft, Send, ChefHat, Sparkles, ThumbsUp, ThumbsDown } from 'lucide-react-native';
+import Colors from '../../../constants/Colors';
 import { useRouter } from 'expo-router';
 import { useState, useRef } from 'react';
-import { usePreferences } from '../context/PreferencesContext';
-import { usePantry } from '../context/PantryContext';
-import { sendMessageToGemini } from '../services/gemini';
+import { usePreferences } from '../../../context/PreferencesContext';
+import { usePantry } from '../../../context/PantryContext';
+import { sendMessageToGemini } from '../../../services/gemini';
+import Markdown from 'react-native-markdown-display';
 
 interface Message {
   role: 'user' | 'assistant';
   content: string;
+  feedback?: 'like' | 'dislike' | null;
 }
 
 function getStyles(colors: any) {
@@ -138,7 +140,13 @@ function getStyles(colors: any) {
         alignItems: 'center',
         justifyContent: 'center',
         padding: 12,
-    }
+    },
+    feedbackContainer: {
+      flexDirection: 'row',
+      justifyContent: 'flex-end',
+      marginTop: 8,
+      gap: 8,
+    },
   });
 }
 
@@ -151,7 +159,7 @@ export default function AskAiScreen() {
   const { pantry } = usePantry();
   const [message, setMessage] = useState('');
   const [chatHistory, setChatHistory] = useState<Message[]>([
-    { role: 'assistant', content: "Hi! I'm your AI meal assistant. Based on your preferences, I can help you find recipes, plan meals, and answer questions about your dietary goals. What would you like to know?" },
+    { role: 'assistant', content: "Hi! I'm your AI meal assistant. Based on your preferences, I can help you find recipes, plan meals, and answer questions about your dietary goals. What would you like to know?", feedback: null },
   ]);
   const [loading, setLoading] = useState(false);
   const scrollViewRef = useRef<ScrollView>(null);
@@ -169,6 +177,17 @@ export default function AskAiScreen() {
     setTimeout(() => {
       handleSend(question);
     }, 100);
+  };
+
+  const handleFeedback = (index: number, feedback: 'like' | 'dislike') => {
+    setChatHistory(prev => {
+      const newHistory = [...prev];
+      const message = newHistory[index];
+      if (message.role === 'assistant') {
+        message.feedback = message.feedback === feedback ? null : feedback;
+      }
+      return newHistory;
+    });
   };
 
   const handleSend = async (customMessage?: string) => {
@@ -192,7 +211,8 @@ export default function AskAiScreen() {
       
       const aiResponse: Message = {
         role: 'assistant',
-        content: aiResponseText
+        content: aiResponseText,
+        feedback: null
       };
       setChatHistory(prev => [...prev, aiResponse]);
     } catch (error) {
@@ -204,7 +224,8 @@ export default function AskAiScreen() {
         role: 'assistant', 
         content: errorMessage.includes('API key') 
           ? 'Gemini API key is not configured. Please set EXPO_PUBLIC_GEMINI_API_KEY in your .env file.'
-          : 'Sorry, I encountered an error. Please try again.' 
+          : 'Sorry, I encountered an error. Please try again.',
+        feedback: null
       };
       setChatHistory(prev => [...prev, errorResponse]);
     } finally {
@@ -242,7 +263,21 @@ export default function AskAiScreen() {
               {chatHistory.map((msg, index) => (
                 <View key={index} style={styles.messageContainer}>
                   <View style={msg.role === 'user' ? styles.userMessageContainer : styles.assistantMessageContainer}>
-                    <Text style={msg.role === 'user' ? styles.userMessage : styles.assistantMessage}>{msg.content}</Text>
+                    {msg.role === 'user' ? (
+                      <Text style={styles.userMessage}>{msg.content}</Text>
+                    ) : (
+                      <>
+                        <Markdown style={{text: styles.assistantMessage}}>{msg.content}</Markdown>
+                        <View style={styles.feedbackContainer}>
+                          <TouchableOpacity onPress={() => handleFeedback(index, 'like')}>
+                            <ThumbsUp size={18} color={msg.feedback === 'like' ? colors.primary : colors.mutedForeground} />
+                          </TouchableOpacity>
+                          <TouchableOpacity onPress={() => handleFeedback(index, 'dislike')}>
+                            <ThumbsDown size={18} color={msg.feedback === 'dislike' ? colors.destructive : colors.mutedForeground} />
+                          </TouchableOpacity>
+                        </View>
+                      </>
+                    )}
                   </View>
                 </View>
               ))}
