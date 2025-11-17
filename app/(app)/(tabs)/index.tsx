@@ -221,6 +221,22 @@ export default function HomeScreen() {
           <Text style={styles.sectionTitle}>Quick Actions</Text>
           <View style={styles.quickActionsContainer}>
             <TouchableOpacity
+              style={[styles.quickActionButton, styles.quickActionPrimary]}
+              onPress={() => router.push('/(app)/ask-ai')}
+            >
+              <View style={styles.quickActionIcon}>
+                <Sparkles size={24} color={colors.primaryForeground} />
+              </View>
+              <View style={styles.quickActionText}>
+                <Text style={[styles.quickActionTitle, styles.quickActionTitlePrimary]}>
+                  Ask AI
+                </Text>
+                <Text style={[styles.quickActionDescription, styles.quickActionDescriptionPrimary]}>
+                  Get recipe ideas and more
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
               style={[styles.quickActionButton, styles.quickActionSecondary]}
               onPress={() => router.push('/(app)/(tabs)/pantry')}
             >

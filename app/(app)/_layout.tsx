@@ -8,6 +8,7 @@ export default function AppLayout() {
     <Stack screenOptions={{ contentStyle: { backgroundColor: colors.background } }}>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+      <Stack.Screen name="ask-ai" options={{ presentation: 'modal' }} />
     </Stack>
   );
 }
