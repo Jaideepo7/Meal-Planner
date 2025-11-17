@@ -26,6 +26,7 @@ function getStyles(colors: typeof Colors.light) {
       backgroundColor: colors.background,
     },
     container: {
+      flex: 1,
     },
     header: {
       backgroundColor: colors.primary,
@@ -39,6 +40,7 @@ function getStyles(colors: typeof Colors.light) {
     },
     backButton: {
       marginRight: 16,
+      alignSelf: 'flex-start', // Align to the top
     },
     headerContent: {
       flex: 1,
@@ -54,8 +56,9 @@ function getStyles(colors: typeof Colors.light) {
       fontSize: 16,
       color: colors.primaryForeground,
       opacity: 0.8,
+      textAlign: 'center',
     },
-    content: {
+    contentContainer: {
       padding: 24,
     },
     form: {},
@@ -201,112 +204,111 @@ export default function SignUpScreen() {
           </TouchableOpacity>
           <View style={styles.headerContent}>
             <Text style={styles.title}>Create Account</Text>
-            <Text style={styles.subtitle}>Sign in to continue to Meal Planner</Text>
+            <Text style={styles.subtitle}>Get started with your new account</Text>
           </View>
         </View>
-        <ScrollView contentContainerStyle={styles.content}>
+        <ScrollView contentContainerStyle={styles.contentContainer}>
+          <View style={styles.form}>
+            <View style={styles.socialSignInContainer}>
+              <TouchableOpacity
+                style={[styles.socialSignInButton, styles.googleButton]}
+                onPress={handleGoogleSignIn}
+              >
+                <Chrome size={20} color="#4285F4" />
+                <Text style={[styles.socialSignInText, styles.googleText]}>
+                  Continue with Google
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.socialSignInButton, styles.appleButton]}
+                onPress={handleAppleSignIn}
+              >
+                <Apple size={20} color="#FFFFFF" />
+                <Text style={[styles.socialSignInText, styles.appleText]}>
+                  Continue with Apple
+                </Text>
+              </TouchableOpacity>
+            </View>
 
-        <View style={styles.form}>
-          <View style={styles.socialSignInContainer}>
+            <View style={styles.divider}>
+              <View style={styles.dividerLine} />
+              <Text style={styles.dividerText}>or</Text>
+              <View style={styles.dividerLine} />
+            </View>
+
+            <View style={styles.inputContainer}>
+              <Text style={styles.inputLabel}>Full Name</Text>
+              <View style={styles.input}>
+                <User size={20} color={colors.mutedForeground} />
+                <TextInput
+                  style={styles.inputText}
+                  placeholder="John Doe"
+                  placeholderTextColor={colors.mutedForeground}
+                  value={fullName}
+                  onChangeText={setFullName}
+                  autoCapitalize="words"
+                />
+              </View>
+            </View>
+
+            <View style={styles.inputContainer}>
+              <Text style={styles.inputLabel}>Email Address</Text>
+              <View style={styles.input}>
+                <Mail size={20} color={colors.mutedForeground} />
+                <TextInput
+                  style={styles.inputText}
+                  placeholder="you@example.com"
+                  placeholderTextColor={colors.mutedForeground}
+                  value={email}
+                  onChangeText={setEmail}
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                />
+              </View>
+            </View>
+
+            <View style={styles.inputContainer}>
+              <Text style={styles.inputLabel}>Password</Text>
+              <View style={styles.input}>
+                <Lock size={20} color={colors.mutedForeground} />
+                <TextInput
+                  style={styles.inputText}
+                  placeholder="••••••••"
+                  placeholderTextColor={colors.mutedForeground}
+                  value={password}
+                  onChangeText={setPassword}
+                  secureTextEntry
+                />
+              </View>
+            </View>
+
+            <View style={styles.inputContainer}>
+              <Text style={styles.inputLabel}>Confirm Password</Text>
+              <View style={styles.input}>
+                <Lock size={20} color={colors.mutedForeground} />
+                <TextInput
+                  style={styles.inputText}
+                  placeholder="••••••••"
+                  placeholderTextColor={colors.mutedForeground}
+                  value={confirmPassword}
+                  onChangeText={setConfirmPassword}
+                  secureTextEntry
+                />
+              </View>
+            </View>
+
             <TouchableOpacity
-              style={[styles.socialSignInButton, styles.googleButton]}
-              onPress={handleGoogleSignIn}
+              style={styles.createAccountButton}
+              onPress={handleSignUp}
+              disabled={loading}
             >
-              <Chrome size={20} color="#4285F4" />
-              <Text style={[styles.socialSignInText, styles.googleText]}>
-                Continue with Google
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.socialSignInButton, styles.appleButton]}
-              onPress={handleAppleSignIn}
-            >
-              <Apple size={20} color="#FFFFFF" />
-              <Text style={[styles.socialSignInText, styles.appleText]}>
-                Continue with Apple
-              </Text>
+              {loading ? (
+                <ActivityIndicator color={colors.primaryForeground} />
+              ) : (
+                <Text style={styles.createAccountButtonText}>Create Account</Text>
+              )}
             </TouchableOpacity>
           </View>
-
-          <View style={styles.divider}>
-            <View style={styles.dividerLine} />
-            <Text style={styles.dividerText}>or</Text>
-            <View style={styles.dividerLine} />
-          </View>
-
-          <View style={styles.inputContainer}>
-            <Text style={styles.inputLabel}>Full Name</Text>
-            <View style={styles.input}>
-              <User size={20} color={colors.mutedForeground} />
-              <TextInput
-                style={styles.inputText}
-                placeholder="John Doe"
-                placeholderTextColor={colors.mutedForeground}
-                value={fullName}
-                onChangeText={setFullName}
-                autoCapitalize="words"
-              />
-            </View>
-          </View>
-
-          <View style={styles.inputContainer}>
-            <Text style={styles.inputLabel}>Email Address</Text>
-            <View style={styles.input}>
-              <Mail size={20} color={colors.mutedForeground} />
-              <TextInput
-                style={styles.inputText}
-                placeholder="you@example.com"
-                placeholderTextColor={colors.mutedForeground}
-                value={email}
-                onChangeText={setEmail}
-                keyboardType="email-address"
-                autoCapitalize="none"
-              />
-            </View>
-          </View>
-
-          <View style={styles.inputContainer}>
-            <Text style={styles.inputLabel}>Password</Text>
-            <View style={styles.input}>
-              <Lock size={20} color={colors.mutedForeground} />
-              <TextInput
-                style={styles.inputText}
-                placeholder="••••••••"
-                placeholderTextColor={colors.mutedForeground}
-                value={password}
-                onChangeText={setPassword}
-                secureTextEntry
-              />
-            </View>
-          </View>
-
-          <View style={styles.inputContainer}>
-            <Text style={styles.inputLabel}>Confirm Password</Text>
-            <View style={styles.input}>
-              <Lock size={20} color={colors.mutedForeground} />
-              <TextInput
-                style={styles.inputText}
-                placeholder="••••••••"
-                placeholderTextColor={colors.mutedForeground}
-                value={confirmPassword}
-                onChangeText={setConfirmPassword}
-                secureTextEntry
-              />
-            </View>
-          </View>
-
-          <TouchableOpacity
-            style={styles.createAccountButton}
-            onPress={handleSignUp}
-            disabled={loading}
-          >
-            {loading ? (
-              <ActivityIndicator color={colors.primaryForeground} />
-            ) : (
-              <Text style={styles.createAccountButtonText}>Create Account</Text>
-            )}
-          </TouchableOpacity>
-        </View>
 
           <View style={styles.signInContainer}>
             <Text style={styles.signInText}>Already have an account? </Text>
