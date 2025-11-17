@@ -1,13 +1,13 @@
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 
-interface Recipe {
+export interface Favorite {
   id: string;
   content: string;
 }
 
 interface FavoritesContextType {
-  favorites: Recipe[];
-  addFavorite: (recipe: Recipe) => void;
+  favorites: Favorite[];
+  addFavorite: (recipe: Favorite) => void;
 }
 
 const FavoritesContext = createContext<FavoritesContextType>({
@@ -20,9 +20,9 @@ interface FavoritesProviderProps {
 }
 
 export const FavoritesProvider = ({ children }: FavoritesProviderProps) => {
-  const [favorites, setFavorites] = useState<Recipe[]>([]);
+  const [favorites, setFavorites] = useState<Favorite[]>([]);
 
-  const addFavorite = (recipe: Recipe) => {
+  const addFavorite = (recipe: Favorite) => {
     setFavorites(prevFavorites => [...prevFavorites, recipe]);
   };
 

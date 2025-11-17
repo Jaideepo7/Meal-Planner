@@ -101,7 +101,7 @@ export default function HealthGoalsScreen() {
 
   const handleFinish = () => {
     setGoals(selectedGoals);
-    router.push('/(app)/ask-ai');
+    router.replace('/ask-ai');
   };
 
   return (

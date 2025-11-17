@@ -6,30 +6,30 @@ import {
   ScrollView,
   TouchableOpacity,
   SafeAreaView,
-  useColorScheme,
 } from 'react-native';
 import { useRouter } from 'expo-router';
-import { User, Bell, Lock, HelpCircle, Mail, ChevronRight, LogOut } from 'lucide-react-native';
+import { User, Bell, Lock, HelpCircle, Mail, ChevronRight, LogOut, Settings, Award, TrendingUp, BookHeart } from 'lucide-react-native';
 import Colors from '../../../constants/Colors';
 import { useAuth } from '../../../context/AuthContext';
+import { useTheme } from '../../../context/ThemeContext';
 
-function getStyles(colors: typeof Colors.light, colorScheme: string) {
+function getStyles(colors: typeof Colors.light) {
   return StyleSheet.create({
-    safeArea: {
-      flex: 1,
-      backgroundColor: colors.background,
-    },
-    container: {
-      flex: 1,
-    },
+    safeArea: { flex: 1, backgroundColor: colors.background },
+    container: { flex: 1 },
     header: {
-      backgroundColor: colors.primary,
-      paddingHorizontal: 24,
-      paddingTop: 60,
-      paddingBottom: 40,
-      borderBottomLeftRadius: 30,
-      borderBottomRightRadius: 30,
-      alignItems: 'center',
+        backgroundColor: colors.primary,
+        paddingHorizontal: 24,
+        paddingTop: 60,
+        paddingBottom: 40,
+        borderBottomLeftRadius: 40,
+        borderBottomRightRadius: 40,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.1,
+        shadowRadius: 8,
+        elevation: 5,
     },
     avatar: {
       width: 100,
@@ -39,12 +39,13 @@ function getStyles(colors: typeof Colors.light, colorScheme: string) {
       alignItems: 'center',
       justifyContent: 'center',
       marginBottom: 16,
+      borderWidth: 3,
+      borderColor: colors.primary,
     },
-    avatarIcon: {
-      width: 80,
-      height: 80,
-      borderRadius: 40,
-      backgroundColor: colors.primary,
+    avatarIconContainer: {
+      width: '100%',
+      height: '100%',
+      borderRadius: 50,
       alignItems: 'center',
       justifyContent: 'center',
     },
@@ -54,137 +55,84 @@ function getStyles(colors: typeof Colors.light, colorScheme: string) {
       color: colors.primaryForeground,
       marginBottom: 8,
     },
-    emailContainer: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      gap: 8,
+    emailContainer: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+    emailText: { fontSize: 16, color: colors.primaryForeground, opacity: 0.9 },
+    content: { flex: 1, padding: 24 },
+    statsSection: {
+        marginBottom: 32,
     },
-    emailText: {
-      fontSize: 16,
-      color: colors.primaryForeground,
-      opacity: 0.8,
+    sectionTitle: {
+      fontSize: 22,
+      fontWeight: 'bold',
+      color: colors.text,
+      marginBottom: 20,
     },
-    content: {
+    statsContainer: { flexDirection: 'row', gap: 16 },
+    statCard: {
       flex: 1,
-      padding: 24,
+      backgroundColor: colors.card,
+      borderRadius: 20,
+      padding: 20,
+      alignItems: 'center',
+      borderWidth: 1,
+      borderColor: colors.border,
     },
-    settingsSection: {
-      marginBottom: 24,
+    statIcon: {
+      marginBottom: 12,
+      backgroundColor: colors.primary + '20',
+      borderRadius: 20,
+      padding: 10,
     },
-    settingsItem: {
+    statValue: { fontSize: 28, fontWeight: 'bold', color: colors.primary, marginBottom: 6 },
+    statLabel: { fontSize: 14, color: colors.mutedForeground, textAlign: 'center', fontWeight: '500' },
+    
+    menuSection: { marginBottom: 24 },
+    menuCard: {
+        backgroundColor: colors.card,
+        borderRadius: 20,
+        borderWidth: 1,
+        borderColor: colors.border,
+    },
+    menuItem: {
       flexDirection: 'row',
       alignItems: 'center',
-      backgroundColor: colors.card,
-      borderRadius: 12,
       padding: 16,
-      marginBottom: 12,
+      borderBottomWidth: 1,
+      borderBottomColor: colors.border,
     },
-    settingsIcon: {
+    menuItemLast: { borderBottomWidth: 0 },
+    menuIcon: {
       width: 40,
       height: 40,
       borderRadius: 20,
-      backgroundColor: colors.muted,
       alignItems: 'center',
       justifyContent: 'center',
       marginRight: 16,
     },
-    settingsText: {
-      flex: 1,
-    },
-    settingsTitle: {
-      fontSize: 16,
-      fontWeight: '600',
-      color: colors.cardForeground,
-      marginBottom: 4,
-    },
-    settingsDescription: {
-      fontSize: 14,
-      color: colors.mutedForeground,
-    },
-    statsSection: {
-      marginTop: 24,
-      marginBottom: 24,
-    },
-    statsTitle: {
-      fontSize: 20,
-      fontWeight: 'bold',
-      color: colors.primary,
-      marginBottom: 16,
-    },
-    statsContainer: {
-      flexDirection: 'row',
-      gap: 12,
-    },
-    statCard: {
-      flex: 1,
-      backgroundColor: colorScheme === 'dark' ? '#F5EDD1' : colors.card,
-      borderRadius: 12,
-      padding: 16,
-      alignItems: 'center',
-      borderWidth: 1,
-      borderColor: colorScheme === 'dark' ? '#2C5F2D' : colors.primary,
-    },
-    statValue: {
-      fontSize: 28,
-      fontWeight: 'bold',
-      color: colorScheme === 'dark' ? '#2C5F2D' : colors.primary,
-      marginBottom: 4,
-    },
-    statLabel: {
-      fontSize: 12,
-      color: colorScheme === 'dark' ? 'rgba(44, 95, 45, 0.6)' : colors.mutedForeground,
-      textAlign: 'center',
-    },
+    menuTextContainer: { flex: 1 },
+    menuTitle: { fontSize: 16, fontWeight: '600', color: colors.cardForeground },
   });
 }
 
 export default function ProfileScreen() {
   const router = useRouter();
-  const colorScheme = useColorScheme() ?? 'light';
-  const colors = Colors[colorScheme];
-  const styles = getStyles(colors, colorScheme);
+  const { theme } = useTheme();
+  const colors = Colors[theme];
+  const styles = getStyles(colors);
   const { user, logout } = useAuth();
 
-  // Mock data - in real app, fetch from Firebase
+  // Mock data
   const stats = {
     recipesSaved: 24,
     mealsLogged: 18,
     dayStreak: 7,
   };
 
-  const settingsItems = [
-    {
-      icon: User,
-      title: 'Edit Profile',
-      description: 'Update your personal information',
-      onPress: () => {},
-    },
-    {
-      icon: Bell,
-      title: 'Notifications',
-      description: 'Manage your notification preferences',
-      onPress: () => {},
-    },
-    {
-      icon: Lock,
-      title: 'Privacy & Security',
-      description: 'Password and security settings',
-      onPress: () => {},
-    },
-    {
-      icon: HelpCircle,
-      title: 'Help & Support',
-      description: 'Get help with the app',
-      onPress: () => {},
-    },
-    {
-      icon: LogOut,
-      title: 'Sign Out',
-      description: 'Sign out of your account',
-      onPress: async () => {
-        await logout();
-      },
-    },
+  const menuItems = [
+    { icon: User, bgColor: '#3b82f6', title: 'Edit Profile', screen: '/(app)/(tabs)/settings' },
+    { icon: BookHeart, bgColor: '#ec4899', title: 'Favorite Recipes', screen: '/(app)/(tabs)/favorites' },
+    { icon: Settings, bgColor: '#8b5cf6', title: 'Settings', screen: '/(app)/(tabs)/settings' },
+    { icon: HelpCircle, bgColor: '#f97316', title: 'Help & Support', screen: '/(app)/(tabs)/settings' },
   ];
 
   return (
@@ -192,8 +140,8 @@ export default function ProfileScreen() {
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <View style={styles.header}>
           <View style={styles.avatar}>
-            <View style={styles.avatarIcon}>
-              <User size={40} color={colors.primaryForeground} />
+            <View style={styles.avatarIconContainer}>
+              <User size={50} color={colors.primary} />
             </View>
           </View>
           <Text style={styles.name}>
@@ -208,40 +156,50 @@ export default function ProfileScreen() {
         </View>
 
         <View style={styles.content}>
-          {settingsItems.map((item, index) => (
-            <TouchableOpacity
-              key={index}
-              style={styles.settingsItem}
-              onPress={item.onPress}
-            >
-              <View style={styles.settingsIcon}>
-                <item.icon size={20} color={colors.primary} />
-              </View>
-              <View style={styles.settingsText}>
-                <Text style={styles.settingsTitle}>{item.title}</Text>
-                <Text style={styles.settingsDescription}>{item.description}</Text>
-              </View>
-              <ChevronRight size={20} color={colors.mutedForeground} />
-            </TouchableOpacity>
-          ))}
-
-          <View style={styles.statsSection}>
-            <Text style={styles.statsTitle}>Your Stats</Text>
-            <View style={styles.statsContainer}>
-              <View style={styles.statCard}>
-                <Text style={styles.statValue}>{stats.recipesSaved}</Text>
-                <Text style={styles.statLabel}>Recipes Saved</Text>
-              </View>
-              <View style={styles.statCard}>
-                <Text style={styles.statValue}>{stats.mealsLogged}</Text>
-                <Text style={styles.statLabel}>Meals Logged</Text>
-              </View>
-              <View style={styles.statCard}>
-                <Text style={styles.statValue}>{stats.dayStreak}</Text>
-                <Text style={styles.statLabel}>Day Streak</Text>
-              </View>
+            <View style={styles.statsSection}>
+                <Text style={styles.sectionTitle}>Your Stats</Text>
+                <View style={styles.statsContainer}>
+                    <View style={styles.statCard}>
+                        <View style={styles.statIcon}><BookHeart size={24} color={colors.primary} /></View>
+                        <Text style={styles.statValue}>{stats.recipesSaved}</Text>
+                        <Text style={styles.statLabel}>Recipes Saved</Text>
+                    </View>
+                    <View style={styles.statCard}>
+                        <View style={styles.statIcon}><TrendingUp size={24} color={colors.primary} /></View>
+                        <Text style={styles.statValue}>{stats.dayStreak}</Text>
+                        <Text style={styles.statLabel}>Day Streak</Text>
+                    </View>
+                    <View style={styles.statCard}>
+                        <View style={styles.statIcon}><Award size={24} color={colors.primary} /></View>
+                        <Text style={styles.statValue}>{stats.mealsLogged}</Text>
+                        <Text style={styles.statLabel}>Meals Logged</Text>
+                    </View>
+                </View>
             </View>
-          </View>
+
+            <View style={styles.menuSection}>
+                <Text style={styles.sectionTitle}>Menu</Text>
+                <View style={styles.menuCard}>
+                    {menuItems.map((item, index) => (
+                        <TouchableOpacity key={index} style={[styles.menuItem, index === menuItems.length - 1 && styles.menuItemLast]} onPress={() => router.push(item.screen as any)}>
+                            <View style={[styles.menuIcon, { backgroundColor: item.bgColor + '20' }]}>
+                                <item.icon size={20} color={item.bgColor} />
+                            </View>
+                            <View style={styles.menuTextContainer}>
+                                <Text style={styles.menuTitle}>{item.title}</Text>
+                            </View>
+                            <ChevronRight size={20} color={colors.mutedForeground} />
+                        </TouchableOpacity>
+                    ))}
+                </View>
+            </View>
+
+            <TouchableOpacity onPress={async () => await logout()} style={{alignItems: 'center', marginVertical: 20}}>
+                <View style={{flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: colors.card, paddingVertical: 12, paddingHorizontal: 24, borderRadius: 30}}>
+                    <LogOut size={20} color={'#ef4444'} />
+                    <Text style={{color: '#ef4444', fontWeight: '600', fontSize: 16}}>Sign Out</Text>
+                </View>
+            </TouchableOpacity>
         </View>
       </ScrollView>
     </SafeAreaView>

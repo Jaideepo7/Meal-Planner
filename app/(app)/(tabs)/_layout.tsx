@@ -55,15 +55,6 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="ask-ai"
-        options={{
-          title: 'Ask AI',
-          tabBarIcon: ({ color, focused }) => (
-            <Sparkles size={24} color={color} fill={focused ? color : 'none'} />
-          ),
-        }}
-      />
-      <Tabs.Screen
         name="profile"
         options={{
           title: 'Profile',

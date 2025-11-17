@@ -6,13 +6,13 @@ import {
   ScrollView,
   TouchableOpacity,
   SafeAreaView,
-  useColorScheme,
   Image,
 } from 'react-native';
 import { useRouter } from 'expo-router';
-import { ChefHat, Sparkles, BookOpen, TrendingUp, Clock, Heart } from 'lucide-react-native';
+import { ChefHat, Sparkles, BookOpen, TrendingUp, Clock, Heart, ArrowRight } from 'lucide-react-native';
 import Colors from '../../../constants/Colors';
 import { useAuth } from '../../../context/AuthContext';
+import { useTheme } from '../../../context/ThemeContext';
 
 function getStyles(colors: typeof Colors.light) {
   return StyleSheet.create({
@@ -28,10 +28,15 @@ function getStyles(colors: typeof Colors.light) {
       paddingHorizontal: 24,
       paddingTop: 60,
       paddingBottom: 32,
-      borderBottomLeftRadius: 30,
-      borderBottomRightRadius: 30,
+      borderBottomLeftRadius: 40,
+      borderBottomRightRadius: 40,
       flexDirection: 'row',
       alignItems: 'center',
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.1,
+      shadowRadius: 8,
+      elevation: 5,
     },
     headerIcon: {
       width: 50,
@@ -54,7 +59,7 @@ function getStyles(colors: typeof Colors.light) {
     headerSubtitle: {
       fontSize: 16,
       color: colors.primaryForeground,
-      opacity: 0.8,
+      opacity: 0.9,
     },
     content: {
       flex: 1,
@@ -62,55 +67,69 @@ function getStyles(colors: typeof Colors.light) {
     },
     statsContainer: {
       flexDirection: 'row',
-      gap: 12,
-      marginBottom: 24,
+      gap: 16,
+      marginBottom: 32,
     },
     statCard: {
       flex: 1,
       backgroundColor: colors.card,
-      borderRadius: 16,
-      padding: 16,
+      borderRadius: 20,
+      padding: 20,
       alignItems: 'center',
+      borderWidth: 1,
+      borderColor: colors.border,
     },
     statIcon: {
-      marginBottom: 8,
+      marginBottom: 12,
+      backgroundColor: colors.primary + '20',
+      borderRadius: 20,
+      padding: 10,
     },
     statValue: {
-      fontSize: 32,
+      fontSize: 28,
       fontWeight: 'bold',
       color: colors.primary,
-      marginBottom: 4,
+      marginBottom: 6,
     },
     statLabel: {
       fontSize: 14,
       color: colors.mutedForeground,
+      fontWeight: '500',
     },
     sectionTitle: {
-      fontSize: 20,
+      fontSize: 22,
       fontWeight: 'bold',
-      color: colors.primary,
-      marginBottom: 16,
+      color: colors.text,
+      marginBottom: 20,
     },
     quickActionsContainer: {
-      gap: 12,
-      marginBottom: 24,
+      gap: 16,
+      marginBottom: 32,
     },
     quickActionButton: {
       borderRadius: 16,
       padding: 20,
       flexDirection: 'row',
       alignItems: 'center',
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.05,
+      shadowRadius: 6,
+      elevation: 3,
     },
     quickActionPrimary: {
       backgroundColor: colors.primary,
     },
     quickActionSecondary: {
       backgroundColor: colors.card,
-      borderWidth: 2,
-      borderColor: colors.primary,
+      borderWidth: 1,
+      borderColor: colors.border,
     },
     quickActionIcon: {
-      marginRight: 16,
+      marginRight: 20,
+      backgroundColor: 'rgba(255, 255, 255, 0.2)',
+      padding: 10,
+      borderRadius: 22,
     },
     quickActionText: {
       flex: 1,
@@ -118,7 +137,7 @@ function getStyles(colors: typeof Colors.light) {
     quickActionTitle: {
       fontSize: 18,
       fontWeight: 'bold',
-      marginBottom: 4,
+      marginBottom: 6,
     },
     quickActionTitlePrimary: {
       color: colors.primaryForeground,
@@ -131,18 +150,24 @@ function getStyles(colors: typeof Colors.light) {
     },
     quickActionDescriptionPrimary: {
       color: colors.primaryForeground,
-      opacity: 0.8,
+      opacity: 0.9,
     },
     quickActionDescriptionSecondary: {
       color: colors.mutedForeground,
+    },
+    arrowIcon: {
+        position: 'absolute',
+        right: 20,
     },
     recommendedContainer: {
       marginBottom: 24,
     },
     recommendedCard: {
       backgroundColor: colors.card,
-      borderRadius: 16,
+      borderRadius: 20,
       overflow: 'hidden',
+      borderWidth: 1,
+      borderColor: colors.border,
     },
     recommendedImage: {
       width: '100%',
@@ -150,35 +175,36 @@ function getStyles(colors: typeof Colors.light) {
       backgroundColor: colors.muted,
     },
     recommendedInfo: {
-      padding: 16,
+      padding: 20,
     },
     recommendedTitle: {
       fontSize: 18,
       fontWeight: 'bold',
       color: colors.cardForeground,
-      marginBottom: 8,
+      marginBottom: 12,
     },
     recommendedMeta: {
       flexDirection: 'row',
       alignItems: 'center',
-      gap: 16,
+      gap: 24,
     },
     recommendedMetaItem: {
       flexDirection: 'row',
       alignItems: 'center',
-      gap: 4,
+      gap: 6,
     },
     recommendedMetaText: {
       fontSize: 14,
       color: colors.mutedForeground,
+      fontWeight: '500',
     },
   });
 }
 
 export default function HomeScreen() {
   const router = useRouter();
-  const colorScheme = useColorScheme() ?? 'light';
-  const colors = Colors[colorScheme];
+  const { theme } = useTheme();
+  const colors = Colors[theme];
   const styles = getStyles(colors);
   const { user } = useAuth();
 
@@ -197,7 +223,7 @@ export default function HomeScreen() {
           </View>
           <View style={styles.headerText}>
             <Text style={styles.headerTitle}>Welcome Back!</Text>
-            <Text style={styles.headerSubtitle}>What would you like to cook today?</Text>
+            <Text style={styles.headerSubtitle}>Ready to cook something amazing?</Text>
           </View>
         </View>
 
@@ -223,25 +249,26 @@ export default function HomeScreen() {
           <View style={styles.quickActionsContainer}>
             <TouchableOpacity
               style={[styles.quickActionButton, styles.quickActionPrimary]}
-              onPress={() => router.push('/(app)/ask-ai')}
+              onPress={() => router.push('/onboarding/food-preferences')}
             >
               <View style={styles.quickActionIcon}>
                 <Sparkles size={24} color={colors.primaryForeground} />
               </View>
               <View style={styles.quickActionText}>
                 <Text style={[styles.quickActionTitle, styles.quickActionTitlePrimary]}>
-                  Ask AI
+                  Ask AI Chef
                 </Text>
                 <Text style={[styles.quickActionDescription, styles.quickActionDescriptionPrimary]}>
-                  Get recipe ideas and more
+                  Get recipe ideas, tips, and more
                 </Text>
               </View>
+              <ArrowRight size={20} color={colors.primaryForeground} style={styles.arrowIcon}/>
             </TouchableOpacity>
             <TouchableOpacity
               style={[styles.quickActionButton, styles.quickActionSecondary]}
-              onPress={() => router.push('/(app)/ask-ai')}
+              onPress={() => router.push('/ask-ai')}
             >
-              <View style={styles.quickActionIcon}>
+              <View style={[styles.quickActionIcon, {backgroundColor: 'transparent'}]}>
                 <BookOpen size={24} color={colors.primary} />
               </View>
               <View style={styles.quickActionText}>
@@ -249,21 +276,17 @@ export default function HomeScreen() {
                   Browse Recipes
                 </Text>
                 <Text style={[styles.quickActionDescription, styles.quickActionDescriptionSecondary]}>
-                  Discover new meal ideas
+                  Discover new and exciting meal ideas
                 </Text>
               </View>
+              <ArrowRight size={20} color={colors.primary} style={styles.arrowIcon}/>
             </TouchableOpacity>
           </View>
 
           <Text style={styles.sectionTitle}>Recommended for You</Text>
           <View style={styles.recommendedContainer}>
             <TouchableOpacity style={styles.recommendedCard}>
-              <View style={styles.recommendedImage}>
-                {/* Placeholder for recipe image */}
-                <View style={{ flex: 1, backgroundColor: colors.muted, justifyContent: 'center', alignItems: 'center' }}>
-                  <ChefHat size={48} color={colors.mutedForeground} />
-                </View>
-              </View>
+              <Image source={{uri: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c'}} style={styles.recommendedImage} />
               <View style={styles.recommendedInfo}>
                 <Text style={styles.recommendedTitle}>Grilled Chicken Salad Bowl</Text>
                 <View style={styles.recommendedMeta}>

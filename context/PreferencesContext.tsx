@@ -1,105 +1,89 @@
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import React, { createContext, useContext, useState, ReactNode, useEffect, useMemo, useCallback } from 'react';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { db } from '../firebase/config';
-import { useAuth } from './AuthContext';
-
-interface PreferencesContextType {
-  cuisines: string[];
-  setCuisines: (cuisines: string[]) => void;
-  restrictions: string[];
-  setRestrictions: (restrictions: string[]) => void;
-  goals: string[];
-  setGoals: (goals: string[]) => void;
+interface PreferencesState {
+  cuisinePreferences: string[];
+  dietaryRestrictions: string[];
+  healthGoals: string[];
 }
 
-const PreferencesContext = createContext<PreferencesContextType>({
-  cuisines: [],
-  setCuisines: () => {},
-  restrictions: [],
-  setRestrictions: () => {},
-  goals: [],
-  setGoals: () => {},
-});
-
-export const usePreferences = () => {
-  return useContext(PreferencesContext);
-};
-
-interface PreferencesProviderProps {
-  children: ReactNode;
+interface PreferencesContextType extends PreferencesState {
+  setCuisinePreferences: (cuisines: string[]) => void;
+  setDietaryRestrictions: (restrictions: string[]) => void;
+  setHealthGoals: (goals: string[]) => void;
+  isLoaded: boolean;
 }
 
-export const PreferencesProvider = ({ children }: PreferencesProviderProps) => {
-  const [cuisines, setCuisines] = useState<string[]>([]);
-  const [restrictions, setRestrictions] = useState<string[]>([]);
-  const [goals, setGoals] = useState<string[]>([]);
-  const { user } = useAuth();
+const PreferencesContext = createContext<PreferencesContextType | undefined>(undefined);
+
+export const PreferencesProvider = ({ children }: { children: ReactNode }) => {
+  const [preferences, setPreferences] = useState<PreferencesState>({
+    cuisinePreferences: [],
+    dietaryRestrictions: [],
+    healthGoals: [],
+  });
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    const fetchPreferences = async () => {
-      if (user) {
-        try {
-          const docRef = doc(db, 'userPreferences', user.uid);
-          const docSnap = await getDoc(docRef);
-          if (docSnap.exists()) {
-            const data = docSnap.data();
-            setCuisines(data.cuisines || []);
-            setRestrictions(data.restrictions || []);
-            setGoals(data.goals || []);
-          }
-        } catch (error) {
-          console.error("Error fetching preferences:", error);
+    const loadPreferences = async () => {
+      try {
+        const storedPrefs = await AsyncStorage.getItem('userPreferences');
+        if (storedPrefs) {
+          const parsedPrefs = JSON.parse(storedPrefs);
+          // Data migration to handle both old and new keys
+          setPreferences({
+            cuisinePreferences: parsedPrefs.cuisinePreferences || parsedPrefs.cuisines || [],
+            dietaryRestrictions: parsedPrefs.dietaryRestrictions || parsedPrefs.restrictions || [],
+            healthGoals: parsedPrefs.healthGoals || parsedPrefs.goals || [],
+          });
         }
+      } catch (error) {
+        console.error('Failed to load preferences:', error);
+      } finally {
+        setIsLoaded(true);
       }
     };
-    fetchPreferences();
-  }, [user]);
+
+    loadPreferences();
+  }, []);
 
   useEffect(() => {
-    const savePreferences = async () => {
-      if (user) {
-        try {
-          const docRef = doc(db, 'userPreferences', user.uid);
-          await setDoc(docRef, { cuisines, restrictions, goals }, { merge: true });
-        } catch (error) {
-          console.error("Error saving preferences:", error);
-        }
-      }
-    };
-    
-    // Debounce saves to avoid excessive writes
-    const timeoutId = setTimeout(() => {
-      savePreferences();
-    }, 500);
-    
-    return () => clearTimeout(timeoutId);
-  }, [cuisines, restrictions, goals, user]);
+    if (isLoaded) {
+      AsyncStorage.setItem('userPreferences', JSON.stringify(preferences));
+    }
+  }, [preferences, isLoaded]);
 
-  const setCuisinesMemo = useCallback((newCuisines: string[]) => {
-    setCuisines(newCuisines);
-  }, []);
+  const setCuisinePreferences = (cuisinePreferences: string[]) => {
+    setPreferences(prev => ({ ...prev, cuisinePreferences }));
+  };
 
-  const setRestrictionsMemo = useCallback((newRestrictions: string[]) => {
-    setRestrictions(newRestrictions);
-  }, []);
+  const setDietaryRestrictions = (dietaryRestrictions: string[]) => {
+    setPreferences(prev => ({ ...prev, dietaryRestrictions }));
+  };
 
-  const setGoalsMemo = useCallback((newGoals: string[]) => {
-    setGoals(newGoals);
-  }, []);
-
-  const value = useMemo(() => ({
-    cuisines,
-    setCuisines: setCuisinesMemo,
-    restrictions,
-    setRestrictions: setRestrictionsMemo,
-    goals,
-    setGoals: setGoalsMemo,
-  }), [cuisines, restrictions, goals, setCuisinesMemo, setRestrictionsMemo, setGoalsMemo]);
+  const setHealthGoals = (healthGoals: string[]) => {
+    setPreferences(prev => ({ ...prev, healthGoals }));
+  };
 
   return (
-    <PreferencesContext.Provider value={value}>
+    <PreferencesContext.Provider 
+      value={{ 
+        ...preferences, 
+        setCuisinePreferences, 
+        setDietaryRestrictions, 
+        setHealthGoals,
+        isLoaded 
+      }}
+    >
       {children}
     </PreferencesContext.Provider>
   );
+};
+
+export const usePreferences = () => {
+  const context = useContext(PreferencesContext);
+  if (context === undefined) {
+    throw new Error('usePreferences must be used within a PreferencesProvider');
+  }
+  return context;
 };

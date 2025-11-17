@@ -1,9 +1,8 @@
-
 import { StyleSheet, View, Text, TextInput, TouchableOpacity, ScrollView, SafeAreaView, useColorScheme, ActivityIndicator, KeyboardAvoidingView, Platform } from 'react-native';
 import { ChevronLeft, Send, ChefHat, Sparkles, ThumbsUp, ThumbsDown } from 'lucide-react-native';
 import Colors from '../../../constants/Colors';
 import { useRouter } from 'expo-router';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { usePreferences } from '../../../context/PreferencesContext';
 import { usePantry } from '../../../context/PantryContext';
 import { useFavorites } from '../../../context/FavoritesContext';
@@ -161,15 +160,25 @@ export default function AskAiScreen() {
   const colorScheme = useColorScheme() ?? 'light';
   const colors = Colors[colorScheme];
   const styles = getStyles(colors);
-  const { cuisines, restrictions, goals } = usePreferences();
+  const { cuisinePreferences, dietaryRestrictions, healthGoals } = usePreferences();
   const { pantry } = usePantry();
   const { addFavorite } = useFavorites();
   const [message, setMessage] = useState('');
-  const [chatHistory, setChatHistory] = useState<Message[]>([
-    { id: '0', role: 'assistant', content: "Hi! I'm your AI meal assistant. Based on your preferences, I can help you find recipes, plan meals, and answer questions about your dietary goals. What would you like to know?", feedback: null },
-  ]);
+  const [chatHistory, setChatHistory] = useState<Message[]>(
+    []
+  );
   const [loading, setLoading] = useState(false);
   const scrollViewRef = useRef<ScrollView>(null);
+
+  useEffect(() => {
+    const welcomeMessage = {
+      id: '0',
+      role: 'assistant' as const,
+      content: `Hi! I'm your AI meal assistant. Based on your preferences, I can help you find recipes, plan meals, and answer questions about your dietary goals. What would you like to know?`,
+      feedback: null as null | 'like' | 'dislike',
+    };
+    setChatHistory([welcomeMessage]);
+  }, []);
 
   const suggestedQuestions = [
     "What can I make with my current ingredients?",
@@ -212,10 +221,10 @@ export default function AskAiScreen() {
     try {
       const aiResponseText = await sendMessageToGemini(
         messageToSend,
-        chatHistory,
-        cuisines,
-        restrictions,
-        goals,
+        chatHistory.slice(0, -1), // Send history without the new user message
+        cuisinePreferences,
+        dietaryRestrictions,
+        healthGoals,
         pantry
       );
       
@@ -280,6 +289,7 @@ export default function AskAiScreen() {
                     ) : (
                       <>
                         <Markdown style={{text: styles.assistantMessage}}>{msg.content}</Markdown>
+                        {msg.content.includes('Sorry') ? null : (
                         <View style={styles.feedbackContainer}>
                           <TouchableOpacity onPress={() => handleFeedback(index, 'like')}>
                             <ThumbsUp size={18} color={msg.feedback === 'like' ? colors.primary : colors.mutedForeground} />
@@ -288,6 +298,7 @@ export default function AskAiScreen() {
                             <ThumbsDown size={18} color={msg.feedback === 'dislike' ? colors.destructive : colors.mutedForeground} />
                           </TouchableOpacity>
                         </View>
+                        )}
                       </>
                     )}
                   </View>
