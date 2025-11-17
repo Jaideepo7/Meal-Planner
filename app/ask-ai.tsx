@@ -1,25 +1,25 @@
+import { useFavorites } from "@/context/FavoritesContext";
+import { useRouter } from "expo-router";
+import { ChefHat, ChevronLeft, Send, Sparkles } from "lucide-react-native";
+import React, { useEffect, useRef, useState } from "react";
 import {
-  StyleSheet,
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  ScrollView,
-  SafeAreaView,
-  useColorScheme,
   ActivityIndicator,
   KeyboardAvoidingView,
   Platform,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  useColorScheme,
+  View,
 } from "react-native";
-import { ChevronLeft, Send, ChefHat, Sparkles } from "lucide-react-native";
+import Markdown from "react-native-markdown-display";
 import Colors from "../constants/Colors";
-import { useRouter } from "expo-router";
-import { useState, useRef, useEffect } from "react";
-import { usePreferences } from "../context/PreferencesContext";
 import { usePantry } from "../context/PantryContext";
+import { usePreferences } from "../context/PreferencesContext";
 import { sendMessageToGemini } from "../services/gemini";
-import React from "react";
-import { useFavorites } from "@/context/FavoritesContext";
 
 interface Message {
   id: string;
@@ -263,7 +263,7 @@ export default function AskAiScreen() {
       >
         <View style={styles.header}>
           <TouchableOpacity
-            onPress={() => router.back()}
+            onPress={() => router.push("/")}
             style={styles.backButton}
           >
             <ChevronLeft size={24} color={colors.primaryForeground} />
@@ -293,7 +293,7 @@ export default function AskAiScreen() {
           }
         >
           {chatHistory.map((msg, index) => (
-            <View key={index} style={styles.messageContainer}>
+            <View key={msg.id || index} style={styles.messageContainer}>
               <View
                 style={
                   msg.role === "user"
@@ -301,15 +301,20 @@ export default function AskAiScreen() {
                     : styles.assistantMessageContainer
                 }
               >
-                <Text
-                  style={
-                    msg.role === "user"
-                      ? styles.userMessage
-                      : styles.assistantMessage
-                  }
-                >
-                  {msg.content}
-                </Text>
+                {msg.role === "user" ? (
+                  <Text style={styles.userMessage}>{msg.content}</Text>
+                ) : (
+                  <Markdown
+                    style={{
+                      body: { color: colors.cardForeground, fontSize: 14 },
+                      heading1: { color: colors.primary },
+                      heading2: { color: colors.primary },
+                      link: { color: colors.primary },
+                    }}
+                  >
+                    {msg.content}
+                  </Markdown>
+                )}
               </View>
             </View>
           ))}
