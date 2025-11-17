@@ -1,12 +1,10 @@
 
 import { Tabs } from 'expo-router';
 import { Heart, Home, User, Settings, Package, Sparkles } from 'lucide-react-native';
-import Colors from '../../../constants/Colors';
-import { useColorScheme } from 'react-native';
+import { useTheme } from '../../../context/ThemeContext';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme() ?? 'light';
-  const colors = Colors[colorScheme];
+  const { colors } = useTheme();
 
   return (
     <Tabs
@@ -51,15 +49,6 @@ export default function TabLayout() {
           title: 'Home',
           tabBarIcon: ({ color, focused }) => (
             <Home size={24} color={color} fill={focused ? color : 'none'} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="ask-ai"
-        options={{
-          title: 'Ask AI',
-          tabBarIcon: ({ color, focused }) => (
-            <Sparkles size={24} color={color} fill={focused ? color : 'none'} />
           ),
         }}
       />

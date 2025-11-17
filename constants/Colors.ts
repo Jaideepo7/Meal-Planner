@@ -1,8 +1,7 @@
-
 const tintColorLight = '#2C5F2D';
 const tintColorDark = '#F5EDD1';
 
-export default {
+const Colors = {
   light: {
     text: '#2C5F2D',
     background: '#F5EDD1',
@@ -26,23 +25,25 @@ export default {
   },
   dark: {
     text: '#F5EDD1',
-    background: '#2C5F2D',
+    background: '#1A3A1A',
     tint: tintColorDark,
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorDark,
     primary: '#F5EDD1',
-    primaryForeground: '#2C5F2D',
-    secondary: '#2C5F2D',
+    primaryForeground: '#1A3A1A',
+    secondary: '#1A3A1A',
     secondaryForeground: '#F5EDD1',
     muted: '#2C5F2D',
     mutedForeground: 'rgba(245, 237, 209, 0.6)',
-    accent: '#E5E5E5',
-    accentForeground: '#2C5F2D',
+    accent: '#4A784A',
+    accentForeground: '#F5EDD1',
     destructive: '#d4183d',
-    border: 'rgba(255, 255, 255, 0.1)',
+    border: 'rgba(255, 255, 255, 0.2)',
     card: '#2C5F2D',
     cardForeground: '#F5EDD1',
     rating: '#e4b30e',
     input: 'rgba(255,255,255,0.1)',
   },
 };
+
+export default Colors;

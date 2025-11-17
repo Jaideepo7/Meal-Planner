@@ -6,14 +6,14 @@ import {
   ScrollView,
   TouchableOpacity,
   SafeAreaView,
-  useColorScheme,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { User, Bell, Lock, HelpCircle, Mail, ChevronRight, LogOut } from 'lucide-react-native';
 import Colors from '../../../constants/Colors';
 import { useAuth } from '../../../context/AuthContext';
+import { useTheme } from '../../../context/ThemeContext';
 
-function getStyles(colors: typeof Colors.light, colorScheme: string) {
+function getStyles(colors: typeof Colors.light) {
   return StyleSheet.create({
     safeArea: {
       flex: 1,
@@ -117,22 +117,22 @@ function getStyles(colors: typeof Colors.light, colorScheme: string) {
     },
     statCard: {
       flex: 1,
-      backgroundColor: colorScheme === 'dark' ? '#F5EDD1' : colors.card,
+      backgroundColor: colors.card,
       borderRadius: 12,
       padding: 16,
       alignItems: 'center',
       borderWidth: 1,
-      borderColor: colorScheme === 'dark' ? '#2C5F2D' : colors.primary,
+      borderColor: colors.primary,
     },
     statValue: {
       fontSize: 28,
       fontWeight: 'bold',
-      color: colorScheme === 'dark' ? '#2C5F2D' : colors.primary,
+      color: colors.primary,
       marginBottom: 4,
     },
     statLabel: {
       fontSize: 12,
-      color: colorScheme === 'dark' ? 'rgba(44, 95, 45, 0.6)' : colors.mutedForeground,
+      color: colors.mutedForeground,
       textAlign: 'center',
     },
   });
@@ -140,9 +140,8 @@ function getStyles(colors: typeof Colors.light, colorScheme: string) {
 
 export default function ProfileScreen() {
   const router = useRouter();
-  const colorScheme = useColorScheme() ?? 'light';
-  const colors = Colors[colorScheme];
-  const styles = getStyles(colors, colorScheme);
+  const { colors } = useTheme();
+  const styles = getStyles(colors);
   const { user, logout } = useAuth();
 
   // Mock data - in real app, fetch from Firebase

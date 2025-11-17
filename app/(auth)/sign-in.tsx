@@ -8,15 +8,15 @@ import {
   TouchableOpacity,
   SafeAreaView,
   TextInput,
-  useColorScheme,
   Alert,
   ActivityIndicator,
   Platform,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Mail, Lock, Apple, Chrome } from 'lucide-react-native';
-import Colors from '../../constants/Colors';
+import { useTheme } from '../../context/ThemeContext';
 import { useAuth } from '../../context/AuthContext';
+import Colors from '../../constants/Colors';
 
 function getStyles(colors: typeof Colors.light) {
   return StyleSheet.create({
@@ -160,8 +160,7 @@ function getStyles(colors: typeof Colors.light) {
 
 export default function SignInScreen() {
   const router = useRouter();
-  const colorScheme = useColorScheme() ?? 'light';
-  const colors = Colors[colorScheme];
+  const { colors } = useTheme();
   const styles = getStyles(colors);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -225,6 +224,7 @@ export default function SignInScreen() {
               <TextInput
                 style={styles.inputText}
                 placeholder="you@example.com"
+                placeholderTextColor={colors.mutedForeground}
                 value={email}
                 onChangeText={setEmail}
                 keyboardType="email-address"
@@ -240,6 +240,7 @@ export default function SignInScreen() {
               <TextInput
                 style={styles.inputText}
                 placeholder="••••••••"
+                placeholderTextColor={colors.mutedForeground}
                 value={password}
                 onChangeText={setPassword}
                 secureTextEntry

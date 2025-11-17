@@ -1,12 +1,13 @@
 'use client';
 
-import { StyleSheet, View, Text, TouchableOpacity, ScrollView, SafeAreaView, useColorScheme, TextInput, Alert, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ScrollView, SafeAreaView, TextInput, Alert, ActivityIndicator } from 'react-native';
 import { Plus, X, Package, Trash2, Edit3, ChevronDown } from 'lucide-react-native';
 import Colors from '../../../constants/Colors';
 import { Strings } from '../../../constants/Strings';
 import { useEffect, useState } from 'react';
 import RNPickerSelect from 'react-native-picker-select';
 import { addFoodItem, getFoodItems, deleteFoodItem, updateFoodItem } from '../../../services/database';
+import { useTheme } from '../../../context/ThemeContext';
 
 interface FoodItem {
   id: string;
@@ -158,8 +159,7 @@ function getStyles(colors: typeof Colors.light) {
 }
 
 export default function PantryScreen() {
-  const colorScheme = useColorScheme() ?? 'light';
-  const colors = Colors[colorScheme];
+  const { colors } = useTheme();
   const styles = getStyles(colors);
 
   const [items, setItems] = useState<FoodItem[]>([]);
