@@ -137,7 +137,7 @@ export default function GoalsScreen() {
   const colorScheme = useColorScheme() ?? 'light';
   const colors = Colors[colorScheme];
   const styles = getStyles(colors);
-  const { setGoals } = usePreferences();
+  const { setHealthGoals } = usePreferences();
   const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
 
   const goals = [
@@ -156,8 +156,8 @@ export default function GoalsScreen() {
   };
 
   const handleComplete = () => {
-    setGoals(selectedGoals);
-    router.push('/ask-ai');
+    setHealthGoals(selectedGoals);
+    router.push('/(app)/(tabs)/ask-ai');
   };
 
   return (

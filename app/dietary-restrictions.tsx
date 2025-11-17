@@ -103,7 +103,7 @@ export default function DietaryRestrictionsScreen() {
   const colorScheme = useColorScheme() ?? 'light';
   const colors = Colors[colorScheme];
   const styles = getStyles(colors);
-  const { setRestrictions } = usePreferences();
+  const { setDietaryRestrictions } = usePreferences();
   const [selectedRestrictions, setSelectedRestrictions] = useState<string[]>([]);
 
   const restrictions = [
@@ -126,8 +126,8 @@ export default function DietaryRestrictionsScreen() {
   };
 
   const handleContinue = () => {
-    setRestrictions(selectedRestrictions);
-    router.push('/goals');
+    setDietaryRestrictions(selectedRestrictions);
+    router.push('/health-goals');
   };
 
   return (

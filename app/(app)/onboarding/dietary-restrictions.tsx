@@ -1,151 +1,153 @@
-'use client';
-
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, TouchableOpacity, useColorScheme } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Leaf, WheatOff, MilkOff, Banana, FishOff, Star, Moon, MinusCircle, Brain, Shield } from 'lucide-react-native';
-import Colors from '../../../constants/Colors';
-import { useTheme } from '../../../context/ThemeContext';
-import { useAuth } from '../../../context/AuthContext';
-import { usePreferences } from '../../../context/PreferencesContext';
-import { updateUserProfile } from '../../../services/database';
+import Colors from '@/constants/Colors';
+import { usePreferences } from '@/context/PreferencesContext';
 
 const restrictions = [
-  { name: 'Vegetarian', icon: Leaf },
-  { name: 'Vegan', icon: Leaf },
-  { name: 'Gluten-Free', icon: WheatOff },
-  { name: 'Dairy-Free', icon: MilkOff },
-  { name: 'Nut Allergy', icon: Banana },
-  { name: 'Shellfish Allergy', icon: FishOff },
-  { name: 'Kosher', icon: Star },
-  { name: 'Halal', icon: Moon },
-  { name: 'Low Sodium', icon: MinusCircle },
-  { name: 'Keto', icon: Brain },
+  { name: 'Vegan', description: 'No animal products of any kind' },
+  { name: 'Vegetarian', description: 'No meat, but may include eggs and dairy' },
+  { name: 'Gluten-Free', description: 'No wheat, barley, or rye' },
+  { name: 'Dairy-Free', description: 'No milk, cheese, or other dairy products' },
+  { name: 'Nut-Free', description: 'No peanuts or tree nuts' },
+  { name: 'Soy-Free', description: 'No soybeans or soy-based products' },
+  { name: 'Low-Carb', description: 'Limited carbohydrates, such as those found in sugary foods, pasta, and bread' },
+  { name: 'Low-Fat', description: 'Limited fat, especially saturated and trans fats' },
+  { name: 'Halal', description: 'Foods that are permissible under Islamic law' },
+  { name: 'Kosher', description: 'Foods that conform to the regulations of kashrut' },
 ];
 
-function getStyles(colors: typeof Colors.light) {
-  return StyleSheet.create({
-    safeArea: { flex: 1, backgroundColor: colors.background },
-    container: { flex: 1, justifyContent: 'space-between' },
-    header: {
-        backgroundColor: colors.background,
-        paddingHorizontal: 24,
-        paddingTop: 60,
-        paddingBottom: 24,
-        alignItems: 'center',
-        flexDirection: 'row',
-        justifyContent: 'center',
-      },
-      headerContent: {
-          alignItems: 'center',
-      },
-      headerIcon: {
-        width: 60,
-        height: 60,
-        borderRadius: 30,
-        backgroundColor: colors.primary,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: 16,
-      },
-    title: { fontSize: 24, fontWeight: 'bold', color: colors.text, marginBottom: 8 },
-    subtitle: { fontSize: 16, color: colors.mutedForeground, textAlign: 'center' },
-    content: { flex: 1, paddingHorizontal: 24, paddingTop: 16 },
-    selectedCount: { color: colors.mutedForeground, marginBottom: 16, fontSize: 14 },
-    grid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' },
-    card: {
-        width: '32%',
-        aspectRatio: 1,
-        backgroundColor: colors.primary,
-        borderRadius: 20,
-        padding: 10,
-        marginBottom: 12,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: 2,
-        borderColor: 'transparent',
-      },
-      selectedCard: {
-        borderColor: colors.primaryForeground,
-      },
-      cardIcon: { marginBottom: 8 },
-      cardText: { color: colors.primaryForeground, fontSize: 12, fontWeight: '600', textAlign: 'center' },
-    footer: { padding: 24, paddingTop: 12 },
-    button: {
-        backgroundColor: colors.card,
-        borderRadius: 50,
-        padding: 18,
-        alignItems: 'center',
-      },
-      buttonText: { color: colors.cardForeground, fontSize: 16, fontWeight: 'bold' },
-  });
-}
-
 export default function DietaryRestrictionsScreen() {
-  const { theme } = useTheme();
-  const colors = Colors[theme];
-  const styles = getStyles(colors);
   const router = useRouter();
-  const { user } = useAuth();
+  const colorScheme = useColorScheme() ?? 'light';
+  const colors = Colors[colorScheme];
   const { setDietaryRestrictions } = usePreferences();
   const [selectedRestrictions, setSelectedRestrictions] = useState<string[]>([]);
 
-  const toggleRestriction = (restriction: string) => {
-    setSelectedRestrictions(prev => 
-      prev.includes(restriction) ? prev.filter(r => r !== restriction) : [...prev, restriction]
+  const handleRestrictionSelect = (restrictionName: string) => {
+    setSelectedRestrictions(prev =>
+      prev.includes(restrictionName)
+        ? prev.filter(item => item !== restrictionName)
+        : [...prev, restrictionName]
     );
   };
 
-  const handleContinue = async () => {
-    if (user) {
-      await updateUserProfile(user.uid, { dietaryRestrictions: selectedRestrictions });
-    }
+  const handleNext = () => {
     setDietaryRestrictions(selectedRestrictions);
-    router.push('./goals');
+    router.push('/onboarding/goals');
   };
 
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: colors.background,
+    },
+    header: {
+      padding: 24,
+      paddingBottom: 12,
+      borderBottomWidth: 1,
+      borderBottomColor: colors.border,
+    },
+    title: {
+      fontSize: 32,
+      fontWeight: 'bold',
+      color: colors.text,
+    },
+    subtitle: {
+      fontSize: 16,
+      color: colors.mutedForeground,
+      marginTop: 8,
+    },
+    content: {
+      flex: 1,
+    },
+    contentContainer: {
+      padding: 24,
+      paddingBottom: 120,
+    },
+    selectedText: {
+      color: colors.text,
+      textAlign: 'center',
+      marginBottom: 12,
+    },
+    grid: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'space-between',
+    },
+    card: {
+      width: '100%',
+      backgroundColor: colors.card,
+      borderRadius: 12,
+      padding: 16,
+      marginBottom: 12,
+      borderWidth: 2,
+      borderColor: colors.border,
+    },
+    selectedCard: {
+      borderColor: colors.primary,
+      backgroundColor: colors.primary + '20',
+    },
+    cardTitle: {
+      fontSize: 16,
+      fontWeight: '600',
+      color: colors.cardForeground,
+    },
+    cardDescription: {
+      fontSize: 14,
+      color: colors.mutedForeground,
+      marginTop: 4,
+    },
+    footer: {
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      right: 0,
+      padding: 24,
+      backgroundColor: colors.background,
+      borderTopWidth: 1,
+      borderTopColor: colors.border,
+    },
+    button: {
+      backgroundColor: colors.primary,
+      padding: 16,
+      borderRadius: 16,
+      alignItems: 'center',
+    },
+    buttonText: {
+      color: colors.primaryForeground,
+      fontSize: 16,
+      fontWeight: 'bold',
+    },
+  });
+
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        <ScrollView stickyHeaderIndices={[0]} showsVerticalScrollIndicator={false}>
-            <View style={styles.header}>
-                <TouchableOpacity onPress={() => router.back()} style={{ position: 'absolute', left: 24, top: 60 }}>
-                </TouchableOpacity>
-                <View style={styles.headerContent}>
-                    <View style={styles.headerIcon}>
-                        <Shield size={32} color={colors.primaryForeground} />
-                    </View>
-                    <Text style={styles.title}>Dietary Restrictions</Text>
-                    <Text style={styles.subtitle}>Tell us about any dietary needs</Text>
-                </View>
-            </View>
-
-            <View style={styles.content}>
-                <Text style={styles.selectedCount}>Selected: {selectedRestrictions.length} restrictions</Text>
-                <View style={styles.grid}>
-                {restrictions.map(restriction => {
-                    const isSelected = selectedRestrictions.includes(restriction.name);
-                    return (
-                    <TouchableOpacity 
-                        key={restriction.name} 
-                        style={[styles.card, isSelected && styles.selectedCard]} 
-                        onPress={() => toggleRestriction(restriction.name)}
-                    >
-                        <restriction.icon size={28} color={colors.primaryForeground} style={styles.cardIcon} />
-                        <Text style={styles.cardText}>{restriction.name}</Text>
-                    </TouchableOpacity>
-                    );
-                })}
-                </View>
-            </View>
-        </ScrollView>
-
-        <View style={styles.footer}>
-          <TouchableOpacity style={styles.button} onPress={handleContinue}>
-            <Text style={styles.buttonText}>Continue</Text>
-          </TouchableOpacity>
-        </View>
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.title}>Dietary Restrictions</Text>
+        <Text style={styles.subtitle}>Do you have any dietary restrictions? This will help us filter out recipes that don't meet your needs.</Text>
       </View>
-    </SafeAreaView>
+      <ScrollView style={styles.content} contentContainerStyle={styles.contentContainer}>
+        <Text style={styles.selectedText}>Selected: {selectedRestrictions.length} {selectedRestrictions.length === 1 ? 'restriction' : 'restrictions'}</Text>
+        <View style={styles.grid}>
+          {restrictions.map(restriction => (
+            <TouchableOpacity
+              key={restriction.name}
+              style={[styles.card, selectedRestrictions.includes(restriction.name) && styles.selectedCard]}
+              onPress={() => handleRestrictionSelect(restriction.name)}
+            >
+              <Text style={styles.cardTitle}>{restriction.name}</Text>
+              <Text style={styles.cardDescription}>{restriction.description}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </ScrollView>
+
+      <View style={styles.footer}>
+        <TouchableOpacity style={styles.button} onPress={handleNext}>
+          <Text style={styles.buttonText}>Next</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 }
