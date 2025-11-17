@@ -4,13 +4,13 @@ import {
   View,
   Text,
   ScrollView,
-  TouchableOpacity,
   SafeAreaView,
   useColorScheme,
-  TextInput,
 } from 'react-native';
-import { Heart, Search, Clock, Flame, Star } from 'lucide-react-native';
+import { Heart } from 'lucide-react-native';
 import Colors from '../../../constants/Colors';
+import { useFavorites } from '../../../context/FavoritesContext';
+import Markdown from 'react-native-markdown-display';
 
 function getStyles(colors: typeof Colors.light) {
   return StyleSheet.create({
@@ -54,85 +54,14 @@ function getStyles(colors: typeof Colors.light) {
       flex: 1,
       padding: 24,
     },
-    searchBar: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      backgroundColor: colors.card,
-      borderRadius: 12,
-      paddingHorizontal: 16,
-      paddingVertical: 12,
-      marginBottom: 24,
-    },
-    searchIcon: {
-      marginRight: 12,
-    },
-    searchInput: {
-      flex: 1,
-      fontSize: 16,
-      color: colors.cardForeground,
-    },
-    recipeGrid: {
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      gap: 12,
-    },
     recipeCard: {
-      width: '48%',
       backgroundColor: colors.card,
       borderRadius: 16,
-      overflow: 'hidden',
-      marginBottom: 12,
+      padding: 16,
+      marginBottom: 16,
     },
-    recipeImage: {
-      width: '100%',
-      height: 150,
-      backgroundColor: colors.muted,
-      position: 'relative',
-    },
-    favoriteIcon: {
-      position: 'absolute',
-      top: 8,
-      right: 8,
-      width: 32,
-      height: 32,
-      borderRadius: 16,
-      backgroundColor: 'rgba(255, 255, 255, 0.9)',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    recipeInfo: {
-      padding: 12,
-    },
-    recipeTitle: {
-      fontSize: 16,
-      fontWeight: '600',
+    recipeText: {
       color: colors.cardForeground,
-      marginBottom: 8,
-    },
-    recipeMeta: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      gap: 12,
-      marginBottom: 8,
-    },
-    recipeMetaItem: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      gap: 4,
-    },
-    recipeMetaText: {
-      fontSize: 12,
-      color: colors.mutedForeground,
-    },
-    recipeRating: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      gap: 4,
-    },
-    recipeRatingText: {
-      fontSize: 14,
-      fontWeight: '600',
-      color: colors.rating,
     },
   });
 }
@@ -141,46 +70,7 @@ export default function FavoritesScreen() {
   const colorScheme = useColorScheme() ?? 'light';
   const colors = Colors[colorScheme];
   const styles = getStyles(colors);
-
-  // Mock data - in real app, fetch from Firebase
-  const favorites = [
-    {
-      id: '1',
-      title: 'Grilled Chicken Salad',
-      time: '25 min',
-      calories: '320 cal',
-      rating: '4.5',
-      image: null,
-      isFavorite: true,
-    },
-    {
-      id: '2',
-      title: 'Veggie Stir Fry',
-      time: '20 min',
-      calories: '250 cal',
-      rating: '4.3',
-      image: null,
-      isFavorite: true,
-    },
-    {
-      id: '3',
-      title: 'Greek Salad',
-      time: '12 min',
-      calories: '175 cal',
-      rating: '4.7',
-      image: null,
-      isFavorite: true,
-    },
-    {
-      id: '4',
-      title: 'Salmon with Asparagus',
-      time: '30 min',
-      calories: '380 cal',
-      rating: '4.2',
-      image: null,
-      isFavorite: true,
-    },
-  ];
+  const { favorites } = useFavorites();
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -194,43 +84,11 @@ export default function FavoritesScreen() {
         </View>
 
         <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
-          <View style={styles.searchBar}>
-            <Search size={20} color={colors.mutedForeground} style={styles.searchIcon} />
-            <TextInput
-              style={styles.searchInput}
-              placeholder="Search favorites"
-              placeholderTextColor={colors.mutedForeground}
-            />
-          </View>
-
-          <View style={styles.recipeGrid}>
-            {favorites.map((recipe) => (
-              <TouchableOpacity key={recipe.id} style={styles.recipeCard}>
-                <View style={styles.recipeImage}>
-                  <View style={styles.favoriteIcon}>
-                    <Heart size={16} color="#F44336" fill="#F44336" />
-                  </View>
-                </View>
-                <View style={styles.recipeInfo}>
-                  <Text style={styles.recipeTitle}>{recipe.title}</Text>
-                  <View style={styles.recipeMeta}>
-                    <View style={styles.recipeMetaItem}>
-                      <Clock size={14} color={colors.mutedForeground} />
-                      <Text style={styles.recipeMetaText}>{recipe.time}</Text>
-                    </View>
-                    <View style={styles.recipeMetaItem}>
-                      <Flame size={14} color={colors.mutedForeground} />
-                      <Text style={styles.recipeMetaText}>{recipe.calories}</Text>
-                    </View>
-                  </View>
-                  <View style={styles.recipeRating}>
-                    <Star size={14} color={colors.rating} fill={colors.rating} />
-                    <Text style={styles.recipeRatingText}>{recipe.rating}</Text>
-                  </View>
-                </View>
-              </TouchableOpacity>
-            ))}
-          </View>
+          {favorites.map((recipe) => (
+            <View key={recipe.id} style={styles.recipeCard}>
+              <Markdown style={{text: styles.recipeText}}>{recipe.content}</Markdown>
+            </View>
+          ))}
         </ScrollView>
       </View>
     </SafeAreaView>

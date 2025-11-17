@@ -69,6 +69,8 @@ function getStyles(colors: typeof Colors.light) {
       borderRadius: 12,
       padding: 16,
       marginBottom: 12,
+      borderWidth: 1,
+      borderColor: colors.mutedForeground,
     },
     settingsItem: {
       flexDirection: 'row',

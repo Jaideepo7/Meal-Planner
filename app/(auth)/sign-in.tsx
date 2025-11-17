@@ -79,7 +79,7 @@ function getStyles(colors: typeof Colors.light) {
       marginLeft: 12,
     },
     forgotPassword: {
-      alignSelf: 'flex-end',
+      alignSelf: 'center',
       marginBottom: 16,
     },
     forgotPasswordText: {
@@ -194,7 +194,7 @@ export default function SignInScreen() {
         <View style={styles.header}>
           <View style={styles.headerContent}>
             <Text style={styles.title}>Welcome Back</Text>
-            <Text style={styles.subtitle}>Sign in to continue to MealMind AI</Text>
+            <Text style={styles.subtitle}>Sign in to continue to Meal Maker</Text>
           </View>
         </View>
 

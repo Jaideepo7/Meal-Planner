@@ -2786,3 +2786,504 @@
 [error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
 [debug] [2025-11-17T01:24:26.228Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
 [debug] [2025-11-17T01:24:26.229Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T02:00:34.486Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T02:00:34.487Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[debug] [2025-11-17T02:00:34.497Z] Checked if tokens are valid: true, expires at: 1763346265102
+[debug] [2025-11-17T02:00:34.498Z] Checked if tokens are valid: true, expires at: 1763346265102
+[debug] [2025-11-17T02:00:34.499Z] Checked if tokens are valid: true, expires at: 1763346265102
+[debug] [2025-11-17T02:00:34.499Z] Checked if tokens are valid: true, expires at: 1763346265102
+[debug] [2025-11-17T02:00:34.511Z] Checked if tokens are valid: true, expires at: 1763346265102
+[debug] [2025-11-17T02:00:34.511Z] Checked if tokens are valid: true, expires at: 1763346265102
+[debug] [2025-11-17T02:00:34.512Z] Checked if tokens are valid: true, expires at: 1763346265102
+[debug] [2025-11-17T02:00:34.512Z] Checked if tokens are valid: true, expires at: 1763346265102
+[debug] [2025-11-17T02:00:34.514Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com [none]
+[debug] [2025-11-17T02:00:34.514Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T02:00:34.547Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-11-17T02:00:34.547Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T02:00:34.550Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com [none]
+[debug] [2025-11-17T02:00:34.550Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T02:00:34.552Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com [none]
+[debug] [2025-11-17T02:00:34.552Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com x-goog-quota-user=projects/meal-pla-4b01f
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T02:00:34.561Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T02:00:34.561Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[debug] [2025-11-17T02:00:34.562Z] Checked if tokens are valid: true, expires at: 1763346265102
+[debug] [2025-11-17T02:00:34.562Z] Checked if tokens are valid: true, expires at: 1763346265102
+[debug] [2025-11-17T02:00:34.562Z] Checked if tokens are valid: true, expires at: 1763346265102
+[debug] [2025-11-17T02:00:34.563Z] Checked if tokens are valid: true, expires at: 1763346265102
+[debug] [2025-11-17T02:00:34.566Z] Checked if tokens are valid: true, expires at: 1763346265102
+[debug] [2025-11-17T02:00:34.566Z] Checked if tokens are valid: true, expires at: 1763346265102
+[debug] [2025-11-17T02:00:34.566Z] Checked if tokens are valid: true, expires at: 1763346265102
+[debug] [2025-11-17T02:00:34.566Z] Checked if tokens are valid: true, expires at: 1763346265102
+[debug] [2025-11-17T02:00:34.567Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com [none]
+[debug] [2025-11-17T02:00:34.567Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T02:00:34.569Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-11-17T02:00:34.569Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T02:00:34.571Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com [none]
+[debug] [2025-11-17T02:00:34.571Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T02:00:34.573Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com [none]
+[debug] [2025-11-17T02:00:34.573Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T02:00:34.710Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com 403
+[debug] [2025-11-17T02:00:34.711Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com [omitted]
+[debug] [2025-11-17T02:00:34.726Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com 403
+[debug] [2025-11-17T02:00:34.726Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com [omitted]
+[debug] [2025-11-17T02:00:34.739Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com 200
+[debug] [2025-11-17T02:00:34.739Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2025-11-17T02:00:34.743Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com 200
+[debug] [2025-11-17T02:00:34.743Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2025-11-17T02:00:34.745Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com 200
+[debug] [2025-11-17T02:00:34.745Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2025-11-17T02:00:34.751Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com 200
+[debug] [2025-11-17T02:00:34.751Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2025-11-17T02:00:34.753Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com 200
+[debug] [2025-11-17T02:00:34.753Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2025-11-17T02:00:34.754Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com 200
+[debug] [2025-11-17T02:00:34.754Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com [omitted]
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T02:00:34.757Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T02:00:34.757Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T02:00:34.760Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T02:00:34.760Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T02:00:34.774Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T02:00:34.774Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T02:00:34.776Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T02:00:34.776Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T02:00:34.782Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T02:00:34.783Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T02:00:34.788Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T02:00:34.788Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T02:47:55.793Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T02:47:55.794Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[debug] [2025-11-17T02:47:55.808Z] Checked if tokens are valid: false, expires at: 1763346265102
+[debug] [2025-11-17T02:47:55.809Z] Checked if tokens are valid: false, expires at: 1763346265102
+[debug] [2025-11-17T02:47:55.809Z] > refreshing access token with scopes: []
+[debug] [2025-11-17T02:47:55.815Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-11-17T02:47:55.815Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T02:47:55.862Z] Checked if tokens are valid: false, expires at: 1763346265102
+[debug] [2025-11-17T02:47:55.862Z] Checked if tokens are valid: false, expires at: 1763346265102
+[debug] [2025-11-17T02:47:55.863Z] > refreshing access token with scopes: []
+[debug] [2025-11-17T02:47:55.864Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-11-17T02:47:55.864Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T02:47:55.889Z] Checked if tokens are valid: false, expires at: 1763346265102
+[debug] [2025-11-17T02:47:55.890Z] Checked if tokens are valid: false, expires at: 1763346265102
+[debug] [2025-11-17T02:47:55.890Z] > refreshing access token with scopes: []
+[debug] [2025-11-17T02:47:55.891Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-11-17T02:47:55.891Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T02:47:55.895Z] Checked if tokens are valid: false, expires at: 1763346265102
+[debug] [2025-11-17T02:47:55.895Z] Checked if tokens are valid: false, expires at: 1763346265102
+[debug] [2025-11-17T02:47:55.895Z] > refreshing access token with scopes: []
+[debug] [2025-11-17T02:47:55.895Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-11-17T02:47:55.896Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T02:47:55.898Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T02:47:55.898Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[debug] [2025-11-17T02:47:55.900Z] Checked if tokens are valid: false, expires at: 1763346265102
+[debug] [2025-11-17T02:47:55.900Z] Checked if tokens are valid: false, expires at: 1763346265102
+[debug] [2025-11-17T02:47:55.900Z] > refreshing access token with scopes: []
+[debug] [2025-11-17T02:47:55.901Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-11-17T02:47:55.901Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T02:47:55.904Z] Checked if tokens are valid: false, expires at: 1763346265102
+[debug] [2025-11-17T02:47:55.904Z] Checked if tokens are valid: false, expires at: 1763346265102
+[debug] [2025-11-17T02:47:55.904Z] > refreshing access token with scopes: []
+[debug] [2025-11-17T02:47:55.905Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-11-17T02:47:55.905Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T02:47:55.911Z] Checked if tokens are valid: false, expires at: 1763346265102
+[debug] [2025-11-17T02:47:55.912Z] Checked if tokens are valid: false, expires at: 1763346265102
+[debug] [2025-11-17T02:47:55.912Z] > refreshing access token with scopes: []
+[debug] [2025-11-17T02:47:55.912Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-11-17T02:47:55.912Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T02:47:55.915Z] Checked if tokens are valid: false, expires at: 1763346265102
+[debug] [2025-11-17T02:47:55.915Z] Checked if tokens are valid: false, expires at: 1763346265102
+[debug] [2025-11-17T02:47:55.915Z] > refreshing access token with scopes: []
+[debug] [2025-11-17T02:47:55.916Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-11-17T02:47:55.917Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T02:47:56.069Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-11-17T02:47:56.069Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T02:47:56.094Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com [none]
+[debug] [2025-11-17T02:47:56.094Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T02:47:56.101Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-11-17T02:47:56.101Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T02:47:56.113Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com [none]
+[debug] [2025-11-17T02:47:56.113Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T02:47:56.151Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-11-17T02:47:56.151Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T02:47:56.167Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com [none]
+[debug] [2025-11-17T02:47:56.167Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T02:47:56.173Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-11-17T02:47:56.173Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T02:47:56.187Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-11-17T02:47:56.187Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T02:47:56.193Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-11-17T02:47:56.193Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T02:47:56.206Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-11-17T02:47:56.206Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T02:47:56.209Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-11-17T02:47:56.209Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T02:47:56.222Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com [none]
+[debug] [2025-11-17T02:47:56.223Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T02:47:56.225Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-11-17T02:47:56.225Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T02:47:56.238Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com [none]
+[debug] [2025-11-17T02:47:56.238Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T02:47:56.240Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-11-17T02:47:56.240Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T02:47:56.253Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com [none]
+[debug] [2025-11-17T02:47:56.253Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T02:47:56.331Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com 200
+[debug] [2025-11-17T02:47:56.335Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2025-11-17T02:47:56.338Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com 200
+[debug] [2025-11-17T02:47:56.339Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2025-11-17T02:47:56.339Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com 403
+[debug] [2025-11-17T02:47:56.340Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com [omitted]
+[debug] [2025-11-17T02:47:56.345Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com 403
+[debug] [2025-11-17T02:47:56.349Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com [omitted]
+[debug] [2025-11-17T02:47:56.360Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com 200
+[debug] [2025-11-17T02:47:56.361Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2025-11-17T02:47:56.362Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com 200
+[debug] [2025-11-17T02:47:56.363Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2025-11-17T02:47:56.384Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com 200
+[debug] [2025-11-17T02:47:56.384Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com [omitted]
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T02:47:56.389Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T02:47:56.389Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T02:47:56.391Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T02:47:56.392Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[debug] [2025-11-17T02:47:56.397Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com 200
+[debug] [2025-11-17T02:47:56.398Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com [omitted]
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T02:47:56.405Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T02:47:56.406Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T02:47:56.407Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T02:47:56.408Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T02:47:56.417Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T02:47:56.417Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T02:47:56.419Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T02:47:56.419Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T03:02:19.197Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T03:02:19.198Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[debug] [2025-11-17T03:02:19.205Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:02:19.205Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:02:19.206Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:02:19.206Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:02:19.216Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:02:19.216Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:02:19.217Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:02:19.217Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:02:19.217Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T03:02:19.217Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[debug] [2025-11-17T03:02:19.219Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com [none]
+[debug] [2025-11-17T03:02:19.219Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T03:02:19.247Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-11-17T03:02:19.247Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T03:02:19.249Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com [none]
+[debug] [2025-11-17T03:02:19.249Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T03:02:19.251Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com [none]
+[debug] [2025-11-17T03:02:19.251Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T03:02:19.253Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:02:19.253Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:02:19.253Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:02:19.254Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:02:19.262Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:02:19.262Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:02:19.262Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:02:19.263Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:02:19.263Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com [none]
+[debug] [2025-11-17T03:02:19.263Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T03:02:19.264Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-11-17T03:02:19.264Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T03:02:19.266Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com [none]
+[debug] [2025-11-17T03:02:19.266Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T03:02:19.267Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com [none]
+[debug] [2025-11-17T03:02:19.267Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T03:02:19.377Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com 403
+[debug] [2025-11-17T03:02:19.377Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com [omitted]
+[debug] [2025-11-17T03:02:19.379Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com 403
+[debug] [2025-11-17T03:02:19.379Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com [omitted]
+[debug] [2025-11-17T03:02:19.417Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com 200
+[debug] [2025-11-17T03:02:19.417Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2025-11-17T03:02:19.419Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com 200
+[debug] [2025-11-17T03:02:19.419Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2025-11-17T03:02:19.420Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com 200
+[debug] [2025-11-17T03:02:19.421Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2025-11-17T03:02:19.430Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com 200
+[debug] [2025-11-17T03:02:19.430Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2025-11-17T03:02:19.655Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com 200
+[debug] [2025-11-17T03:02:19.656Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2025-11-17T03:02:20.792Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com 200
+[debug] [2025-11-17T03:02:20.792Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com [omitted]
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T03:02:20.796Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T03:02:20.796Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T03:02:20.797Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T03:02:20.797Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T03:02:20.811Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T03:02:20.811Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T03:02:20.813Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T03:02:20.813Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T03:02:20.819Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T03:02:20.819Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T03:02:20.821Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T03:02:20.821Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T03:08:45.848Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T03:08:45.849Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T03:08:45.851Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T03:08:45.851Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T03:09:01.361Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T03:09:01.361Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T03:09:01.363Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T03:09:01.363Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[debug] [2025-11-17T03:09:01.368Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:09:01.368Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:09:01.369Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/meal-pla-4b01f:searchApps pageSize=100
+[debug] [2025-11-17T03:09:01.600Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/meal-pla-4b01f:searchApps 200
+[debug] [2025-11-17T03:09:01.600Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/meal-pla-4b01f:searchApps {"apps":[{"name":"projects/meal-pla-4b01f/androidApps/1:232966009287:android:c5095428925b98d13e69e2","displayName":"Meal Planner","platform":"ANDROID","appId":"1:232966009287:android:c5095428925b98d13e69e2","namespace":"Project.Meal.Planner","apiKeyId":"81240099-4e2c-4d21-8dab-694e642d8daa","state":"ACTIVE","expireTime":"1970-01-01T00:00:00Z"},{"name":"projects/meal-pla-4b01f/webApps/1:232966009287:web:b70b8a09a7211d893e69e2","displayName":"Flutter AI Playground","platform":"WEB","appId":"1:232966009287:web:b70b8a09a7211d893e69e2","namespace":"MzlkNDc1ZjUtOWMyYy00MzI3LWFjYzktOGZkMWI5MDQ4NzZl","apiKeyId":"b9cf3d3b-6844-4040-806f-d1c025d79ad6","state":"ACTIVE","expireTime":"1970-01-01T00:00:00Z"}]}
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T03:23:05.078Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T03:23:05.079Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[debug] [2025-11-17T03:23:05.089Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:23:05.090Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:23:05.091Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:23:05.091Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:23:05.103Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:23:05.103Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:23:05.103Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:23:05.104Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:23:05.105Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com [none]
+[debug] [2025-11-17T03:23:05.106Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T03:23:05.134Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-11-17T03:23:05.135Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T03:23:05.137Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com [none]
+[debug] [2025-11-17T03:23:05.138Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T03:23:05.140Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com [none]
+[debug] [2025-11-17T03:23:05.140Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com x-goog-quota-user=projects/meal-pla-4b01f
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T03:23:05.149Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T03:23:05.150Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[debug] [2025-11-17T03:23:05.151Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:23:05.151Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:23:05.152Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:23:05.152Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:23:05.154Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:23:05.154Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:23:05.154Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:23:05.155Z] Checked if tokens are valid: true, expires at: 1763351275240
+[debug] [2025-11-17T03:23:05.155Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com [none]
+[debug] [2025-11-17T03:23:05.155Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T03:23:05.156Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-11-17T03:23:05.157Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T03:23:05.158Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com [none]
+[debug] [2025-11-17T03:23:05.158Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T03:23:05.160Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com [none]
+[debug] [2025-11-17T03:23:05.160Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T03:23:05.267Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com 403
+[debug] [2025-11-17T03:23:05.267Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com [omitted]
+[debug] [2025-11-17T03:23:05.269Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com 403
+[debug] [2025-11-17T03:23:05.269Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com [omitted]
+[debug] [2025-11-17T03:23:05.378Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com 200
+[debug] [2025-11-17T03:23:05.378Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2025-11-17T03:23:05.379Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com 200
+[debug] [2025-11-17T03:23:05.380Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2025-11-17T03:23:05.381Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com 200
+[debug] [2025-11-17T03:23:05.381Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2025-11-17T03:23:05.382Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com 200
+[debug] [2025-11-17T03:23:05.382Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2025-11-17T03:23:05.384Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com 200
+[debug] [2025-11-17T03:23:05.384Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com [omitted]
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T03:23:05.387Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T03:23:05.387Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T03:23:05.389Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T03:23:05.389Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[debug] [2025-11-17T03:23:05.390Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com 200
+[debug] [2025-11-17T03:23:05.390Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com [omitted]
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T03:23:05.401Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T03:23:05.401Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T03:23:05.402Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T03:23:05.402Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T03:23:05.407Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T03:23:05.407Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T03:23:05.409Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T03:23:05.409Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T03:48:25.047Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T03:48:25.048Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[debug] [2025-11-17T03:48:25.060Z] Checked if tokens are valid: false, expires at: 1763351275240
+[debug] [2025-11-17T03:48:25.061Z] Checked if tokens are valid: false, expires at: 1763351275240
+[debug] [2025-11-17T03:48:25.062Z] > refreshing access token with scopes: []
+[debug] [2025-11-17T03:48:25.065Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-11-17T03:48:25.066Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T03:48:25.102Z] Checked if tokens are valid: false, expires at: 1763351275240
+[debug] [2025-11-17T03:48:25.103Z] Checked if tokens are valid: false, expires at: 1763351275240
+[debug] [2025-11-17T03:48:25.103Z] > refreshing access token with scopes: []
+[debug] [2025-11-17T03:48:25.104Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-11-17T03:48:25.104Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T03:48:25.121Z] Checked if tokens are valid: false, expires at: 1763351275240
+[debug] [2025-11-17T03:48:25.122Z] Checked if tokens are valid: false, expires at: 1763351275240
+[debug] [2025-11-17T03:48:25.122Z] > refreshing access token with scopes: []
+[debug] [2025-11-17T03:48:25.123Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-11-17T03:48:25.123Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T03:48:25.126Z] Checked if tokens are valid: false, expires at: 1763351275240
+[debug] [2025-11-17T03:48:25.126Z] Checked if tokens are valid: false, expires at: 1763351275240
+[debug] [2025-11-17T03:48:25.126Z] > refreshing access token with scopes: []
+[debug] [2025-11-17T03:48:25.127Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-11-17T03:48:25.127Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T03:48:25.130Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T03:48:25.130Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[debug] [2025-11-17T03:48:25.131Z] Checked if tokens are valid: false, expires at: 1763351275240
+[debug] [2025-11-17T03:48:25.132Z] Checked if tokens are valid: false, expires at: 1763351275240
+[debug] [2025-11-17T03:48:25.132Z] > refreshing access token with scopes: []
+[debug] [2025-11-17T03:48:25.132Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-11-17T03:48:25.132Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T03:48:25.135Z] Checked if tokens are valid: false, expires at: 1763351275240
+[debug] [2025-11-17T03:48:25.135Z] Checked if tokens are valid: false, expires at: 1763351275240
+[debug] [2025-11-17T03:48:25.135Z] > refreshing access token with scopes: []
+[debug] [2025-11-17T03:48:25.136Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-11-17T03:48:25.136Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T03:48:25.140Z] Checked if tokens are valid: false, expires at: 1763351275240
+[debug] [2025-11-17T03:48:25.140Z] Checked if tokens are valid: false, expires at: 1763351275240
+[debug] [2025-11-17T03:48:25.141Z] > refreshing access token with scopes: []
+[debug] [2025-11-17T03:48:25.141Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-11-17T03:48:25.141Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T03:48:25.143Z] Checked if tokens are valid: false, expires at: 1763351275240
+[debug] [2025-11-17T03:48:25.143Z] Checked if tokens are valid: false, expires at: 1763351275240
+[debug] [2025-11-17T03:48:25.143Z] > refreshing access token with scopes: []
+[debug] [2025-11-17T03:48:25.143Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-11-17T03:48:25.144Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T03:48:25.249Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-11-17T03:48:25.249Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T03:48:25.272Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com [none]
+[debug] [2025-11-17T03:48:25.273Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T03:48:25.294Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-11-17T03:48:25.294Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T03:48:25.311Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-11-17T03:48:25.312Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T03:48:25.360Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-11-17T03:48:25.360Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T03:48:25.374Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com [none]
+[debug] [2025-11-17T03:48:25.374Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T03:48:25.379Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-11-17T03:48:25.379Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T03:48:25.393Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-11-17T03:48:25.393Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T03:48:25.401Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-11-17T03:48:25.401Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T03:48:25.417Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com [none]
+[debug] [2025-11-17T03:48:25.417Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T03:48:25.431Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-11-17T03:48:25.431Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T03:48:25.443Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com [none]
+[debug] [2025-11-17T03:48:25.443Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T03:48:25.445Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-11-17T03:48:25.446Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T03:48:25.456Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com [none]
+[debug] [2025-11-17T03:48:25.457Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T03:48:25.462Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-11-17T03:48:25.462Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-17T03:48:25.474Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com [none]
+[debug] [2025-11-17T03:48:25.474Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com x-goog-quota-user=projects/meal-pla-4b01f
+[debug] [2025-11-17T03:48:25.479Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com 200
+[debug] [2025-11-17T03:48:25.480Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2025-11-17T03:48:25.488Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com 403
+[debug] [2025-11-17T03:48:25.488Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com [omitted]
+[debug] [2025-11-17T03:48:25.492Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com 200
+[debug] [2025-11-17T03:48:25.492Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2025-11-17T03:48:25.528Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com 200
+[debug] [2025-11-17T03:48:25.529Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2025-11-17T03:48:25.551Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com 403
+[debug] [2025-11-17T03:48:25.551Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseio.com [omitted]
+[debug] [2025-11-17T03:48:25.559Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com 200
+[debug] [2025-11-17T03:48:25.559Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2025-11-17T03:48:25.562Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com 200
+[debug] [2025-11-17T03:48:25.562Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebaseapphosting.googleapis.com [omitted]
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T03:48:25.566Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T03:48:25.566Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T03:48:25.568Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T03:48:25.568Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[debug] [2025-11-17T03:48:25.572Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com 200
+[debug] [2025-11-17T03:48:25.572Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-pla-4b01f/services/firebasedataconnect.googleapis.com [omitted]
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T03:48:25.583Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T03:48:25.583Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T03:48:25.584Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T03:48:25.584Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T03:48:25.589Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T03:48:25.589Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-11-17T03:48:25.591Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-11-17T03:48:25.591Z] > authorizing via signed-in user (jaideeep.prabish@gmail.com)

@@ -1,4 +1,3 @@
-
 'use client';
 
 import { StyleSheet, View, Text, TouchableOpacity, ScrollView, SafeAreaView, useColorScheme, TextInput, Alert, ActivityIndicator } from 'react-native';
@@ -87,7 +86,7 @@ function getStyles(colors: typeof Colors.light) {
     },
     input: {
         backgroundColor: colors.background,
-        borderRadius: 8,
+        borderRadius: 12,
         padding: 12,
         color: colors.text,
         fontSize: 14,
@@ -269,13 +268,18 @@ export default function PantryScreen() {
   const pickerSelectStyles = StyleSheet.create({
     inputIOS: {
       ...styles.input,
+      paddingRight: 40,
     },
     inputAndroid: {
       ...styles.input,
+      paddingRight: 40,
     },
     iconContainer: {
       top: 12,
       right: 12,
+    },
+    placeholder: {
+      color: colors.mutedForeground,
     },
   });
 

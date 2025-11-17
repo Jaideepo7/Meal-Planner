@@ -48,7 +48,7 @@ function getStyles(colors: typeof Colors.light) {
       backgroundColor: colors.primary,
       paddingHorizontal: 24,
       paddingBottom: 60,
-      paddingTop: 40,
+      paddingTop: 60,
       borderBottomLeftRadius: 30,
       borderBottomRightRadius: 30,
       flexDirection: 'row',
@@ -280,7 +280,7 @@ export default function FoodInventoryScreen() {
     <SafeAreaView style={styles.safeArea}>
         <ScrollView>
             <View style={styles.header}>
-                <TouchableOpacity onPress={() => router.back()} style={{position: 'absolute', left: 24, top: 40}}>
+                <TouchableOpacity onPress={() => router.back()} style={{position: 'absolute', left: 24, top: 60}}>
                     <ChevronLeft size={24} color={colors.primaryForeground} />
                 </TouchableOpacity>
                 <View style={styles.headerContent}>

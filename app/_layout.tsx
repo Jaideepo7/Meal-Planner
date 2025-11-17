@@ -2,6 +2,7 @@
 import { AuthProvider, useAuth } from '../context/AuthContext';
 import { PantryProvider } from '../context/PantryContext';
 import { PreferencesProvider } from '../context/PreferencesContext';
+import { FavoritesProvider } from '../context/FavoritesContext';
 import { Stack, useRouter, useSegments } from 'expo-router';
 import { useEffect } from 'react';
 import { ActivityIndicator, View } from 'react-native';
@@ -47,7 +48,9 @@ export default function RootLayout() {
     <AuthProvider>
       <PantryProvider>
         <PreferencesProvider>
-          <RootLayoutNav />
+          <FavoritesProvider>
+            <RootLayoutNav />
+          </FavoritesProvider>
         </PreferencesProvider>
       </PantryProvider>
     </AuthProvider>

@@ -6,10 +6,12 @@ import { useRouter } from 'expo-router';
 import { useState, useRef } from 'react';
 import { usePreferences } from '../../../context/PreferencesContext';
 import { usePantry } from '../../../context/PantryContext';
+import { useFavorites } from '../../../context/FavoritesContext';
 import { sendMessageToGemini } from '../../../services/gemini';
 import Markdown from 'react-native-markdown-display';
 
 interface Message {
+  id: string;
   role: 'user' | 'assistant';
   content: string;
   feedback?: 'like' | 'dislike' | null;
@@ -104,6 +106,8 @@ function getStyles(colors: any) {
       padding: 12,
       alignSelf: 'flex-end',
       maxWidth: '80%',
+      borderWidth: 1,
+      borderColor: colors.mutedForeground,
     },
     assistantMessageContainer: {
       backgroundColor: colors.card,
@@ -111,6 +115,8 @@ function getStyles(colors: any) {
       padding: 12,
       alignSelf: 'flex-start',
       maxWidth: '80%',
+      borderWidth: 1,
+      borderColor: colors.mutedForeground,
     },
     userMessage: {
       color: colors.primaryForeground,
@@ -157,9 +163,10 @@ export default function AskAiScreen() {
   const styles = getStyles(colors);
   const { cuisines, restrictions, goals } = usePreferences();
   const { pantry } = usePantry();
+  const { addFavorite } = useFavorites();
   const [message, setMessage] = useState('');
   const [chatHistory, setChatHistory] = useState<Message[]>([
-    { role: 'assistant', content: "Hi! I'm your AI meal assistant. Based on your preferences, I can help you find recipes, plan meals, and answer questions about your dietary goals. What would you like to know?", feedback: null },
+    { id: '0', role: 'assistant', content: "Hi! I'm your AI meal assistant. Based on your preferences, I can help you find recipes, plan meals, and answer questions about your dietary goals. What would you like to know?", feedback: null },
   ]);
   const [loading, setLoading] = useState(false);
   const scrollViewRef = useRef<ScrollView>(null);
@@ -185,6 +192,9 @@ export default function AskAiScreen() {
       const message = newHistory[index];
       if (message.role === 'assistant') {
         message.feedback = message.feedback === feedback ? null : feedback;
+        if (feedback === 'like') {
+          addFavorite({ id: message.id, content: message.content });
+        }
       }
       return newHistory;
     });
@@ -194,7 +204,7 @@ export default function AskAiScreen() {
     const messageToSend = customMessage || message;
     if (!messageToSend.trim() || loading) return;
 
-    const newMessage: Message = { role: 'user', content: messageToSend };
+    const newMessage: Message = { id: Date.now().toString(), role: 'user', content: messageToSend };
     setChatHistory(prev => [...prev, newMessage]);
     setMessage('');
     setLoading(true);
@@ -210,6 +220,7 @@ export default function AskAiScreen() {
       );
       
       const aiResponse: Message = {
+        id: Date.now().toString(),
         role: 'assistant',
         content: aiResponseText,
         feedback: null
@@ -221,6 +232,7 @@ export default function AskAiScreen() {
         ? error.message 
         : 'Sorry, I encountered an error. Please try again.';
       const errorResponse: Message = { 
+        id: Date.now().toString(),
         role: 'assistant', 
         content: errorMessage.includes('API key') 
           ? 'Gemini API key is not configured. Please set EXPO_PUBLIC_GEMINI_API_KEY in your .env file.'
