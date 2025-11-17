@@ -26,7 +26,6 @@ function getStyles(colors: typeof Colors.light) {
       backgroundColor: colors.background,
     },
     container: {
-      flex: 1,
     },
     header: {
       backgroundColor: colors.primary,
@@ -57,7 +56,6 @@ function getStyles(colors: typeof Colors.light) {
       opacity: 0.8,
     },
     content: {
-      flex: 1,
       padding: 24,
     },
     form: {},
